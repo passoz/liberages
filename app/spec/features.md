@@ -1188,4 +1188,819 @@ Gerar QR code para convidar outro usuário presencialmente (ex.: em casa de swin
 ```
 POST  /api/v1/qr/generate         → gerar QR code
 POST  /api/v1/qr/scan             → escanear QR code (recebe encrypted_data devolvendo ação)
+
+---
+
+## 29. Mural de Elogio Anônimo
+
+Usuários podem enviar elogios anônimos para perfis — moderados antes de aparecerem.
+
+- Qualquer usuário pode enviar um elogio para outro (texto curto, máx. 200 caracteres)
+- Elogio é anônimo — quem recebe **nunca** sabe quem enviou
+- Elogio passa por moderação (robô + humano) antes de aparecer
+- Usuário pode aceitar ou rejeitar cada elogio
+- Se aceito, aparece num "Mural de Elogios" no perfil público
+- Após 10 elogios aceitos: badge "Admiradx" no perfil
+- Após 50: badge "Cobiçadx"
+- Após 100: badge "Musa/Muse da Comunidade"
+- Um elogio por pessoa por mês (evita abuso)
+- Usuário pode bloquear de receber elogios (configuração de privacidade)
+
+### Schema — `compliments`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| sender_id | TEXT | NOT NULL, FK → users |
+| recipient_id | TEXT | NOT NULL, FK → users |
+| body | TEXT | NOT NULL — max 200 chars |
+| moderation_status | TEXT | NOT NULL DEFAULT 'pending' (pending, approved, rejected) |
+| is_accepted | INTEGER | NOT NULL DEFAULT 0 |
+| accepted_at | TEXT | NULL |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+POST  /api/v1/compliments                   → enviar elogio anônimo
+GET   /api/v1/compliments/inbox             → elogios recebidos (pendentes de aceitação)
+POST  /api/v1/compliments/{id}/accept       → aceitar elogio no mural
+POST  /api/v1/compliments/{id}/reject       → rejeitar elogio
+GET   /api/v1/users/{user_id}/compliments   → mural público de elogios
+```
+
+---
+
+## 30. Jogo da Verdade Liberal
+
+Mini-game interativo dentro do match: perguntas de quebra-gelo com respostas reveladas só depois de ambos responderem.
+
+- Após um match, qualquer um dos dois pode iniciar o Jogo da Verdade
+- Sistema seleciona 5 perguntas de um banco curado (categorias: leve, médio, picante)
+- Cada pergunta é enviada aos dois — cada um responde separadamente
+- Resposta do outro só é revelada depois que ambos responderam aquela pergunta
+- Se a resposta combina (ex.: ambos "sim"), destaca em verde com emoji 🔥
+- Ao final, mostra resumo das respostas combinadas
+- Novas perguntas adicionadas semanalmente pela moderação
+- Usuários podem sugerir perguntas (passam por curadoria)
+
+### Banco inicial de perguntas
+
+| Leve | Médio | Picante |
+|------|-------|---------|
+| Qual seu lugar favorito na cidade? | Topa um encontro às cegas? | Qual seu fetiche mais secreto? |
+| O que te trouxe ao Liberages? | Prefere day use ou pernoite? | Já fez menage? |
+| Prefere praia ou montanha? | Curte exibicionismo? | Qual seu filme adulto favorito? |
+| Qual seu hobby? | Já frequentou casa de swing? | Topa ser dominado(a)? |
+
+### Schema — `truth_game_questions`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| category | TEXT | NOT NULL (mild, medium, spicy) |
+| question | TEXT | NOT NULL |
+| is_active | INTEGER | NOT NULL DEFAULT 1 |
+| suggested_by | TEXT | NULL, FK → users |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### Schema — `truth_game_sessions`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| match_id | TEXT | NOT NULL, FK → matches |
+| status | TEXT | NOT NULL DEFAULT 'in_progress' (in_progress, completed) |
+| started_by | TEXT | NOT NULL, FK → users |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+| completed_at | TEXT | NULL |
+
+### Schema — `truth_game_answers`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| session_id | TEXT | NOT NULL, FK → truth_game_sessions |
+| question_id | TEXT | NOT NULL, FK → truth_game_questions |
+| user_id | TEXT | NOT NULL, FK → users |
+| answer | TEXT | NOT NULL |
+| answered_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+POST  /api/v1/match/{match_id}/truth/start     → iniciar jogo
+GET   /api/v1/match/{match_id}/truth/next      → próxima pergunta
+POST  /api/v1/match/{match_id}/truth/answer    → responder pergunta
+GET   /api/v1/match/{match_id}/truth/results   → ver resultados
+```
+
+---
+
+## 31. Lista de Fetiches com Match %
+
+Catálogo curado de fetiches/interesses — usuário marca os seus, sistema calcula compatibilidade.
+
+- Lista curada de 30-50 fetiches com nome e descrição curta
+- Categorias: troca de casal, ménage, BDSM, voyeur/exib, fantasia, grupo, romântico
+- Usuário marca seus fetiches (mínimo 1, máximo 15)
+- Match % calculado: quantos em comum / total médio de ambos
+- Exibido no perfil: "Compatibilidade com [nome]: 85% 🔥"
+- Feed de swipe ordenado por compatibilidade decrescente
+- Filtro no swipe: "Só mostrar perfis com >70% compatibilidade"
+- Premium: ver os fetiches em comum antes do match
+- Atualizar a lista não perde XP (fetiches podem evoluir)
+
+### Schema — `fetish_catalog`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| slug | TEXT | NOT NULL UNIQUE |
+| name | TEXT | NOT NULL |
+| description | TEXT | NOT NULL DEFAULT '' |
+| category | TEXT | NOT NULL |
+| sort_order | INTEGER | NOT NULL DEFAULT 0 |
+
+### Schema — `user_fetishes`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| user_id | TEXT | NOT NULL, FK → users |
+| fetish_id | TEXT | NOT NULL, FK → fetish_catalog |
+| intensity | INTEGER | NOT NULL DEFAULT 5 — 1-10, o quanto curte |
+
+### API
+
+```
+GET   /api/v1/fetishes                    → catálogo completo
+PUT   /api/v1/users/me/fetishes           → atualizar meus fetiches (lista de IDs)
+GET   /api/v1/users/me/fetishes           → meus fetiches marcados
+GET   /api/v1/users/{id}/compatibility    → % compatibilidade com outro usuário
+```
+
+---
+
+## 32. Mood do Momento
+
+Status temporário que aparece no perfil e no radar com emoji + texto curto.
+
+- Mood dura 1 hora (ou até o usuário mudar/cancelar)
+- Opções pré-definidas com emoji + label + cor:
+
+| Emoji | Label | Cor |
+|-------|-------|-----|
+| 🙈 | Tímido | Rosa |
+| 🔥 | Afim agora | Vermelho |
+| 😈 | Brutal | Roxo |
+| 🥰 | Romântico | Pink |
+| 👀 | Só de olho | Azul |
+| 🎭 | Modo mistério | Preto |
+| 🍸 | Night out | Laranja |
+| 🏡 | Day use | Verde |
+| 💬 | Bate-papo | Cinza |
+
+- Ao mudar mood, notificação no radar para matches ativos
+- Mood aparece como badge no perfil + ícone flutuante no mapa
+- Não precisa estar com intenção ativa pra ter mood (são independentes)
+- Premium: mood personalizado (texto livre de até 50 chars)
+
+### Schema — `moods`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| slug | TEXT | NOT NULL UNIQUE |
+| emoji | TEXT | NOT NULL |
+| label | TEXT | NOT NULL |
+| color | TEXT | NOT NULL |
+
+### Schema — `user_mood`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| user_id | TEXT | NOT NULL (PK), FK → users |
+| mood_id | TEXT | NOT NULL, FK → moods |
+| custom_text | TEXT | NULL — só para Premium |
+| expires_at | TEXT | NOT NULL — 1h após created |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+GET   /api/v1/moods                    → lista de moods disponíveis
+PUT   /api/v1/users/me/mood           → definir mood atual
+DELETE /api/v1/users/me/mood           → limpar mood
+GET   /api/v1/users/{id}/mood         → ver mood de outro usuário
+```
+
+---
+
+## 33. Kit de Relacionamento
+
+Perfil mostra o estilo de relação do usuário — evita mal-entendidos.
+
+- Campos obrigatórios no perfil (visíveis para outros usuários):
+  - **Status:** solteiro(a), em casal aberto, casal liberal, poliamor, relacionamento aberto, solteiro(a) mas buscando casal
+  - **O que busca:** troca de casal, ménage (H), ménage (M), mulher solteira, homem solteiro, casal, amizade liberal, bate-papo
+  - **Frequência:** novato, esporádico, frequente, hardcore
+- Filtro de busca por kit de relacionamento
+- Match sugerido prioriza compatibilidade de busca
+
+### Schema — adicionar colunas à `users`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| relationship_status | TEXT | NOT NULL DEFAULT '' |
+| seeking | TEXT | NOT NULL DEFAULT '' — JSON array |
+| frequency | TEXT | NOT NULL DEFAULT '' |
+| orientation | TEXT | NOT NULL DEFAULT '' |
+
+### API
+
+```
+PUT  /api/v1/users/me/kit        → atualizar kit de relacionamento
+GET  /api/v1/users/me/kit        → ver meu kit
+GET  /api/v1/users/{id}/kit      → ver kit de outro
+```
+
+---
+
+## 34. Contos Eróticos
+
+Seção de literatura erótica escrita pelos próprios usuários — conteúdo de alto engajamento e baixo custo.
+
+- Usuários escrevem e publicam contos (título + corpo + tags + categoria)
+- Categorias: swing, BDSM, ménage, exibicionismo, romântico, fantasia, iniciante, experimental
+- Tags por fetiche/posição/cenário
+- Votação da comunidade (upvote/downvote)
+- Comentários com moderação (robô filtra spam, humano revisa)
+- Destaque semanal no feed: "Conto em Destaque — [título]"
+- Top 1 do mês ganha badge "Escritor(a) do Mês"
+- Editor de texto simples (Markdown básico: negrito, itálico, parágrafo)
+- Moderação: contos passam por robô primeiro (detecção de menores, violência explícita, não-consentimento)
+- Limite: 1 conto/semana free, 3/semana Premium, ilimitado VIP
+- Leitura sem limites para todos os tiers
+
+### Schema — `stories`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| user_id | TEXT | NOT NULL, FK → users |
+| title | TEXT | NOT NULL |
+| body | TEXT | NOT NULL |
+| category | TEXT | NOT NULL |
+| tags | TEXT | NOT NULL DEFAULT '' — JSON array |
+| status | TEXT | NOT NULL DEFAULT 'draft' (draft, published, moderated, rejected) |
+| upvotes | INTEGER | NOT NULL DEFAULT 0 |
+| downvotes | INTEGER | NOT NULL DEFAULT 0 |
+| views | INTEGER | NOT NULL DEFAULT 0 |
+| published_at | TEXT | NULL |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+| updated_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### Schema — `story_comments`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| story_id | TEXT | NOT NULL, FK → stories |
+| user_id | TEXT | NOT NULL, FK → users |
+| body | TEXT | NOT NULL |
+| moderation_status | TEXT | NOT NULL DEFAULT 'approved' (pending, approved, rejected) |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+POST   /api/v1/stories                     → publicar conto
+GET    /api/v1/stories                     → feed de contos (paginado)
+GET    /api/v1/stories/{id}                → ler conto
+PUT    /api/v1/stories/{id}                → editar próprio conto
+DELETE /api/v1/stories/{id}                → deletar próprio conto
+POST   /api/v1/stories/{id}/vote           → votar (up/down)
+GET    /api/v1/stories/{id}/comments       → comentários
+POST   /api/v1/stories/{id}/comments       → comentar
+GET    /api/v1/stories/featured            → conto em destaque da semana
+```
+
+---
+
+## 35. Desafio Liberal Semanal
+
+Missões semanais que mantêm engajamento alto e geram conteúdo orgânico.
+
+- Toda segunda-feira: novo desafio é postado (via admin — pode ser automatizado)
+- Tipos de desafio:
+  - **📸 Foto criativa:** "Poste uma foto com algo vermelho"
+  - **📍 Checkin:** "Faça checkin em um lugar que nunca foi"
+  - **✍️ Conto:** "Escreva um conto de no máximo 500 caracteres sobre primeira vez"
+  - **💬 Fórum:** "Responda 3 tópicos no fórum essa semana"
+  - **🎭 Kit:** "Atualize seu kit de relacionamento"
+  - **🔥 Mood:** "Use um mood picante por pelo menos 1h"
+- Quem completa: XP bônus (100 XP) + badge temporário "Desafiador(a) da Semana"
+- No final do mês: quem completou todos os 4 desafios do mês ganha badge "Mestre dos Desafios" (permanente)
+- Desafio é opcional — não punitivo
+
+### Schema — `weekly_challenges`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| title | TEXT | NOT NULL |
+| description | TEXT | NOT NULL |
+| type | TEXT | NOT NULL (photo, checkin, story, forum, kit, mood) |
+| xp_reward | INTEGER | NOT NULL DEFAULT 100 |
+| week_start | TEXT | NOT NULL |
+| week_end | TEXT | NOT NULL |
+| is_active | INTEGER | NOT NULL DEFAULT 1 |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### Schema — `user_challenges`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| user_id | TEXT | NOT NULL, FK → users |
+| challenge_id | TEXT | NOT NULL, FK → weekly_challenges |
+| completed | INTEGER | NOT NULL DEFAULT 0 |
+| completed_at | TEXT | NULL |
+
+### API
+
+```
+GET   /api/v1/challenges/current   → desafio da semana
+GET   /api/v1/challenges/history    → histórico de desafios completados
+```
+
+---
+
+## 36. Moodboard do Casal
+
+Painel colaborativo privado para o casal — como um scrapbook da relação.
+
+- Disponível apenas para contas de casal
+- Adicionar: fotos, texto, links, locais favoritos, datas importantes
+- Ordem cronológica reversa (ou drag-to-reorder)
+- Privado entre os dois — ninguém mais vê
+- Exportável em PDF (Premium)
+- "Melhores momentos": modo carrossel que mostra só as fotos
+- Lembretes: "Vocês se conheceram há 3 meses 🎉" (baseado na data de match do casal)
+
+### Schema — `couple_moodboards`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| couple_profile_id | TEXT | NOT NULL, FK → couple_profiles |
+| item_type | TEXT | NOT NULL (photo, text, location, date) |
+| content | TEXT | NOT NULL — texto ou caminho ou JSON |
+| sort_order | INTEGER | NOT NULL DEFAULT 0 |
+| created_by | TEXT | NOT NULL, FK → users |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+GET   /api/v1/couple/moodboard            → ver moodboard
+POST  /api/v1/couple/moodboard            → adicionar item
+PUT   /api/v1/couple/moodboard/{id}       → editar item
+DELETE /api/v1/couple/moodboard/{id}      → remover item
+POST  /api/v1/couple/moodboard/export     → exportar PDF
+```
+
+---
+
+## 37. Modo "Falso" (Botão de Emergência)
+
+Se alguém pegar seu celular aberto no Liberages, um botão/bip leva instantaneamente pra uma tela genérica.
+
+- Atalho configurável: agitar o celular, botão flutuante, ou um padrão de toque
+- Ao ativar, imediatamente:
+  1. Fecha sessão atual (invalida o cookie/token)
+  2. Redireciona para tela falsa configurada (calculadora, clima, tela de login genérica)
+  3. Salva estado anterior para retomada segura depois
+- Telas falsas disponíveis:
+  - Calculadora funcional
+  - Previsão do tempo (genérica)
+  - Tela de login de outro serviço
+  - App de notas
+- Configurador de tela falsa: usuário escolhe qual e personaliza
+- Timer de retomada: após 30s na tela falsa, pode desbloquear com PIN/biometria e voltar exatamente onde estava
+
+### Schema — `panic_config`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| user_id | TEXT | NOT NULL (PK), FK → users |
+| is_enabled | INTEGER | NOT NULL DEFAULT 1 |
+| trigger_type | TEXT | NOT NULL DEFAULT 'shake' (shake, floating_button, tap_pattern) |
+| fake_screen | TEXT | NOT NULL DEFAULT 'calculator' (calculator, weather, login, notes) |
+| resume_pin_hash | TEXT | NULL |
+
+### API
+
+```
+GET   /api/v1/privacy/panic/config       → ver config atual
+PUT   /api/v1/privacy/panic/config       → atualizar config
+POST  /api/v1/privacy/panic/trigger      → simular ativação (teste)
+```
+
+---
+
+## 38. Login Rápido com PIN
+
+Além do login normal, PIN de 4 dígitos para sessões curtas.
+
+- Usuário configura PIN de 4 dígitos nas configurações de segurança
+- Login rápido: na página de login, além de email+senha, campo de PIN
+- PIN gera token de curta duração (15 minutos)
+- Útil para abrir rápido num intervalo, no trabalho, etc.
+- PIN não substitui senha — é complementar
+- Após 3 tentativas erradas de PIN, bloqueia por 30 minutos
+- Pode resetar o PIN via login completo (email+senha)
+- PIN armazenado como hash (bcrypt), igual à senha
+
+### Schema — adicionar coluna à `users`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| pin_hash | TEXT | NULL — hash bcrypt do PIN |
+| pin_failed_attempts | INTEGER | NOT NULL DEFAULT 0 |
+| pin_blocked_until | TEXT | NULL |
+
+### API
+
+```
+POST  /api/v1/auth/pin/set        → definir/alterar PIN
+POST  /api/v1/auth/pin/login      → login com PIN (retorna token 15min)
+POST  /api/v1/auth/pin/reset      → resetar PIN (requer login completo)
+```
+
+---
+
+## 39. Criptografia Ponta a Ponta nas DMs
+
+Todas as mensagens diretas criptografadas no dispositivo — nem a plataforma consegue ler.
+
+- Implementação: Web Crypto API + curva elíptica (ECDH) no client
+- Chaves geradas no dispositivo no momento do cadastro
+- Chave pública armazenada no servidor (não criptografada — é pública)
+- Chave privada armazenada no IndexedDB do navegador (nunca enviada ao servidor)
+- Ao enviar DM: client pega chave pública do destinatário → criptografa mensagem → envia ciphertext
+- Ao receber: client descriptografa com chave privada local
+- Fallback: se chave privada for perdida (limpeza de cache), servidor armazena últimas N mensagens não lidas de forma inacessível até nova geração de chaves
+- Chat em grupo (comunidade): chave compartilhada entre os membros, rotacionada a cada novo membro
+- Mensagens criptografadas também no backup (o backup contém ciphertext)
+- Servidor nunca tem acesso ao plaintext das DMs
+
+### Schema — `encryption_keys`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| user_id | TEXT | NOT NULL (PK), FK → users |
+| public_key | TEXT | NOT NULL — chave pública P-256 (SPKI base64) |
+| key_updated_at | TEXT | NOT NULL |
+
+### Schema — `encrypted_messages`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| sender_id | TEXT | NOT NULL, FK → users |
+| recipient_id | TEXT | NOT NULL, FK → users |
+| ciphertext | TEXT | NOT NULL |
+| iv | TEXT | NOT NULL — vetor de inicialização |
+| ephemeral_key | TEXT | NOT NULL — chave efêmera do remetente |
+| status | TEXT | NOT NULL DEFAULT 'sent' (sent, delivered, read) |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+POST  /api/v1/keys/generate        → gerar/regenerar par de chaves
+GET   /api/v1/users/{id}/public-key → obter chave pública
+POST  /api/v1/messages             → enviar mensagem criptografada
+GET   /api/v1/messages/inbox       → receber mensagens (ciphertext)
+```
+
+---
+
+## 40. Modo "Fantasma Total"
+
+Privacidade máxima — usuário some completamente da plataforma para quem não tem contato direto.
+
+| Funcionalidade | Invisível | Fantasma |
+|----------------|-----------|----------|
+| Não aparece no radar | ✓ | ✓ |
+| Não aparece na busca | ✗ | ✓ |
+| Não recebe broadcasts | ✗ | ✓ |
+| Não aparece no ranking | ✗ | ✓ |
+| Não recebe notificações de checkin próximo | ✗ | ✓ |
+| Só quem já te adicionou te vê online | ✗ | ✓ |
+| Perfil invisível para não-logados | ✗ | ✓ |
+| Ícone no perfil | 👻 | 👻 |
+
+- Fantasma pode navegar, postar, interagir normalmente com quem já conhece
+- Fantasma não é notificado de nada de desconhecidos
+- Gratuito (segurança não deveria ser paga)
+- Modo Fantasma tem duração máxima de 24h contínuas (evita contas abandonadas fantasma)
+- Pode renovar após expirar
+- Ao receber uma solicitação de amizade/mensagem de alguém não conhecido, notificação discreta: "Alguém tentou contato" — sem detalhes
+
+### Schema — `ghost_mode`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| user_id | TEXT | NOT NULL (PK), FK → users |
+| is_active | INTEGER | NOT NULL DEFAULT 0 |
+| activated_at | TEXT | NULL |
+| expires_at | TEXT | NULL — 24h após ativação |
+
+### API
+
+```
+POST  /api/v1/privacy/ghost/activate     → ativar modo fantasma (24h)
+POST  /api/v1/privacy/ghost/deactivate   → desativar
+GET   /api/v1/privacy/ghost/status       → status atual
+```
+
+---
+
+## 41. Carona Solidária Liberal
+
+Usuários indo pro mesmo evento podem marcar carona — conexão segura e prática.
+
+- Funciona apenas para eventos com presença confirmada
+- Duas opções ao confirmar presença:
+  - **"Vou de carro, tenho vaga"** — informa quantas vagas
+  - **"Preciso de carona"** — informa de onde sai
+- Quem oferece vaga vê lista de quem precisa, pode aceitar/rejeitar
+- Quem precisa vê ofertas de carona no mesmo evento
+- Chat de carona é temporário (expira 24h após o evento) e separado do chat normal
+- Avaliação pós-carona: "Foi tranquilo?" (anônimo) — influencia reputação de carona
+- Badge "Motorista Parceiro" após 5 caronas dadas
+- Privacidade: endereço exato nunca é compartilhado — só bairro/ponto de encontro
+
+### Schema — `event_rides`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| event_id | TEXT | NOT NULL, FK → events |
+| user_id | TEXT | NOT NULL, FK → users |
+| type | TEXT | NOT NULL (offer, request) |
+| seats | INTEGER | NULL — só para offer |
+| departure_area | TEXT | NOT NULL — bairro/zona |
+| status | TEXT | NOT NULL DEFAULT 'open' (open, matched, cancelled) |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+POST  /api/v1/events/{id}/ride/offer     → oferecer carona
+POST  /api/v1/events/{id}/ride/request   → solicitar carona
+GET   /api/v1/events/{id}/rides          → caronas disponíveis do evento
+POST  /api/v1/rides/{id}/match           → match de carona (motorista aceita)
+```
+
+---
+
+## 42. Lista de Presença Anônima em Eventos
+
+"Confirmaram presença: 47 pessoas" — sem mostrar quem. Mas com heatmap de perfil.
+
+- Número total visível para todos
+- Gráfico/heatmap demográfico anônimo:
+  - "60% casais, 25% mulheres solteiras, 15% homens solteiros"
+  - Faixa etária predominante
+  - "5 usuários verificados confirmaram"
+- Dados agregados apenas — sem identificar indivíduos
+- Usuário pode optar por "não aparecer nas estatísticas"
+- Ajuda indecisos a decidirem se vão baseado no perfil do público do evento
+- Premium: heatmap mais detalhado (ex.: % por bairro de origem)
+
+### Schema — `event_presence_stats`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| event_id | TEXT | NOT NULL (PK), FK → events |
+| total_count | INTEGER | NOT NULL DEFAULT 0 |
+| couple_pct | REAL | NOT NULL DEFAULT 0 |
+| single_female_pct | REAL | NOT NULL DEFAULT 0 |
+| single_male_pct | REAL | NOT NULL DEFAULT 0 |
+| primary_age_range | TEXT | NOT NULL DEFAULT '' |
+| verified_count | INTEGER | NOT NULL DEFAULT 0 |
+| updated_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+GET   /api/v1/events/{id}/presence       → lista de presença anônima + heatmap
+```
+
+---
+
+## 43. Encontro Surpresa
+
+Match que gera um convite automático: encontro às cegas em local sorteado.
+
+- Qualquer match pode virar "Encontro Surpresa" — um dos dois inicia
+- Sistema sorteia um local pré-cadastrado como seguro dentro do raio dos dois
+- Sorteia dia/horário (próximos 7 dias, horário comercial + noturno)
+- Ambos precisam confirmar o convite para o encontro acontecer
+- Locais seguros: bares, cafeterias, restaurantes — todos com ambiente tranquilo
+- Antes do encontro: cada um recebe dica sobre o outro (cor preferida, uma curiosidade)
+- Após encontro: avaliação anônima (opcional)
+- Badge "Aventureiro" após 3 encontros surpresa
+
+### Schema — `surprise_dates`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| match_id | TEXT | NOT NULL, FK → matches |
+| location_id | TEXT | NOT NULL, FK → locations |
+| suggested_date | TEXT | NOT NULL |
+| suggested_time | TEXT | NOT NULL |
+| status | TEXT | NOT NULL DEFAULT 'pending' (pending, confirmed_a, confirmed_b, confirmed_both, cancelled, completed) |
+| initiated_by | TEXT | NOT NULL, FK → users |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+POST  /api/v1/match/{id}/surprise-date           → iniciar encontro surpresa
+POST  /api/v1/surprise-dates/{id}/confirm        → confirmar
+POST  /api/v1/surprise-dates/{id}/cancel         → cancelar
+GET   /api/v1/surprise-dates/upcoming            → próximos encontros
+```
+
+---
+
+## 44. Júri Popular
+
+Denúncias complexas vão para um painel de 5 usuários verificados aleatórios que votam o veredito.
+
+- Quando: denúncia depois de X reportes contra o mesmo usuário, ou conteúdo limítrofe que o robô não conseguiu classificar
+- Seleção: 5 usuários verificados (selo azul) aleatórios, online no momento
+- Júri vê o caso de forma anônima (não sabe quem é o denunciado)
+- Cada júri vota: "Remover conteúdo" / "Manter conteúdo"
+- Maioria simples decide (3-2)
+- Votação anônima entre os jurados
+- Jurado ganha XP por participar (20 XP por caso)
+- Jurado com alta taxa de acerto (>80%) ganha badge "Juiz Justo"
+- Jurado que vota contra a maioria em casos que depois se provam corretos ganha badge "Pensador Independente"
+
+### Schema — `jury_cases`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| moderation_queue_id | TEXT | NOT NULL, FK → moderation_queue |
+| status | TEXT | NOT NULL DEFAULT 'open' (open, voting, decided) |
+| votes_remove | INTEGER | NOT NULL DEFAULT 0 |
+| votes_keep | INTEGER | NOT NULL DEFAULT 0 |
+| verdict | TEXT | NULL (remove, keep) |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+| decided_at | TEXT | NULL |
+
+### Schema — `jury_votes`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| case_id | TEXT | NOT NULL, FK → jury_cases |
+| juror_id | TEXT | NOT NULL, FK → users |
+| vote | TEXT | NOT NULL (remove, keep) |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+GET   /api/v1/jury/cases/pending      → casos abertos para votação (para jurados)
+POST  /api/v1/jury/cases/{id}/vote    → votar
+GET   /api/v1/jury/history            → histórico de casos que participei
+```
+
+---
+
+## 45. Selo "Anjo da Comunidade"
+
+Usuários exemplares ganham badge visível e benefícios simbólicos.
+
+- Quem ganha: reportes com alta taxa de acerto (+80%), ajuda em tópicos do fórum (+20 respostas com upvotes), boa reputação (baixas denúncias recebidas)
+- Badge: "Anjo da Comunidade" — dourado, visível no perfil
+- Benefícios: +5 matches/dia, prioridade em filas de verificação, mood extra exclusivo ("😇 Anjo")
+- Renovação mensal: badge expira se não mantiver os critérios
+- Dashboard do usuário: progresso para se tornar Anjo ("Faltam 3 reportes com acerto")
+
+### Schema — `community_angels`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| user_id | TEXT | NOT NULL (PK), FK → users |
+| status | TEXT | NOT NULL DEFAULT 'active' (active, expired) |
+| report_accuracy | REAL | NOT NULL DEFAULT 0 |
+| helpful_posts | INTEGER | NOT NULL DEFAULT 0 |
+| awarded_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+| expires_at | TEXT | NOT NULL |
+
+### API
+
+```
+GET   /api/v1/angels              → lista de anjos ativos
+GET   /api/v1/users/me/angel-progress  → progresso para se tornar anjo
+```
+
+---
+
+## 46. Match Turbinado (Boost)
+
+Pagamento único para aparecer no topo do feed de swipe por 1 hora.
+
+- Inspirado no Tinder Boost
+- Durante 1 hora, o perfil aparece nos primeiros lugares do feed de swipe de todos os usuários na região
+- Custo: R$2-5 por boost (definir preço exato)
+- Máximo 1 boost por dia (evita saturação)
+- Notificação push durante o boost: "Seu boost está ativo — 30 matches em potencial viram seu perfil agora"
+- Estatísticas pós-boost: "Seu boost gerou X visualizações e Y matches"
+- Ideal para: usuários em cidades turísticas, antes de eventos, fim de semana
+
+### Schema — `boosts`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| user_id | TEXT | NOT NULL, FK → users |
+| price_cents | INTEGER | NOT NULL |
+| duration_minutes | INTEGER | NOT NULL DEFAULT 60 |
+| started_at | TEXT | NULL |
+| expires_at | TEXT | NULL |
+| views_generated | INTEGER | NOT NULL DEFAULT 0 |
+| matches_generated | INTEGER | NOT NULL DEFAULT 0 |
+| payment_id | TEXT | NULL |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### API
+
+```
+POST  /api/v1/boost/buy           → comprar boost
+GET   /api/v1/boost/active        → boost ativo? status
+GET   /api/v1/boost/history       → histórico de boosts
+```
+
+---
+
+## 47. Presente Virtual Picante
+
+Emojis animados especiais que podem ser enviados com uma mensagem — cada um custa R$1-3.
+
+- Emojis animados exclusivos: 🌹🔥😈🍑🍆💦🎭👁️‍🗨️🔞🖤
+- Enviar presente: escolhe emoji + mensagem curta + destinatário
+- Destinatário recebe notificação: "[Nome] te enviou um presente 🌹"
+- Presente aceito aparece no perfil como badge temporário "Presenteado por [Nome]" (expira em 7 dias)
+- Presente pode ser anônimo (quem envia escolhe)
+- Ao ser presenteado, usuário pode retribuir com outro presente
+- Presentes pagos via Pix (microtransação)
+- Comissão da plataforma: 20% do valor (margem maior que assinatura)
+
+### Schema — `virtual_gifts`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| gift_id | TEXT | NOT NULL, FK → gift_catalog |
+| sender_id | TEXT | NOT NULL, FK → users |
+| recipient_id | TEXT | NOT NULL, FK → users |
+| message | TEXT | NOT NULL DEFAULT '' |
+| is_anonymous | INTEGER | NOT NULL DEFAULT 0 |
+| price_cents | INTEGER | NOT NULL |
+| payment_id | TEXT | NULL |
+| created_at | TEXT | NOT NULL DEFAULT (datetime('now')) |
+
+### Schema — `gift_catalog`
+
+| Coluna | Tipo | Notas |
+|---|---|---|
+| id | TEXT PK | UUID v7 |
+| emoji | TEXT | NOT NULL |
+| name | TEXT | NOT NULL — "Rosa", "Fogo", "Diabo", "Pêssego", "Berinjela", "Gozo", "Máscara" |
+| price_cents | INTEGER | NOT NULL |
+| animation_url | TEXT | NULL — GIF/webp animado |
+| is_active | INTEGER | NOT NULL DEFAULT 1 |
+
+### API
+
+```
+GET   /api/v1/gifts/catalog         → catálogo de presentes virtuais
+POST  /api/v1/gifts/send            → enviar presente
+GET   /api/v1/gifts/inbox           → presentes recebidos
+GET   /api/v1/gifts/outbox          → presentes enviados
+POST  /api/v1/gifts/{id}/accept     → aceitar/exibir presente no perfil
+```
 ```
