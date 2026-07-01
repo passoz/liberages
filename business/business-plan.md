@@ -1,6 +1,6 @@
 # Plano de Negócios — Liberages
 
-> **Confidencial.** Documento estratégico para investimento, operação e direcionamento do produto.
+> **Confidencial.** Documento estratégico para operação e direcionamento do produto.
 > Última atualização: Julho 2026
 
 ---
@@ -9,7 +9,7 @@
 
 ### O que é
 
-**Liberages** é uma plataforma digital (PWA + desktop app) construída em Go single-binary com React SPA, voltada para o público liberal brasileiro (swing, troca de casais, ménage, BDSM, exibicionismo, voyeurismo). O produto central é o **Lustmapia** — uma rede social liberal com mapa interativo como hub da experiência, combinando descoberta geográfica, comunidade, eventos, conteúdo e privacidade em camadas.
+**Liberages** é uma plataforma digital (PWA + desktop app) construída em Go single-binary com React SPA, voltada para o público liberal brasileiro (swing, troca de casais, ménage, BDSM, exibicionismo, voyeurismo). O produto central é o **Mapa Interativo** — uma rede social liberal onde a descoberta geográfica é o hub da experiência, combinando gamificação estilo "Pokémon GO do prazer" (você não sabe quem ao seu redor está a fim de uma aventura), comunidade, eventos, conteúdo e privacidade em camadas.
 
 ### Oportunidade
 
@@ -22,32 +22,36 @@
 
 | Pilar | O que resolve | Como |
 |-------|---------------|------|
+| **Mapa-radar gamificado** | Dificuldade de saber quem está a fim, ao seu redor, agora | Radar de intenção em tempo real (estilo Pokémon GO): você não vê quem é — só sabe que alguém compatível está perto. Checkins em locais públicos com notificações próximas. Localização nunca é exata, sempre fuzzy. |
 | **Privacidade em camadas** | Medo de exposição (fotos identificáveis, perfis falsos) | Blur facial automático, perfil anônimo, modo invisível, selfie destrutível, verificação opcional |
-| **Descoberta geográfica** | Dificuldade de encontrar pessoas/eventos próximos | Mapa interativo Leaflet com marcadores por tipo, heatmap de atividade, "rolês rolando agora" |
-| **Comunidade moderada** | Perfis falsos, golpistas, ambiente tóxico | Verificação de identidade opcional, reputação, moderação híbrida (IA + humana), selo verificado |
+| **Comunidade moderada** | Perfis falsos, golpistas, ambiente tóxico | Verificação de identidade disponível para todos (não só pagantes), reputação, moderação híbrida (IA + humana), selo verificado |
 
 ### Modelo de receita
 
-Freemium em 3 camadas: **Free** (grátis), **Premium** (R$29,90/mês), **VIP** (R$49,90/mês) + comissão de 15% sobre conteúdo pago + parcerias B2B (casas de swing, motéis, sex shops).
+Freemium em 3 camadas: **Free** (grátis, com anúncios nativos), **Premium** (R$29,90/mês, sem anúncios), **VIP** (R$49,90/mês) + comissão de 15% sobre conteúdo pago + parcerias B2B (casas de swing, motéis, sex shops). Free users geram receita via anúncios display e nativos — não são sosti­nháveis como custo zero.
 
 ### Equipe
 
-Inicial: 1 fundador técnico (full-stack Go + React), com terceirização de design e moderação conforme escala.
+**Um fundador técnico (full-stack Go + React), solo de forma permanente.** Toda contratação ou parceria é opcional e contingente a receita excedente. Não há plano de headcount.
 
-### Investimento solicitado
+### Investimento
 
-Seed de **R$150.000** para 12 meses de runway: hospedagem, domínios, marketing inicial, serviços de moderação/IA, reserva legal.
+**Bootstrapping from zero.** Seed de R$0 a R$15.000 (recursos próprios). A operação é desenhada para custos quase nulos. Se investidor aparecer, ótimo — mas o plano não depende disso para existir.
 
 ### Projeção (ano 1)
 
 | Métrica | Mês 6 | Mês 12 | Mês 18 |
 |---------|-------|--------|--------|
-| Usuários cadastrados | 5.000 | 25.000 | 100.000 |
-| Usuários pagantes | 150 | 1.000 | 5.000 |
-| MRR | R$4.500 | R$30.000 | R$150.000 |
-| CAC | R$8,00 | R$6,00 | R$4,50 |
-| LTV | R$180 | R$359 | R$599 |
-| LTV/CAC | 22x | 60x | 133x |
+| Usuários cadastrados | 3.000 | 15.000 | 60.000 |
+| Usuários pagantes | 90 | 600 | 3.000 |
+| MRR (assinaturas) | R$2.500 | R$18.000 | R$90.000 |
+| Receita de anúncios (free) | R$300 | R$2.000 | R$10.000 |
+| MRR total | R$2.800 | R$20.000 | R$100.000 |
+| CAC | R$2,00 | R$1,50 | R$1,00 |
+| LTV | R$120 | R$240 | R$400 |
+| LTV/CAC | 60x | 160x | 400x |
+
+> ⚠️ LTV/CAC acima de 25x deve ser tratado como sinal de que o CAC está subestimado — não como previsão literal. CAC real em bootstrapping orgânico é difícil de medir porque o custo é tempo, não dinheiro.
 
 ---
 
@@ -55,7 +59,7 @@ Seed de **R$150.000** para 12 meses de runway: hospedagem, domínios, marketing 
 
 ### 1.1 Visão
 
-Tornar-se a plataforma de referência para o público liberal brasileiro — o lugar onde privacidade real, descoberta geográfica e comunidade moderada convergem.
+Tornar-se a plataforma de referência para o público liberal brasileiro — o lugar onde	privacidade real, descoberta geográfica gamificada e comunidade moderada convergem.
 
 ### 1.2 Missão
 
@@ -67,7 +71,8 @@ Conectar pessoas do público liberal com segurança, discrição e privacidade r
 - **Segurança primeiro** — ferramentas reais de proteção (botão de pânico, contato de emergência, encontro seguro)
 - **Transparência** — regras claras, moderação explicável, sem shadowbanning arbitrário
 - **Comunidade** — plataforma centrada em pessoas, não em conteúdo
-- **Inovação constante** — mapa, matching por intenção, lives com máscara, PWA/desktop app
+- **Inovação constante** — mapa-radar gamificado, matching por intenção, lives com máscara, PWA/desktop app
+- **Operação enxuta** — custo quase nulo como princípio, não como contingência
 
 ### 1.4 Produto
 
@@ -75,19 +80,30 @@ Liberages é entregue como **PWA** (installável no celular sem App Store/Play S
 
 - **Single binary Go** (API + BFF + estáticos React) servindo tudo na porta `:3000`
 - **React SPA + PWA** — Vite, React Router, Tailwind CSS v4 + Glassmorphism
-- **SQLite** (escalável até ~100k usuários ativos, depois migrar para PostgreSQL)
+- **SQLite** (escalável até ~50k usuários ativos em modo write-heavy, depois migrar para PostgreSQL)
 - **Leaflet** com tiles próprios (sem CDN, sem dependência externa)
 
 ### 1.5 Módulos do Produto
 
-#### Módulo 1 — Mapa Interativo (MVP)
+#### Módulo 1 — Mapa Interativo + Radar de Intenção (MVP)
 
-- Mapa Leaflet com marcadores SVG customizados por tipo de local
-- Heatmap de atividade (densidade de usuários/eventos online)
-- Modo noturno padrão, modo anônimo (cluster em vez de ponto individual)
-- Filtros: tipo de interação, distância, tempo (agora/hoje/semana)
+Este é o coração do produto. São dois mapas conceitualmente distintos que convivem na mesma interface:
+
+**Mapa de Locais (descoberta fixa):**
+- Mapa Leaflet com marcadores SVG customizados por tipo de local (casas de swing, motéis, bares, praias)
+- Locais são pontos fixos, públicos — não envolvem privacidade de pessoas
 - CRUD de locais (admin) com upload de imagens
 - Busca textual com SQLite FTS5
+
+**Radar de Atividade (gamificação, estilo Pokémon GO):**
+- O usuário **não vê localização exata de ninguém** — apenas clusters fuzzy por bairro/zona
+- Usuário marca "estou a fim hoje" (botão raio de curto alcance) — status anônimo
+- Quando dois usuários compatíveis por intenção entram no mesmo raio, ambos recebem notificação: "alguém próximo está a fim" — match implícito sem revelar identidade
+- **Checkins em locais públicos** (casa de swing, bar liberale) são visíveis — gamificação real do "tô no X, quem mais está?"
+- **Notificações de checkin próximo**: você está em casa e recebe "3 casais acabaram de fazer check-in no Y, a 1.5km"
+- Identidade só é revelada após consentimento mútuo (match/mensagem)
+- Modo noturno padrão, modo anônimo (cluster em vez de ponto individual)
+- Filtros: tipo de interação, distância, tempo (agora/hoje/semana)
 
 #### Módulo 2 — Perfis e Privacidade
 
@@ -174,7 +190,7 @@ O Brasil é um dos maiores consumidores de conteúdo adulto do mundo. O mercado 
 
 1. **Privacidade frágil** — fotos podem ser identificadas, não há blur automático
 2. **Interface datada** — Sexlog parece site dos anos 2000, UX pobre no mobile
-3. **Sem descoberta geográfica** — não há mapa, busca por localização é primitiva
+3. **Sem descoberta geográfica gamificada** — não há mapa, não há radar de "quem está a fim agora"
 4. **Moderação insuficiente** — perfis falsos, golpistas, falta de verificação
 5. **Preço elevado** — R$49,90/mês para produto defasado
 6. **Estigma social** — não pode ter presença em redes sociais tradicionais
@@ -208,7 +224,7 @@ O Brasil é um dos maiores consumidores de conteúdo adulto do mundo. O mercado 
 
 ### 2.5 Por que o Sexlog não é imbatível
 
-O Sexlog tem 17M de usuários mas **não inova há anos**. É um produto de 2007 com atualizações incrementais. Uma plataforma moderna, com foco em privacidade real, UX superior e descoberta geográfica pode capturar:
+O Sexlog tem 17M de usuários mas **não inova há anos**. É um produto de 2007 com atualizações incrementais. Uma plataforma moderna, com foco em privacidade real, UX superior e mapa-radar gamificado pode capturar:
 
 - Usuários insatisfeitos com o Sexlog (UX, preço, falta de features)
 - Novos entrantes que nunca usaram Sexlog por estigma ou UX pobre
@@ -220,21 +236,22 @@ O Sexlog tem 17M de usuários mas **não inova há anos**. É um produto de 2007
 
 ### 3.1 Proposição de Valor
 
-> **"O Waze do Prazer vira uma comunidade"**
-> O mapa não é um extra — é o centro da experiência. Cada local, evento, encontro e perfil tem uma âncora geográfica.
+> **"O Pokémon GO do prazer vira uma comunidade"**
+> O mapa não é um extra — é o centro da experiência. Você não sabe quem ao seu redor está a fim de uma aventura — até o radar de intenção te avisar. Cada local, evento, checkin ePerfil tem uma âncora geográfica gamificada.
 
 ### 3.2 Estratégia de Posicionamento
 
-Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **inovação, privacidade e UX** — capturar usuários que buscam algo melhor, não usuários que já estão satisfeitos.
+Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **inovação, privacidade, gamificação e UX** — capturar usuários que buscam algo melhor, não usuários que já estão satisfeitos.
 
 ### 3.3 Vantagem Competitiva Sustentável
 
-1. **PWA + Desktop app** — bypassa App Store/Play Store (banimento de apps adultos é barreira de entrada)
-2. **Mapa como hub** — nenhum concorrente tem, difícil de replicar bem
+1. **Mapa-radar gamificado (Pokémon GO liberal)** — nenhum concorrente tem. Difícil de replicar bem porque combina real-time, geolocalização fuzzy, matching por intenção e gamificação
+2. **PWA + Desktop app** — bypassa App Store/Play Store (banimento de apps adultos é barreira de entrada)
 3. **Privacidade em camadas** — blur facial IA, selfie destrutível, modo invisível
-4. **Single binary Go** — custo de infraestrutura extremamente baixo (1 processo, SQLite)
+4. **Single binary Go + SQLite** — custo de infraestrutura quase nulo (1 processo, 1 VPS barato)
 5. **Desktop app discreto** — system tray com ocultação (ninguém vê no celular)
 6. **Comunidade moderada** — ambiente seguro atrai e retém mulheres (segmento mais carente)
+7. **Operação solo enxuta** — custo fixo baixíssimo permite sobreviver com pouca receita inicial
 
 ---
 
@@ -244,34 +261,63 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 
 | Tier | Preço | Funcionalidades |
 |------|-------|-----------------|
-| **Free** | Grátis | Perfil, mapa básico, 5 matches/dia, chat limitado, fotos com blur automático |
-| **Premium** | R$29,90/mês | Match ilimitado, modo invisível, lives privadas, verificação azul, relatório de privacidade, sem anúncios |
+| **Free** | Grátis (com anúncios) | Perfil, mapa + radar básico, 5 matches/dia, chat limitado, fotos com blur automático, anúncios display e nativos |
+| **Premium** | R$29,90/mês | Tudo do Free **sem anúncios**, match ilimitado, modo invisível, lives privadas, verificação azul, relatório de privacidade |
 | **VIP** | R$49,90/mês | Tudo do Premium + prioridade no matching, conteúdo exclusivo de creators, convites VIP, acesso antecipado |
 
-### 4.2 Receitas Adicionais
+### 4.2 Receita de Anúncios (Free)
+
+Free users não são sustentáveis como custo zero. Anúncios são o motor de receita do tier free.
+
+| Tipo de anúncio | Descrição | CPM estimado |
+|-----------------|-----------|---------------|
+| **Anúncios B2B locais** | Casas de swing, motéis, sex shops com geolocalização no mapa | R$8-15 (alto valor, alta relevância) |
+| **Display adult-friendly** | Redes display (ExoClick, JuicyAds) — banner e inline no feed | R$2-5 |
+| **Affiliate links** | Sex toys, lingerie, produtos — CPA | R$5-20 por conversão |
+| **Anúncio próprio (upgrade)** | Banner "Cansado dos anúncios? Vire Premium" — conversão mais importante, custo zero | N/A (reduz churn de ads, aumenta MRR) |
+
+**Política editorial de anúncios:**
+- ❌ Nada de pop-under, redirects, malware ads, auto-play de áudio
+- ❌ Nada de anúncios em telas de configuração, privacidade ou segurança
+- ✅ Apenas display estático e nativo inline no feed e no mapa
+- ✅ Anúncios B2B locais aparecem como marcadores diferenciados no mapa (não invasivos)
+
+**Projeção de receita de anúncios:**
+
+| Período | Free users | Page views/mês | CPM médio | Receita ads/mês |
+|---------|------------|-----------------|-----------|-----------------|
+| Mês 6 | 2.700 | 100k | R$2,50 | R$250 |
+| Mês 12 | 13.500 | 600k | R$3,00 | R$1.800 |
+| Mês 18 | 54.000 | 2.5M | R$4,00 | R$10.000 |
+
+### 4.3 Receitas Adicionais
 
 | Fonte | Descrição | Margem estimada |
 |-------|-----------|------------------|
 | **Comissão conteúdo exclusivo** | 15% sobre transações de conteúdo pago entre usuários (tips, pay-per-view) | 15% |
 | **Parceria B2B** | Casas de swing, motéis, sex shops pagam por presença destacada no mapa | 80%+ |
 | **Eventos promovidos** | Destaque pago no feed de eventos | 90%+ |
-| **Anúncios nativos** | Apenas free users, sem anúncios adultos invasivos | CPM variável |
 
-### 4.3 Estratégia de Preço
+### 4.4 Estratégia de Preço
 
 - **Mais barato que Sexlog** no Premium (R$29,90 vs R$49,90) — aquisição agressiva
 - **VIP igual ao Sexlog** (R$49,90) mas com mais valor
 - **Mulheres solteiras** ganham Premium grátis (estratégia de equilíbrio de gênero)
 - **Desconto anual** (30% off) para aumentar LTV e reduzir churn
+- **Anúncios só no Free** — o ads paga o free existir; o Premium paga o usuário escapar do ads
 
-### 4.4 Projeção de Mix
+### 4.5 Projeção de Mix
 
 | Métrica | Ano 1 | Ano 2 | Ano 3 |
 |---------|-------|-------|-------|
-| % Free | 92% | 85% | 80% |
-| % Premium | 6% | 11% | 15% |
-| % VIP | 2% | 4% | 5% |
+| % Free | 94% | 88% | 82% |
+| % Premium | 5% | 9% | 14% |
+| % VIP | 1% | 3% | 4% |
 | ARPU (receita por usuário pago) | R$34/mês | R$38/mês | R$42/mês |
+
+### 4.6 Verificação de Identidade — Nota Importante
+
+O selo azul (verificação documental) **não é exclusivo de pagantes**. Qualquer usuário pode verificar — a verificação custa simbólico (ou é grátis para os primeiros N usuários). Isso é uma decisão de segurança da comunidade: se só pagante é verificado, o golpista "verificado" é o que pagou, não o que é real. Verificação para todos melhora a integridade da base e atrai o segmento mais carente (mulheres solteiras). Pagantes ganham **prioridade** na fila de verificação, não exclusividade.
 
 ---
 
@@ -281,14 +327,16 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 
 | Canal | Custo | Volume estimado | Qualidade |
 |-------|-------|-----------------|-----------|
-| **SEO orgânico** (blog "IBGE do Sexo") | Baixo | Médio | Alta |
+| **SEO orgânico** (blog "IBGE do Sexo") | Zero | Médio | Alta |
 | **Boca a boca / indicação** | Zero | Médio-alto | Altíssima |
-| **Grupos de Telegram/WhatsApp** | Baixo | Alto | Média |
-| **Content marketing** (blog, YouTube) | Médio | Médio | Alta |
+| **Grupos de Telegram/WhatsApp** | Zero | Alto | Média |
+| **Content marketing** (blog, YouTube) | Tempo | Médio | Alta |
 | **Parcerias com casas de swing** | Zero | Baixo-médio | Altíssima |
-| **Influencers liberais** | Médio | Médio | Alta |
-| **SEM (Google Ads)** | Alto | Alto | Média-baixa |
-| **Cripto comunidade** (USDT) | Baixo | Baixo | Média |
+| **Influencers liberais** | Baixo (permuta) | Médio | Alta |
+| **SEM (Google Ads)** | Alto — só se receita permitir | Alto | Média-baixa |
+| **Cripto comunidade** (USDT) | Zero | Baixo | Média |
+
+> **Princípio:** aquisição 100% orgânica até break-even. SEM só entra se houver receita excedente para financiar.
 
 ### 5.2 Conteúdo e SEO
 
@@ -312,156 +360,231 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 
 | Fase | Duração | Objetivo | Estratégia |
 |------|---------|----------|------------|
-| **Beta fechado** | 2 meses | 500 usuários ativos | Convites em grupos Telegram/WhatsApp, parcerias com casas de swing |
-| **Soft launch** | 1 mês | 5.000 usuários | Abertura pública, press release em blogs liberais, influencers |
-| **Growth** | 3 meses | 25.000 usuários | SEO, content marketing, programa de indicação, SEM |
-| **Scale** | 6 meses | 100.000+ usuários | Escalar canais comprovados, parcerias B2B, cripto |
+| **Beta fechado** | 3 meses | 300 usuários ativos | Convites em grupos Telegram/WhatsApp, parcerias com casas de swing |
+| **Soft launch** | 2 meses | 2.000 usuários | Abertura pública, press release em blogs liberais, influencers (permuta) |
+| **Growth** | 6 meses | 10.000 usuários | SEO, content marketing, programa de indicação |
+| **Scale** | 7+ meses | 50.000+ usuários | Escalar canais comprovados, parcerias B2B, cripto |
+
+> Cronograma conservador para operação solo. Sem pressão de runway externo.
 
 ---
 
-## 6. Análise Financeira
+## 6. Modo Guerrilha — Estratégia de Custo Quase Nulo
 
-### 6.1 Custos Operacionais (Mensais)
+> **Princípio fundamental:** o plano não depende de investimento externo. Cada real gasto precisa ser justificado contra a alternativa de não gastar.
 
-| Item | Mês 1-6 | Mês 7-12 | Mês 13-18 |
-|------|---------|----------|-----------|
-| Hospedagem (VPS + CDN) | R$200 | R$500 | R$1.500 |
-| Domínios | R$20 | R$20 | R$20 |
-| E-mail (transacional) | R$100 | R$200 | R$400 |
-| Storage (imagens) | R$0 | R$200 | R$800 |
-| Moderação IA | R$500 | R$1.000 | R$2.000 |
-| Moderação humana | R$0 | R$1.500 | R$3.000 |
-| Marketing/SEM | R$2.000 | R$5.000 | R$10.000 |
-| Serviços legais/jurídico | R$500 | R$500 | R$1.000 |
-| **Total mensal** | **R$3.320** | **R$8.920** | **R$18.720** |
+### 6.1 Filosofia Low-Cost
 
-### 6.2 Projeção de Receita (18 meses)
+A stack tecnológica (Go single binary + SQLite + React PWA + filesystem) foi escolhida **especificamente** para permitir operação com custos quase nulos. Não é um detalhe técnico — é o motor do modelo de negócio.
 
-| Mês | Usuários | Pagantes | MRR | Custos | Resultado |
-|-----|----------|----------|-----|--------|-----------|
-| 1 | 200 | 5 | R$150 | R$3.320 | -R$3.170 |
-| 3 | 1.500 | 40 | R$1.360 | R$3.500 | -R$2.140 |
-| 6 | 5.000 | 150 | R$4.500 | R$5.000 | -R$500 |
-| 9 | 12.000 | 500 | R$15.000 | R$7.000 | +R$8.000 |
-| 12 | 25.000 | 1.000 | R$30.000 | R$9.000 | +R$21.000 |
-| 15 | 50.000 | 2.500 | R$75.000 | R$13.000 | +R$62.000 |
-| 18 | 100.000 | 5.000 | R$150.000 | R$19.000 | +R$131.000 |
+| Recurso | Custo "startup normal" | Custo Liberages (Modo Guerrilha) |
+|---------|------------------------|-----------------------------------|
+| VPS | R$500-2.000/mês (AWS, k8s) | R$25-50/mês (Hetzner/Contabo, 1 VPS, 1 binário) |
+| Banco | R$200-500/mês (RDS Postgres) | R$0 (SQLite no mesmo VPS) |
+| Storage de imagens | R$200-800/mês (S3) | R$0 (filesystem no VPS; migrar só no limite) |
+| CDN | R$200/mês (Cloudflare Pro) | R$0 (Cloudflare free tier) |
+| E-mail transacional | R$100-400/mês | R$0 (SES free tier 62k/mês) → R$10/mês depois |
+| Map tiles | R$200+/mês (MapTiler/Mapbox) | R$0 (OpenStreetMap self-hosted no mesmo VPS) |
+| Moderação IA | R$500-2.000/mês (AWS Rekognition) | R$0 (manual pelo fundador) → IA open-source self-hosted depois |
+| Monitoramento | R$100-300/mês (Datadog) | R$0 (Prometheus + Grafana self-hosted) |
+| Ferramentas SaaS | R$100-500/mês | R$0 (open source: git, Linear free, Notion free) |
+| **Total mensal** | **R$1.300-5.000** | **R$25-60** |
 
-### 6.3 Break-Even
+### 6.2 Quando Sair do Modo Guerrilha
 
-**Break-even projetado: mês 7-8** (5.000-7.000 usuários, ~200 pagantes)
+A operação permanece no Modo Guerrilha até que um destes gatilhos seja acionado:
 
-### 6.4 Métricas Unitárias
+| Gatilho | Limite | Ação |
+|---------|--------|------|
+| **SQLite write throughput** | >50 writes/s médio | Migrar para PostgreSQL (mesmo VPS inicial) |
+| **Usuários ativos diários** | >30.000 | Considerar segundo VPS (read replica) |
+| **Storage de imagens** | >50GB | Migrar para S3 ou similar |
+| **Volume de moderação** | >100 denúncias/dia | Contratar moderador part-time |
+| **Receita mensal** | >R$15.000 | Investir em SEM eContents de marketing pago |
+
+### 6.3 Princípios Operacionais Pós-MVP
+
+1. **SQLite (não Postgres)** até onde aguentar — WAL mode, pragma tuning, índices otimizados
+2. **VPS único** (não k8s, não AWS) — 1 binário, 1 processo, 1 servidor
+3. **Filesystem local** (não S3) para imagens — migrar só acima de 50GB
+4. **Sem CDN pago** até tráfego justificar (Cloudflare free tier suffice inicialmente)
+5. **Sem IA de moderação paga** — IA open-source self-hosted (ex.: OpenNSFW2) ou moderação 100% manual até 25k usuários
+6. **E-mail transacional via SES** a R$0,10 por mil enviados
+7. **Zero ferramentas SaaS de gestão pagas**
+8. **Map tiles self-hosted** (OpenStreetMap data, renderizado no próprio VPS)
+9. **Toda feature é avaliada contra custo:** "isto adiciona R$X/mês? Pode ser feito com C$0?"
+
+---
+
+## 7. Análise Financeira
+
+### 7.1 Custos Operacionais — Três Cenários
+
+| Item | Modo Guerrilha (real, bootstrapped) | Custo Otimizado (pós-break-even) | Custo Ideal (com seed/investidor) |
+|------|-------------------------------------|----------------------------------|-----------------------------------|
+| VPS | R$30 | R$80 | R$200 |
+| Domínio | R$3 | R$3 | R$3 |
+| E-mail | R$0 | R$10 | R$100 |
+| Storage | R$0 | R$0 | R$200 |
+| Moderação IA | R$0 | R$0 | R$500 |
+| Moderação humana | R$0 | R$0 | R$1.500 |
+| Marketing/SEM | R$0 | R$500 | R$5.000 |
+| Jurídico | R$0 | R$0 | R$500 |
+| **Total mensal** | **R$33** | **R$593** | **R$8.003** |
+
+> O plano opera no "Modo Guerrilha" (coluna 1) até break-even. A coluna 2 representa o cenário pós-break-even com receita reinvestida. A coluna 3 representa o cenário com seed/investidor — é o plano que NÃO dependemos.
+
+### 7.2 Projeção de Receita (18 meses — Bootstrapped)
+
+| Mês | Usuários | Pagantes | MRR assinaturas | Receita ads | MRR total | Custos (guerrilha) | Resultado |
+|-----|----------|----------|-----------------|-------------|-----------|---------------------|-----------|
+| 1 | 100 | 3 | R$90 | R$0 | R$90 | R$33 | -R$0 (cobre OK²) |
+| 3 | 800 | 24 | R$720 | R$50 | R$770 | R$35 | +R$735 |
+| 6 | 3.000 | 90 | R$2.500 | R$300 | R$2.800 | R$40 | +R$2.760 |
+| 9 | 7.000 | 280 | R$8.500 | R$800 | R$9.300 | R$100 | +R$9.200 |
+| 12 | 15.000 | 600 | R$18.000 | R$2.000 | R$20.000 | R$300 | +R$19.700 |
+| 15 | 30.000 | 1.500 | R$45.000 | R$5.000 | R$50.000 | R$600 | +R$49.400 |
+| 18 | 60.000 | 3.000 | R$90.000 | R$10.000 | R$100.000 | R$1.000 | +R$99.000 |
+
+> Projeção conservadora, alinhada com aquisição 100% orgânica (zero SEM). Custos sobem apenas quando gatilhos do Modo Guerrilha são acionados.
+
+### 7.3 Break-Even
+
+**Break-even projetado: mês 1-2** (Modo Guerrilha custa R$33/mês — qualquer receita cobre).
+
+Break-even "real" (receita superando custo de vida do fundador): depende de custo pessoal, não de custo de infra.
+
+### 7.4 Métricas Unitárias
 
 | Métrica | Ano 1 | Ano 2 | Ano 3 |
 |---------|-------|-------|-------|
-| CAC | R$8,00 | R$6,00 | R$4,50 |
-| LTV (média) | R$180 | R$359 | R$599 |
-| LTV/CAC | 22x | 60x | 133x |
-| Churn mensal | 8% | 6% | 5% |
-| Payback period | 2 meses | 1.5 meses | 1 mês |
+| CAC | R$2,00 | R$1,50 | R$1,00 |
+| LTV (média) | R$120 | R$240 | R$400 |
+| LTV/CAC | 60x | 160x | 400x |
+| Churn mensal | 15% | 10% | 7% |
+| Payback period | 1 mês | <1 mês | <1 mês |
 
-### 6.5 Investimento Solicitado
+> ⚠️ **Aviso sobre LTV/CAC:** valores acima de 25x indicam que o CAC está subestimado. Em bootstrapping orgânico o custo real é tempo (não dinheiro), então CAC monetário tende a zero. LTV/CAC não é a melhor métrica aqui — melhor usar **payback period** (quase instantâneo quando CAC ≈ R$0).
 
-**Seed: R$150.000**
+> ⚠️ **Aviso sobre churn:** 15% no ano 1 é realista para indústria adult (onde uso é pragmático e usuário sai assim que fecha encontro). O Sexlog tem churn elevado e mascara com volume de novos cadastros. Liberages precisa de retenção via gamificação (radar de intenção, checkins, notificações) para reduzir churn ao longo do tempo.
 
-| Alocação | Valor | % |
-|----------|-------|---|
-| Desenvolvimento (12 meses) | R$60.000 | 40% |
+### 7.5 Investimento
+
+**Bootstrapping from zero. Não há seed solicitado.**
+
+| Cenário | Valor | Origem |
+|---------|-------|--------|
+| **Real (operando hoje)** | R$0 a R$15.000 | Recursos próprios do fundador |
+| **Se investidor aparecer** | R$50.000-150.000 | Seed externo (opcional, não dependente) |
+
+**Se seed externo materializar:**
+
+| Alocação | Valor (c/ R$150k) | % |
+|----------|-------------------|---|
+| Reserva pessoal (12 meses) | R$72.000 | 48% |
 | Marketing e aquisição | R$45.000 | 30% |
-| Infraestrutura e serviços | R$25.000 | 17% |
+| Infraestrutura e serviços | R$18.000 | 12% |
 | Reserva legal/jurídico | R$10.000 | 7% |
-| Reserva de emergência | R$10.000 | 7% |
+| Reserva de emergência | R$5.000 | 3% |
 
-### 6.6 Projeção Trienal
+> **Nota:** "Desenvolvimento" não é linha de custo — o fundador é o desenvolvedor. Seed cobre custo de vida, não salary de terceiros.
+
+### 7.6 Projeção Trienal
 
 | Ano | Usuários | Receita total | Custos | Lucro líquido |
 |-----|----------|---------------|--------|---------------|
-| Ano 1 | 25.000 | R$180.000 | R$75.000 | R$105.000 |
-| Ano 2 | 100.000 | R$720.000 | R$180.000 | R$540.000 |
-| Ano 3 | 250.000 | R$1.800.000 | R$360.000 | R$1.440.000 |
+| Ano 1 | 15.000 | R$120.000 | R$5.000 | R$115.000 |
+| Ano 2 | 60.000 | R$480.000 | R$30.000 | R$450.000 |
+| Ano 3 | 150.000 | R$1.200.000 | R$100.000 | R$1.100.000 |
+
+> Custos baixos reflejam Modo Guerrilha com escalonamento só em gatilhos. Sem headcount, sem SaaS, sem cloud enterprise.
 
 ---
 
-## 7. Análise de Riscos
+## 8. Análise de Riscos
 
 | Risco | Probabilidade | Impacto | Mitigação |
 |-------|---------------|---------|-----------|
-| **Banimento de meios de pagamento** | Média | Alto | Stripe alternativo + cripto (USDT) como fallback. Arquitetura já preparada |
+| **Banimento de meios de pagamento** | Alta | Alto | **Pix desde o dia 1** (principal), cripto (USDT) como fallback. Não depender de Stripe/adquirentes internacionais. Mercado Pago como secundário. |
 | **Block de anúncios e redes sociais** | Alta | Médio | Marketing de conteúdo (blog), SEO, parcerias, comunidade orgânica |
-| **Processos legais (conteúdo)** | Baixa | Alto | Age gate obrigatório, moderação IA + humana, DMCA compliance, advogado especializado |
+| **Processos legais (conteúdo)** | Baixa | Alto | Age gate obrigatório, moderação IA + humana, DMCA compliance, advogado especializado (quando receita permitir) |
 | **Vazamento de dados** | Baixa | Altíssimo | Criptografia E2E em mensagens, blur facial, dados sensíveis criptografados em nível aplicação |
-| **Perfis falsos/golpistas** | Alta | Médio | Verificação documental opcional, reputação por denúncia, IA detecção fake |
-| **Concorrência Sexlog** | Média | Médio | Foco em inovação (mapa, privacidade, UX), não competir por SEO head-to-head |
-| **Escalabilidade SQLite** | Baixa | Médio | Migrar para PostgreSQL quando passar de ~100k usuários ativos. Interfaces Go facilitam troca |
-| **Regulação conteúdo adulto** | Baixa | Alto | Compliance com LGPD, age gate, termos de uso claros, advogado especializado |
-| **Churn alto por estigma** | Média | Médio | Desktop app discreto, PWA (não aparece na lista de apps), modo invisível |
-| **Dependência de fundador único** | Média | Alto | Documentação completa, automação de deploy, planejamento de contratação |
+| **Perfis falsos/golpistas** | Alta | Médio | Verificação documental disponível para todos (não só pagantes), reputação por denúncia, IA detecção fake |
+| **Concorrência Sexlog** | Média | Médio | Foco em inovação (mapa-radar gamificado, privacidade, UX), não competir por SEO head-to-head |
+| **Escalabilidade SQLite** | Média | Médio | SQLite WAL mode com pragma tuning. Migrar para PostgreSQL quando write throughput >50/s. Interfaces Go facilitam troca. |
+| **Regulação conteúdo adulto** | Baixa | Alto | Compliance com LGPD, age gate, termos de uso claros, advogado especializado (quando receita permitir) |
+| **Churn alto por estigma** | Alta | Médio | Desktop app discreto, PWA (não aparece na lista de apps), modo invisível. Gamificação (radar, checkins) para aumentar engajamento |
+| **Dependência de fundador único** | **Alta** | **Alto** | Documentação completa (AGENTS.md, specs), automação de deploy, código testado. Sem mitigação real além de saúde e disciplina do fundador. É o risco aceito. |
+| **SQLite write lock em escala** | Média | Médio | Produto é write-heavy (checkins, notificações, matches em tempo real). Pode bater limite antes de 100k UA — provavelmente em 25-50k. Monitorar QPS de write, migrar cedo. |
 
 ---
 
-## 8. Plano Operacional
+## 9. Plano Operacional
 
-### 8.1 Tecnologia
+### 9.1 Tecnologia
 
 | Componente | Tecnologia | Custo |
 |------------|-----------|-------|
 | Backend | Go 1.26+ single binary | R$0 (open source) |
 | Frontend | React 19+ SPA + PWA | R$0 (open source) |
-| Banco | SQLite → PostgreSQL | R$0 → R$200/mês |
+| Banco | SQLite → PostgreSQL (quando necessário) | R$0 → R$200/mês |
 | Mapa | Leaflet + tiles próprios | R$0 |
-| Mapa tiles | Self-hosted ou MapTiler free tier | R$0 |
-| Storage de imagens | Filesystem local → S3 | R$0 → R$800/mês |
-| Moderação IA | API externa (AWS Rekognition ou similar) | R$500-R$2.000/mês |
-| E-mail | Amazon SES ou similar | R$100-R$400/mês |
-| CDN | Cloudflare free → pro | R$0-R$200/mês |
+| Map tiles | Self-hosted OpenStreetMap no VPS | R$0 |
+| Storage de imagens | Filesystem local → S3 (quando >50GB) | R$0 → R$200/mês |
+| Moderação IA | Manual → IA open-source self-hosted → API externa (se volume justificar) | R$0 → R$0 → R$500/mês |
+| E-mail | Amazon SES free tier | R$0 → R$10/mês |
+| CDN | Cloudflare free tier | R$0 |
 | Monitoramento | Prometheus + Grafana self-hosted | R$0 |
 
-### 8.2 Operação de Moderação
+### 9.2 Operação de Moderação
 
-- **Fase 1 (0-5k usuários):** Moderação manual pelo fundador + IA básica
-- **Fase 2 (5k-25k):** IA para triagem + 1 moderador part-time
-- **Fase 3 (25k+):** IA + equipe de moderação 24/7 (3 turnos)
+- **Fase 1 (0-3k usuários):** Moderação 100% manual pelo fundador
+- **Fase 2 (3k-15k):** IA open-source self-hosted para triagem + fundador decide casos limítrofes
+- **Fase 3 (15k+):** IA + moderador part-time (freelancer, contingente a receita)
 - **Política:** Moderação híbrida — IA detecta, humano decide em casos limítrofes
 - **Transparência:** todo banimento tem explicação e processo de apelo
 
-### 8.3 Legal e Compliance
+### 9.3 Legal e Compliance
 
 | Item | Status | Responsável |
 |------|--------|-------------|
-| Termos de uso | A redigir | Advogado especializado em direito digital |
-| Política de privacidade (LGPD) | A redigir | Advogado |
+| Termos de uso | A redigir (templates open source como base) | Fundador |
+| Política de privacidade (LGPD) | A redigir | Fundador |
 | Age gate (18+ obrigatório) | Especificado | Fundador |
 | DMCA compliance | A implementar | Fundador |
-| CNPJ e regime tributário | A definir | Contador |
+| CNPJ e regime tributário | A definir (MEI inicial) | Contador (quando receita justificar) |
+
+> **Princípio:** jurídico é DIY com templates até que receita excedente permita contratar advogado especializado. Advogado é contingente, não linha fixa.
 
 ---
 
-## 9. Roadmap
+## 10. Roadmap
 
-### Fase 1 — "O Mapa" (MVP) — Meses 1-3
+### Fase 1 — "O Mapa + Radar" (MVP) — Meses 1-4
 
 - [x] Repositório e especificação criados
 - [ ] Autenticação local (JWT + bcrypt)
 - [ ] Age gate com cookie assinado HMAC
-- [ ] Mapa Leaflet com tipos de local
-- [ ] CRUD de locais (admin)
+- [ ] Mapa de Locais — Leaflet com tipos de local, CRUD admin
+- [ ] Radar de Atividade — intenção "a fim hoje", clusters fuzzy, notificação de proximidade
+- [ ] Checkins em locais públicos com notificações de checkin próximo
 - [ ] Busca textual com SQLite FTS5
 - [ ] PWA com install prompt
-- [ ] Deploy em produção
-- [ ] Beta fechado (500 usuários)
+- [ ] Deploy em produção (VPS R$30/mês)
+- [ ] Beta fechado (300 usuários)
 
-### Fase 2 — "A Rede" (Comunidade) — Meses 4-6
+### Fase 2 — "A Rede" (Comunidade) — Meses 5-9
 
 - [ ] Perfis de usuário (indivíduos e casais)
 - [ ] Chat privado
 - [ ] Matching por interesse + localização
 - [ ] Grupos públicos e privados
 - [ ] Upload de fotos com blur automático
-- [ ] Moderação IA básica
-- [ ] Soft launch (5.000 usuários)
+- [ ] Moderação IA básica (self-hosted)
+- [ ] Anúncios display no free (ad network adult-friendly)
+- [ ] Soft launch (2.000 usuários)
 
-### Fase 3 — "O Evento" (Encontros) — Meses 7-10
+### Fase 3 — "O Evento" (Encontros) — Meses 10-15
 
 - [ ] Criação e descoberta de eventos com geolocalização
 - [ ] Check-in com PIN
@@ -469,79 +592,84 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 - [ ] Modo viagem
 - [ ] Botão de pânico
 - [ ] Contato de emergência
-- [ ] Growth (25.000 usuários)
+- [ ] Anúncios B2B locais no mapa (casas de swing, motéis)
+- [ ] Growth (10.000 usuários)
 
-### Fase 4 — "O Show" (Conteúdo) — Meses 11-14
+### Fase 4 — "O Show" (Conteúdo) — Meses 16-22
 
 - [ ] Live streaming com privacidade
 - [ ] Conteúdo exclusivo (assinatura)
 - [ ] Tips e pay-per-view
-- [ ] Verificação azul (documental)
+- [ ] Verificação azul (documental, disponível para todos)
 - [ ] Parcerias B2B (casas de swing, motéis)
 
-### Fase 5 — "A Fortaleza" (Segurança Premium) — Meses 15-18
+### Fase 5 — "A Fortaleza" (Segurança Premium) — Meses 23-30
 
 - [ ] Relatório de privacidade
 - [ ] Detecção de screenshots
 - [ ] Verificação documental completa
 - [ ] Pagamentos em cripto (fallback)
 - [ ] Desktop app com system tray
-- [ ] Scale (100.000+ usuários)
+- [ ] Scale (50.000+ usuários)
+
+> **Cronograma conservador para operação solo.** Prazos podem estender conforme realidade. Sem pressão de runway externo.
 
 ---
 
-## 10. Equipe e Estrutura
+## 11. Equipe e Estrutura
 
-### 10.1 Equipe Atual
+### 11.1 Equipe Atual
 
 | Papel | Pessoa | Dedicação |
 |-------|--------|-----------|
-| Fundador / Tech Lead / Full-stack | Fernando Passos | Full-time |
+| Fundador / Tech Lead / Full-stack / Moderação / Marketing / Tudo | Fernando Passos | Full-time (e solo de forma permanente) |
 
-### 10.2 Contratações Planejadas
+### 11.2 Parcerias e Outsourcing Opcionais
 
-| Fase | Papel | Quando | Tipo |
-|------|-------|--------|------|
-| Fase 2 | Designer UI/UX | Mês 4 | Freelancer |
-| Fase 2 | Moderador | Mês 5 | Part-time |
-| Fase 3 | Dev frontend | Mês 8 | Full-time |
-| Fase 4 | Dev backend | Mês 12 | Full-time |
-| Fase 4 | Gerente de comunidade | Mês 12 | Full-time |
-| Fase 5 | Especialista em segurança | Mês 15 | Consultor |
+Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há plano de headcount. Nada disto precisa acontecer para o produto sobreviver.
 
-### 10.3 Cultura Organizacional
+| Item | Quando considerar | Tipo |
+|------|--------------------|-----|
+| Designer UI/UX (freelancer) | Se UX travar aquisição | Projeto pontual |
+| Moderador part-time | Se denúncias >100/dia | Freelancer |
+| Dev frontend (freelancer) | Se velocidade de features for gargalo | Projeto pontual |
+| Advogado direito digital | Se processo legal materializar | Retainer |
+| Gerente de comunidade | Se escala B2B justificar | Part-time |
 
-- **Remoto-first** — time distribuído
+### 11.3 Cultura Organizacional
+
+- **Solo de forma permanente** — não há meta de crescer headcount
 - **Open source friendly** — libs open source quando possível, contribuir de volta
-- **Privacidade como valor interno** — o time usa o produto
+- **Privacidade como valor interno** — o fundador usa o produto
 - **Documentação como vantagem** — AGENTS.md e specs sempre atualizados
+- **Custo quase nulo como disciplina** — cada real gasto é justificado contra a alternativa de não gastar
 
 ---
 
-## 11. Estratégia de Saída
+## 12. Estratégia de Saída
 
-### 11.1 Cenários
+### 12.1 Cenários
 
 | Cenário | Horizonte | Descrição | Valuation estimada |
 |---------|-----------|-----------|---------------------|
 | **Aquisição** | 3-5 anos | Sexlog ou concorrente adquire para modernizar base | 5-10x ARR |
-| **Investimento série A** | 2-3 anos | VC entra para escalar | R$5-15M |
-| **Bootstrap rentável** | Contínuo | Crescimento orgânico sem investimento externo | N/A |
-| **White-label** | 2 anos | Licenciar tecnologia para outros mercados (clubes, eventos) | Receita adicional SaaS |
+| **Investimento série A** | 2-3 anos | VC entra para escalar (opcional) | R$5-15M |
+| **Bootstrap rentável** | Contínuo | Crescimento orgânico, sem investimento externo — **cenário preferido** | N/A |
+| **White-label** | 2 anos | Licenciar tecnologia do mapa-radar para outros mercados | Receita adicional SaaS |
 
-### 11.2 Métricas para Saída
+### 12.2 Métricas para Saída
 
-- 100.000+ usuários ativos
-- R$150.000+ MRR
-- LTV/CAC > 20x
-- Churn < 5% mensal
+- 50.000+ usuários ativos
+- R$50.000+ MRR
+- LTV/CAC > 15x (realista)
+- Churn < 10% mensal
 - NPS > 50
 
 ---
 
-## 12. Considerações Legais e Regulatórias
+## 13. Considerações Legais e Regulatórias
 
-### 12.1 LGPD (Lei Geral de Proteção de Dados)
+### 13.1 LGPD (Lei Geral de Proteção de Dados)
 
 - Dados sensíveis (orientação sexual, preferências) exigem **consentimento explícito**
 - Política de privacidade clara e acessível
@@ -549,75 +677,82 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 - Dados criptografados em nível de aplicação
 - DPO (Data Protection Officer) quando passar de determinado volume
 
-### 12.2 Age Gate Obrigatório
+### 13.2 Age Gate Obrigatório
 
 - Verificação 18+ com cookie assinado HMAC
 - Sem cache de data de nascimento — só confirmação de maioridade
 - Banner de idade em todas as páginas públicas
 
-### 12.3 Conteúdo Adulto
+### 13.3 Conteúdo Adulto
 
 - Plataforma hospeda conteúdo adulto gerado por usuários (UGC)
 - Compliance DMCA para remoção de conteúdo copyright
 - Política de conteúdo proibido (menores, não consensual, zoofilia, etc.)
 - Moderação ativa e reativa
-- Advogado especializado em direito digital na retainer
+- Advogado especializado em direito digital quando receita permitir
 
-### 12.4 Pagamentos
+### 13.4 Pagamentos
 
-- **Gateways tradicionais** (Stripe, Mercado Pago) podem banir — ter alternativa
-- **Cripto (USDT)** como fallback — preparado na arquitetura
+- **Pix é o pagamento principal desde o dia 1** — não depende de adquirentes internacionais
+- **Mercado Pago** como secundário (aceita Pix dentro dele)
+- **Cripto (USDT)** como fallback para usuários que preferem discrição total
+- **Não depender de Stripe** — Stripe banheira conteúdo adulto UGC no Brasil
 - Compliance KYC/AML se necessário para pagamentos em cripto
 
 ---
 
-## 13. Métricas de Sucesso (KPIs)
+## 14. Métricas de Sucesso (KPIs)
 
-### 13.1 North Star Metric
+### 14.1 North Star Metric
 
-**Usuários ativos semanais (WAU)** que usam o mapa pelo menos 1x por semana.
+**Usuários ativos semanais (WAU)** que usam o mapa-radar pelo menos 1x por semana.
 
-### 13.2 KPIs por Categoria
+### 14.2 KPIs por Categoria
 
 | Categoria | KPI | Meta ano 1 |
 |-----------|-----|------------|
-| **Crescimento** | Novos cadastros/dia | 100+ |
+| **Crescimento** | Novos cadastros/dia | 50+ |
 | **Engajamento** | DAU/MAU | 25%+ |
 | **Engajamento** | Sessões/usuário/dia | 3+ |
-| **Monetização** | % conversão free→pago | 5%+ |
-| **Monetização** | MRR | R$30.000 |
-| **Retenção** | Churn mensal | <8% |
-| **Retenção** | Retenção D30 | 40%+ |
+| **Engajamento** | Checkins/dia | 100+ |
+| **Engajamento** | Notificações de radar enviadas/dia | 200+ |
+| **Monetização** | % conversão free→pago | 4%+ |
+| **Monetização** | MRR | R$15.000 |
+| **Monetização** | Receita ads/mês | R$1.500 |
+| **Retenção** | Churn mensal | <15% |
+| **Retenção** | Retenção D30 | 30%+ |
 | **Qualidade** | Denúncias/1k usuários | <5 |
-| **Qualidade** | Tempo de moderação | <24h |
+| **Qualidade** | Tempo de moderação | <48h |
 | **Privacidade** | % usuários com blur ativo | 60%+ |
 
 ---
 
-## 14. Análise SWOT
+## 15. Análise SWOT
 
 ### Forças (Strengths)
 
 - Stack tecnológica moderna e barata (Go single binary, SQLite, React PWA)
 - Especificação completa e documentada (AGENTS.md, specs)
 - PWA bypassa banimento de App Store/Play Store
-- Custo operacional extremamente baixo
+- **Custo operacional quase nulo (Modo Guerrilha: R$33/mês)**
 - Fundador técnico (não depende de terceiros para desenvolver)
-- Diferencial real vs concorrente (mapa, privacidade, UX)
+- Diferencial real vs concorrente (mapa-radar gamificado, privacidade, UX)
+- **Operação solo permanente — custo fixo mínimo**
 
 ### Fraquezas (Weaknesses)
 
-- Fundador único (riscos de continuidade)
+- **Fundador único, solo de forma permanente (risco máximo aceito)**
 - Sem massa crítica inicial (network effect)
 - Sem orçamento de marketing vs Sexlog
 - Marca desconhecida
-- Content moderation é caro e complexo em escala
+- Content moderation é complexo em escala (manual até volume justificar)
 
 ### Oportunidades (Opportunities)
 
 - Sexlog não inova há 17 anos
 - Público liberal cresceu pós-pandemia
 - Banimento de apps nas lojas é barreira para concorrentes
+- Pix como pagamento universal no Brasil (sem dependência de adquirentes internacionais)
 - Cripto abre novo canal de pagamento
 - Desktop app discreto é diferencial sem concorrente
 - Parcerias B2B com casas de swing são canal de aquisição sem custo
@@ -625,29 +760,31 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 ### Ameaças (Threats)
 
 - Sexlog pode copiar features (mapa, blur)
+- Welcoming/Recombinação de features pelo Sexlog pode neutralizar diferencial
 - Regulação de conteúdo adulto pode apertar
-- Gateways de pagamento podem banir plataforma
+- Gateways de pagamento internacionais podem banir plataforma (mitigado com Pix)
 - Vazamento de dados seria fatal para confiança
 - Plataformas maiores (Tinder, FetLife) podem entrar no nicho brasileiro
+- **SQLite pode bater limite de write antes do esperado** (produto é write-heavy)
 
 ---
 
-## 15. Tecnologia como Vantagem Competitiva
+## 16. Tecnologia como Vantagem Competitiva
 
-### 15.1 Por que Go + SQLite é uma vantagem
+### 16.1 Por que Go + SQLite é uma vantagem
 
-| Aspecto | Stack típica (Sexlog-like) | Liberages |
-|---------|---------------------------|-----------|
+| Aspecto | Stack típica (Sexlog-like) | Liberages (Modo Guerrilha) |
+|---------|---------------------------|---------------------------|
 | Backend | Node.js + Express ou PHP | Go single binary |
 | Frontend | SSR (Next.js) ou monolito | React SPA + PWA |
-| Banco | PostgreSQL + Redis | SQLite (escalável até 100k UA) |
+| Banco | PostgreSQL + Redis | SQLite (escalável até 30-50k UA write-heavy) |
 | Deploy | 5+ containers | 1 binário + 1 DB file |
-| Custo infra | R$2.000+/mês | R$200/mês |
+| Custo infra | R$1.300-5.000/mês | **R$25-60/mês** |
 | Cold start | Segundos | Milissegundos |
 | PWA | Não | Sim (bypass App Store) |
 | Desktop app | Não | Sim (system tray discreto) |
 
-### 15.2 Arquitetura preparada para escala
+### 16.2 Arquitetura preparada para escala
 
 - Interfaces Go na camada de dados → troca SQLite por PostgreSQL sem mudar lógica de negócio
 - Interfaces Go na camada de auth → troca JWT local por Keycloak/OAuth2 sem mudar código
@@ -656,9 +793,9 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 
 ---
 
-## 16. Apêndice
+## 17. Apêndice
 
-### 16.1 Glossário
+### 17.1 Glossário
 
 | Termo | Definição |
 |-------|-----------|
@@ -678,22 +815,28 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 | **ARPU** | Average Revenue Per User — receita média por usuário |
 | **WAU** | Weekly Active Users — usuários ativos semanais |
 | **DAU/MAU** | Daily/Monthly Active Users — ratio de engajamento |
+| **Radar de intenção** | Funcionalidade gamificada onde usuário marca "a fim hoje" e recebe notificação quando compatível está próximo — estilo Pokémon GO |
+| **Checkin** | Registro de presença em local público (casa de swing, bar) que aparece no mapa para outros usuários |
+| **Localização fuzzy** | Localização aproximada (bairro/zona) que nunca revela ponto exato do usuário |
+| **Modo Guerrilha** | Estratégia operacional de custo quase nulo — 1 VPS, SQLite, filesystem, sem SaaS pago |
 
-### 16.2 Referências
+### 17.2 Referências
 
 - Sexlog dados públicos: relatórios de mídia 2022
 - Pesquisas de comportamento sexual brasileiro (dados secundários)
-- Documentação técnica: `app/AGENTS.md`, `app/spec/lustmapia.md`
+- Documentação técnica: `app/AGENTS.md`
 - Dossiê de mercado: `app/spec/dossie-mercado.md`
+- Especificação técnica do mapa: `app/spec/mapa-interativo.md`
 
-### 16.3 Suposições do Plano
+### 17.3 Suposições do Plano
 
-1. Conversão free→pago de 5% (indústria SaaS: 2-10%)
-2. Churn mensal de 8% no ano 1 (indústria adult: 5-15%)
+1. Conversão free→pago de 4% (conservador; indústria SaaS: 2-10%)
+2. Churn mensal de 15% no ano 1 (realista para indústria adult: 12-20%)
 3. ARPU médio de R$34/mês (misto Premium R$29,90 + VIP R$49,90)
-4. Custo de aquisição de R$8 (canais predominantemente orgânicos)
-5. SQLite escala até ~100k usuários ativos (~1M acessos/dia)
-6. Sem investimento adicional necessário após seed (bootstrap a partir do break-even)
+4. Custo de aquisição de R$1-2 (canais predominantemente orgânicos — custo real é tempo, não dinheiro)
+5. SQLite escala até ~30-50k UA em modo write-heavy (produto tem checkins, matches e notificações em tempo real)
+6. Sem investimento externo necessário (bootstrapping from zero)
+7. Operação solo permanente — sem headcount planejado
 
 ---
 

@@ -882,15 +882,13 @@ internal/
 
 ---
 
-## Feature: Lustmapia
+## Feature: Mapa Interativo + Radar de Intenção
 
-> Geolocalização para locais de entretenimento adulto/liberal. Implementado dentro da stack padrão do Liberages — **não** replicar a stack do repo lustmapia (Next.js, Drizzle, Keycloak, PostgreSQL). Adaptar para Go + SQLite + sqlc + React SPA.
+> Geolocalização gamificada para o público liberal brasileiro. Implementado dentro da stack padrão do Liberages (Go + SQLite + sqlc + React SPA).
+>
+> Especificação completa: `app/spec/mapa-interativo.md`
 
-### Origem
-
-Repo referência: `passoz/lustmapia` clonado em `/workspace/lustmapia`. Contém a lógica de negócio, UI e fluxos que devem ser re-implementados na stack do Liberages.
-
-### O que o lustmapia original faz
+### O que o produto faz
 
 - Mapa interativo com Leaflet + marcadores SVG por tipo de local
 - CRUD de locais (admin-only) com upload de imagens (S3)
@@ -905,7 +903,7 @@ Repo referência: `passoz/lustmapia` clonado em `/workspace/lustmapia`. Contém 
 
 ### Adaptação para a stack Liberages
 
-| Lustmapia original | Liberages (como implementar) |
+| Arquitetura anterior (referência) | Liberages (como implementar) |
 |---|---|
 | Next.js 16 App Router | React SPA + Vite + React Router (frontend/) |
 | PostgreSQL 17 + Drizzle ORM | SQLite + sqlc (SQL puro, sem ORM) |
@@ -1021,7 +1019,7 @@ Componentes principais:
 - `AdminDashboard` — painel admin com tabela, filtros, ações
 - `PWAInstallPrompt` — prompt de instalação PWA
 
-### Diferenças críticas vs lustmapia original
+### Diferenças críticas vs arquitetura anterior
 
 1. **Paginação obrigatória** — queries retornam no máximo 50 itens por página
 2. **Índices no banco** — tipo, cidade, coordenadas e FTS5 para busca
@@ -1032,4 +1030,6 @@ Componentes principais:
 7. **Sem dependências CDN** — tudo servido pelo binário Go
 8. **Auth local primeiro** — Keycloak é adapter futuro, não padrão
 9. **Storage local primeiro** — S3 é adapter futuro
-10. **1 serviço Docker** — não 5 como no original
+10. **1 serviço Docker** — não múltiplos serviços
+11. **Mapa de Locais e Radar de Atividade são conceitualmente distintos** — não misturar na implementação
+12. **Localização fuzzy obrigatória** — nunca expor coordenadas exatas de pessoas no Radar de Atividade
