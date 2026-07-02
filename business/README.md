@@ -6,13 +6,13 @@ Documentos estratégicos e plano de negócios da plataforma Liberages.
 
 | Arquivo | Descrição |
 |---------|-----------|
-| `business-plan.md` | Plano de negócios completo (17 seções) |
+| `business-plan.md` | Plano de negócios completo (17 seções, 11 módulos, 47 features) |
 | `financial-projections.csv` | Projeção financeira mensal detalhada (18 meses, bootstrapped) |
 
 ## Estrutura do Plano
 
 1. **Sumário Executivo** — visão geral, oportunidade, diferencial, bootstrapping
-2. **Descrição do Negócio** — visão, missão, valores, produto, módulos (incluindo radar de intenção gamificado)
+2. **Descrição do Negócio** — visão, missão, valores, produto, 11 módulos (mapa-radar, perfis, matching, eventos, conteúdo, comunidade, gamificação, segurança, modo casal, microtransações, admin)
 3. **Análise de Mercado** — tamanho, segmentação, dores, concorrência
 4. **Posicionamento Estratégico** — proposição de valor (Pokémon GO do prazer), vantagem competitiva
 5. **Modelo de Receita** — preços, anúncios no free, receitas adicionais, verificação para todos
@@ -33,4 +33,5 @@ Documentos estratégicos e plano de negócios da plataforma Liberages.
 
 - `app/spec/dossie-mercado.md` — dossiê de mercado original
 - `app/spec/mapa-interativo.md` — especificação técnica do mapa + radar
+- `app/spec/features.md` — especificação de 47 features adicionais (schema + API + mecânicas)
 - `app/AGENTS.md` — stack e convenções técnicas

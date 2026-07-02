@@ -43,10 +43,12 @@ Freemium em 3 camadas: **Free** (grátis, com anúncios nativos), **Premium** (R
 | Métrica | Mês 6 | Mês 12 | Mês 18 |
 |---------|-------|--------|--------|
 | Usuários cadastrados | 3.000 | 15.000 | 60.000 |
-| Usuários pagantes | 90 | 600 | 3.000 |
-| MRR (assinaturas) | R$2.500 | R$18.000 | R$90.000 |
+| Usuários pagantes | 90 | 450 | 1.800 |
+| MRR assinaturas | R$2.500 | R$12.600 | R$50.400 |
+| Receita microtransações | R$200 | R$2.000 | R$11.000 |
 | Receita de anúncios (free) | R$300 | R$2.000 | R$10.000 |
-| MRR total | R$2.800 | R$20.000 | R$100.000 |
+| Receita B2B | R$200 | R$1.500 | R$5.000 |
+| MRR total | R$3.200 | R$18.100 | R$76.400 |
 | CAC | R$2,00 | R$1,50 | R$1,00 |
 | LTV | R$120 | R$240 | R$400 |
 | LTV/CAC | 60x | 160x | 400x |
@@ -107,22 +109,29 @@ Este é o coração do produto. São dois mapas conceitualmente distintos que co
 
 #### Módulo 2 — Perfis e Privacidade
 
-- Perfis individuais e de casal
+- Perfis individuais e de casal (ver Módulo 9)
 - **Níveis de privacidade**:
   - Nível 0: Visitante — vê só o mapa público
   - Nível 1: Age gate verificado — vê locais, perfis com fotos borradas
   - Nível 2: Perfil completo — interação normal
   - Nível 3: Verificado (documento + selfie) — selo azul, grupos exclusivos
+- **Kit de Relacionamento** — campos obrigatórios no perfil: status (solteiro, casal aberto, poliamor, etc.), o que busca (troca, ménage, amizade liberal, bate-papo), frequência (novato a hardcore)
+- **Lista de Fetiches com Match %** — usuário marca até 15 fetiches de catálogo curado; sistema calcula compatibilidade percentual entre perfis; feed de swipe ordena por compatibilidade
+- **Mood do Momento** — status temporário de 1h com emoji (🔥 a fim, 🙈 tímido, 😈 brutal, 👀 só de olho, etc.) que aparece no perfil, no radar e no mapa
 - Blur facial automático (IA), modo invisível, selfie destrutível (some após 10s)
 - Galeria com controle de quem vê cada foto
 
-#### Módulo 3 — Matching por Intenção
+#### Módulo 3 — Matching por Intenção + Swipe
 
-- Não é Tinder swipe — é "o que você busca hoje?"
-- Filtros: troca de casal, ménage, voyeur, exibição, bate-papo
-- Filtros de gênero, orientação, janela temporal (agora/hoje/semana)
-- Algoritmo ordena por compatibilidade + distância
-- Limite diário para free users (5 matches), ilimitado para Premium
+- **Radar de intenção** (Módulo 1) — match implícito por proximidade
+- **Swipe (curtir/não curtir)** estilo Tinder — feed de perfis ordenado por compatibilidade de fetiches + intenção + localização
+- Match: ambos curtiram → chat liberado; integrado ao radar (se ambos marcaram "a fim hoje", match tem prioridade)
+- Super like (1/dia free, ilimitado Premium) — notifica o outro usuário
+- Undo do último swipe (Premium)
+- **Bucket List (lista de desejos)** — usuário adiciona locais do mapa à lista privada; se dois usuários têm o mesmo local, ambos recebem notificação de compatibilidade
+- **Encontro Surpresa** — match pode virar encontro às cegas: sistema sorteia local seguro + horário nos próximos 7 dias; ambos confirmam para acontecer
+- **Match Turbinado (Boost)** — pagamento único (R$2-5) para aparecer no topo do feed de swipe por 1h
+- Limite diário para free users (5-10/dia), ilimitado para Premium
 
 #### Módulo 4 — Eventos com Geolocalização
 
@@ -131,37 +140,75 @@ Este é o coração do produto. São dois mapas conceitualmente distintos que co
 - **Check-in com PIN** (evita penetras)
 - "Eventos próximos a você agora" no mapa
 - Integração B2B com casas de swing reais
+- **Agenda Liberal** — calendário com feriados sazonais (Carnaval, Réveillon, Dia do Sexo 06/09) + eventos fixos de casas de swing + notificações "Faltam 3 dias para o Carnaval"
+- **Carona Solidária** — usuários indo pro mesmo evento marcam carona (oferece vaga ou precisa); chat temporário expira 24h após evento; endereço exato nunca exposto (só bairro/ponto); avaliação anônima pós-carona
+- **Lista de Presença Anônima** — "Confirmaram: 47" com heatmap demográfico (60% casais, 25% mulheres solteiras, faixa etária predominante, 5 verificados) sem identificar indivíduos
 - Histórico privado de eventos frequentados
 
-#### Módulo 5 — Live Streaming com Privacidade
+#### Módulo 5 — Conteúdo e Expressão
 
-- Lives com máscara facial (blur/filtro em tempo real)
-- Controle de audiência: só verificados, só amigos, só seguidores
-- Modo pay-per-view (tips, ingressos virtuais)
-- Lives em grupo (até 4 pessoas)
+- **Fotolog Diário** — estilo Fotolog antigo, 1 foto/dia com legenda, expira em 24h por padrão (configurável), blur automático, feed cronológico
+- **Álbuns** — galerias curadas pelo usuário, controle de privacidade por álbum (público, amigos, verificados, privado), máximo 3 free / ilimitado Premium
+- **Story 24h** — foto ou vídeo curto (máx. 30s) com blur opcional, reação rápida por emoji (🔥😈😍), resposta via DM, Premium vê quem viu
+- **Contos Eróticos** — literatura erótica escrita por usuários (Markdown básico), categorias, tags, votação, comentários moderados, destaque semanal, badge "Escritor(a) do Mês"
+- **Live Streaming com Privacidade** — máscara facial em tempo real, controle de audiência, pay-per-view (tips, ingressos), lives em grupo (até 4)
+- **Marketplace de Criadores** — venda de conteúdo (fotos, vídeos, packs, assinatura mensal); criador define preço (R$5-R$200); comissão 15% da plataforma; pagamento via Pix
 
-#### Módulo 6 — Grupos com Curadoria
+#### Módulo 6 — Comunidade e Discussão
 
-- Grupos públicos e privados
-- Categorias por fetiche, cidade, tipo de interação
-- Ranking por atividade
-- Regras explícitas de conduta em cada grupo
-- Moderação com banimento explicado
+- **Fórum** — categorias (swing, BDSM, iniciantes, segurança, eventos), tópicos, respostas em thread, votação up/down, fixar tópicos, marcadores (Importante, Resolvido), busca FTS5; free: 5 posts/dia, Premium ilimitado
+- **Comunidades com Presença Anônima** — grupos onde o usuário pode participar sem revelar identidade (pseudônimo gerado: "Anônimo #4A7B", consistente dentro da comunidade); moderadores veem identidade real
+- **Grupos com Curadoria** — públicos e privados, categorias por fetiche/cidade/interação, ranking por atividade, regras explícitas, moderação com banimento explicado
+- **Mural de Elogio Anônimo** — elogios anônimos moderados antes de aparecer; receptor aceita ou rejeita; badges "Admiradx" (10), "Cobiçadx" (50), "Musa/Muse" (100); 1 elogio/pessoa/mês
+- **Confiança Mútua** — dois usuários se marcam como "conheço pessoalmente"; aparece como contagem no perfil ("conhecido por N pessoas"); desvincular a qualquer momento
 
-#### Módulo 7 — Segurança
+#### Módulo 7 — Gamificação e Engajamento
 
-- **Botão de pânico** — notificação silenciosa para moderação + emergência
-- **Contato de emergência** — notificado se não houver check-out seguro
-- **Local público sugerido** — primeiro encontro em local público
-- **Block + Report** com justificativa
-- **Rate limiting** — anti spam, anti assédio
+- **Badges (Conquistas)** — selos desbloqueados ao atingir marcos: Primeiro Checkin (bronze), Explorador (prata, 5 locais), Borboleta Social (prata, 10 matches), Veterano (ouro, 1 ano), Verificado (prata), Criador de Conteúdo (prata, 50 fotos), Matcher Noturno (ouro, 20 matches 23h-5h), Cidade Inteira (ouro, 20 locais) — configurável exibir/ocultar
+- **XP e Níveis** — interações dão XP (login +5, fotolog +10, match +50, checkin +20, validar identidade +100); níveis desbloqueiam features (níveis 2-10-20 com bônus); imagem de progressão
+- **Ranking Semanal** — opt-in, top 10 da semana com badge temporária "Top 10"; categorias: geral, checkins, fórum, comunidades; reset semanal; prêmio puramente social
+- **Desafio Liberal Semanal** — toda segunda-feira novo desafio (foto criativa, checkin, conto, fórum, mood); quem completa ganha 100 XP + badge temporária; 4/4 no mês = badge "Mestre dos Desafios"
+- **Caça ao Tesouro (B2B)** — parceiros escondem tesouros no mapa visíveis só a X km; usuário coleta → cupom/voucher/desconto; monetização: parceiro paga por lead
+- **Jogo da Verdade Liberal** — mini-game pós-match: 5 perguntas de quebra-gelo (leve/médio/picante), respostas reveladas só quando ambos respondem, combinações destacadas com 🔥
+- **Júri Popular** — denúncias complexas vão para painel de 5 usuários verificados que votam (remover/manter); maioria simples decide; XP por participar; badge "Juiz Justo"
+- **Selo Anjo da Comunidade** — usuários exemplares (reportes >80% acerto, +20 respostas úteis no fórum) ganham badge dourada + benefícios (+5 matches/dia, prioridade em filas); renovação mensal
 
-#### Módulo 8 — Admin Dashboard
+#### Módulo 8 — Segurança e Privacidade Avançada
 
-- Painel admin completo com filtros, sorting, preview de mapa
-- Moderação de conteúdo, perfis, eventos
-- Gestão de denúncias
-- Métricas em tempo real
+- **Moderação Híbrida** — robô (IA) tria em tempo real (blur, spam, menores, violência); humano decide casos limítrofes; fila de moderação com log completo; apelo de banimento com revisão por moderador diferente
+- **Validação Periódica** — re-verificação de idade a cada 6 meses, identidade a cada 12 meses; conta não validada em 30 dias perde privilégios
+- **Ingresso Moderado** — cadastro aprovado manualmente (auto-approvar se robô não flagar + idade verificada; humano só vê flagueados); SLA 24h
+- **Verificação por Vídeo-Chamada** — além de documental, chamada de vídeo de 2min com moderador; badge "Verificado ao Vivo" (dourado, distinto do azul)
+- **Câmera ao Vivo de Locais** — parceiros com câmera pública do ambiente (sem foco em pessoas); usuário vê antes de ir; status "aberto agora" + ocupação (cheio/médio/vazio)
+- **Alarme de Screenshots** — PWA detecta possível screenshot e notifica dono do conteúdo; não impede (impossível em PWA) mas constrange e notifica; selfie destrutível some imediatamente se alarme dispara
+- **Botão de Pânico / Modo Falso** — atalho (agitar celular, botão flutuante) leva pra tela falsa (calculadora, clima, notas), invalida sessão, salva estado para retomada com PIN
+- **Login Rápido com PIN** — PIN de 4 dígitos para sessões curtas (15min); útil em intervalos/no trabalho; bloqueia após 3 tentativas erradas
+- **Criptografia E2E nas DMs** — todas as mensagens diretas criptografadas no dispositivo (Web Crypto + ECDH); servidor nunca tem acesso ao plaintext
+- **Modo Fantasma Total** — usuário some completamente (não aparece em busca, não recebe broadcasts, só quem já tem contato te vê online); gratuito (segurança não é paga); duração máxima 24h
+- **Block + Report** com justificativa; rate limiting anti-spam/anti-assédio
+
+#### Módulo 9 — Modo Casal
+
+- **Conta compartilhada de casal** — duas contas individuais linkadas, mesmo perfil público ([NomeA] & [NomeB])
+- Chat de casal unificado; swipe com double opt-in (ambos curtam para match contar)
+- **Moodboard do Casal** — painel colaborativo privado (fotos, texto, locais favoritos, datas); só os dois vêem; lembretes ("Vocês se conheceram há 3 meses 🎉"); exportável em PDF (Premium)
+- Desvincular a qualquer momento; perfil de casal removido
+
+#### Módulo 10 — Monetização de Microtransações
+
+- **Marketplace de Criadores** — comissão 15% sobre vendas de conteúdo (ver Módulo 5)
+- **Match Boost** — R$2-5 para aparecer no topo do feed de swipe por 1h; máximo 1/dia; estatísticas pós-boost
+- **Presente Virtual Picante** — emojis animados exclusivos (🌹🔥😈🍑🔞) que custam R$1-3 cada; aceitação com badge temporário; pode ser anônimo; comissão 20% da plataforma
+- **Assinatura de Presente** — comprar Premium/VIP de presente para outro usuário; pode ser anônimo; QR code para dar em casas de swing; não acumulável (estende a partir da data atual)
+- **Cartão Fidelidade Digital (B2B)** — checkins em locais parceiros acumulam pontos; 100 pontos = R$5 desconto; voucher gerado na plataforma; parceiro confirma e pontua
+
+#### Módulo 11 — Admin e Operação
+
+- **Painel Admin** — full CRUD, filtros, sorting, preview de mapa, moderação de conteúdo/perfis/eventos, gestão de denúncias, métricas em tempo real
+- **Sistema de Tickets de Suporte** — categorias (denúncia, técnico, conta, cobrança, sugestão); prioridade: normal (free), alta (Premium/VIP); resposta dentro da plataforma
+- **Análise de Sentimento da Comunidade** — dashboard de moderação: denúncias recebidas, taxa de resolução, tempo de resposta, sentimento geral (-1 a +1); alertas de pico; exportação CSV mensal
+- **Painel Público de Status** — status.liberages.com: uptime, incidentes, histórico; status por componente (API, mapa, radar, fórum, upload); feed RSS
+- **Convite por QR Code** — gerar QR para conexão presencial (casas de swing); contém ID criptografado + timestamp (expira em 5min); também para checkin em locais parceiros
 
 ---
 
@@ -294,8 +341,13 @@ Free users não são sustentáveis como custo zero. Anúncios são o motor de re
 
 | Fonte | Descrição | Margem estimada |
 |-------|-----------|------------------|
-| **Comissão conteúdo exclusivo** | 15% sobre transações de conteúdo pago entre usuários (tips, pay-per-view) | 15% |
-| **Parceria B2B** | Casas de swing, motéis, sex shops pagam por presença destacada no mapa | 80%+ |
+| **Comissão Marketplace de Criadores** | 15% sobre vendas de conteúdo (fotos, vídeos, packs, assinaturas) | 15% |
+| **Match Boost** | R$2-5 pagamento único para topo do feed de swipe por 1h | 95%+ |
+| **Presente Virtual Picante** | Emojis animados a R$1-3 cada, comissão 20% | 20% |
+| **Assinatura de Presente** | Comprar Premium/VIP de presente para outro usuário | ~100% (mesma receita da assinatura) |
+| **Parceria B2B (presença no mapa)** | Casas de swing, motéis, sex shops pagam por destaque no mapa | 80%+ |
+| **Parceria B2B (Caça ao Tesouro)** | Parceiro paga por lead gerado via tesouro coletável no mapa | 85%+ |
+| **Cartão Fidelidade (B2B)** | Parceiro paga rateio de vouchers resgatados no programa de pontos | 70%+ |
 | **Eventos promovidos** | Destaque pago no feed de eventos | 90%+ |
 
 ### 4.4 Estratégia de Preço
@@ -436,15 +488,15 @@ A operação permanece no Modo Guerrilha até que um destes gatilhos seja aciona
 
 ### 7.2 Projeção de Receita (18 meses — Bootstrapped)
 
-| Mês | Usuários | Pagantes | MRR assinaturas | Receita ads | MRR total | Custos (guerrilha) | Resultado |
-|-----|----------|----------|-----------------|-------------|-----------|---------------------|-----------|
-| 1 | 100 | 3 | R$90 | R$0 | R$90 | R$33 | -R$0 (cobre OK²) |
-| 3 | 800 | 24 | R$720 | R$50 | R$770 | R$35 | +R$735 |
-| 6 | 3.000 | 90 | R$2.500 | R$300 | R$2.800 | R$40 | +R$2.760 |
-| 9 | 7.000 | 280 | R$8.500 | R$800 | R$9.300 | R$100 | +R$9.200 |
-| 12 | 15.000 | 600 | R$18.000 | R$2.000 | R$20.000 | R$300 | +R$19.700 |
-| 15 | 30.000 | 1.500 | R$45.000 | R$5.000 | R$50.000 | R$600 | +R$49.400 |
-| 18 | 60.000 | 3.000 | R$90.000 | R$10.000 | R$100.000 | R$1.000 | +R$99.000 |
+| Mês | Usuários | Pagantes | MRR assinaturas | Microtransações | Ads | B2B | MRR total | Custos | Resultado |
+|-----|----------|----------|-----------------|------------------|-----|------|-----------|--------|-----------|
+| 1 | 100 | 3 | R$90 | R$0 | R$0 | R$0 | R$90 | R$33 | +R$57 |
+| 3 | 800 | 24 | R$720 | R$20 | R$50 | R$0 | R$790 | R$35 | +R$755 |
+| 6 | 3.000 | 90 | R$2.500 | R$200 | R$300 | R$200 | R$3.200 | R$40 | +R$3.160 |
+| 9 | 7.000 | 210 | R$5.900 | R$800 | R$800 | R$800 | R$8.300 | R$100 | +R$8.200 |
+| 12 | 15.000 | 450 | R$12.600 | R$2.000 | R$2.000 | R$1.500 | R$18.100 | R$300 | +R$17.800 |
+| 15 | 30.000 | 900 | R$25.200 | R$5.000 | R$5.000 | R$3.000 | R$38.200 | R$600 | +R$37.600 |
+| 18 | 60.000 | 1.800 | R$50.400 | R$11.000 | R$10.000 | R$5.000 | R$76.400 | R$1.000 | +R$75.400 |
 
 > Projeção conservadora, alinhada com aquisição 100% orgânica (zero SEM). Custos sobem apenas quando gatilhos do Modo Guerrilha são acionados.
 
@@ -493,9 +545,9 @@ Break-even "real" (receita superando custo de vida do fundador): depende de cust
 
 | Ano | Usuários | Receita total | Custos | Lucro líquido |
 |-----|----------|---------------|--------|---------------|
-| Ano 1 | 15.000 | R$120.000 | R$5.000 | R$115.000 |
-| Ano 2 | 60.000 | R$480.000 | R$30.000 | R$450.000 |
-| Ano 3 | 150.000 | R$1.200.000 | R$100.000 | R$1.100.000 |
+| Ano 1 | 15.000 | R$130.000 | R$5.000 | R$125.000 |
+| Ano 2 | 60.000 | R$550.000 | R$25.000 | R$525.000 |
+| Ano 3 | 150.000 | R$1.400.000 | R$80.000 | R$1.320.000 |
 
 > Custos baixos reflejam Modo Guerrilha com escalonamento só em gatilhos. Sem headcount, sem SaaS, sem cloud enterprise.
 
@@ -563,7 +615,7 @@ Break-even "real" (receita superando custo de vida do fundador): depende de cust
 ### Fase 1 — "O Mapa + Radar" (MVP) — Meses 1-4
 
 - [x] Repositório e especificação criados
-- [ ] Autenticação local (JWT + bcrypt)
+- [ ] Autenticação local (JWT + bcrypt) + PIN rápido
 - [ ] Age gate com cookie assinado HMAC
 - [ ] Mapa de Locais — Leaflet com tipos de local, CRUD admin
 - [ ] Radar de Atividade — intenção "a fim hoje", clusters fuzzy, notificação de proximidade
@@ -573,43 +625,74 @@ Break-even "real" (receita superando custo de vida do fundador): depende de cust
 - [ ] Deploy em produção (VPS R$30/mês)
 - [ ] Beta fechado (300 usuários)
 
-### Fase 2 — "A Rede" (Comunidade) — Meses 5-9
+### Fase 2 — "A Rede" (Perfis + Matching + Conteúdo) — Meses 5-9
 
-- [ ] Perfis de usuário (indivíduos e casais)
-- [ ] Chat privado
-- [ ] Matching por interesse + localização
-- [ ] Grupos públicos e privados
+- [ ] Perfis de usuário (indivíduos) com Kit de Relacionamento
+- [ ] Lista de Fetiches + Match %
+- [ ] Mood do Momento
+- [ ] Swipe (curtir/não curtir) com match
+- [ ] Chat privado com E2E (Web Crypto)
+- [ ] Fotolog Diário + Álbum + Story 24h
+- [ ] Modo Fantasma Total
+- [ ] Modo Falso (botão de emergência)
+- [ ] Alarme de Screenshots
 - [ ] Upload de fotos com blur automático
-- [ ] Moderação IA básica (self-hosted)
+- [ ] Moderação Híbrida (robô + manual)
+- [ ] Ingresso Moderado por Humano
+- [ ] Badges + XP + Níveis (gamificação base)
 - [ ] Anúncios display no free (ad network adult-friendly)
 - [ ] Soft launch (2.000 usuários)
 
-### Fase 3 — "O Evento" (Encontros) — Meses 10-15
+### Fase 3 — "Comunidade + Eventos" (Meses 10-15)
 
+- [ ] Fórum (categorias, tópicos, votação, FTS5)
+- [ ] Comunidades com Presença Anônima
+- [ ] Grupos com Curadoria
+- [ ] Mural de Elogio Anônimo
+- [ ] Confiança Mútua
+- [ ] Contos Eróticos
 - [ ] Criação e descoberta de eventos com geolocalização
-- [ ] Check-in com PIN
-- [ ] Integração com casas de swing (parceria)
-- [ ] Modo viagem
-- [ ] Botão de pânico
-- [ ] Contato de emergência
-- [ ] Anúncios B2B locais no mapa (casas de swing, motéis)
+- [ ] Check-in com PIN de eventos
+- [ ] Agenda Liberal (calendário + feriados sazonais)
+- [ ] Carona Solidária
+- [ ] Lista de Presença Anônima em eventos
+- [ ] Ranking Semanal (opt-in)
+- [ ] Desafio Liberal Semanal
+- [ ] Jogo da Verdade Liberal (pós-match)
+- [ ] Bucket List + notificação de match por local em comum
+- [ ] Encontro Surpresa
+- [ ] QR Code de conexão + checkin
+- [ ] Botão de pânico + Contato de emergência + local público sugerido
+- [ ] Anúncios B2B locais no mapa + Caça ao Tesouro
 - [ ] Growth (10.000 usuários)
 
-### Fase 4 — "O Show" (Conteúdo) — Meses 16-22
+### Fase 4 — "Modo Casal + Conteúdo Premium" (Meses 16-22)
 
-- [ ] Live streaming com privacidade
-- [ ] Conteúdo exclusivo (assinatura)
-- [ ] Tips e pay-per-view
+- [ ] Modo Casal (conta compartilhada + double opt-in + moodboard)
+- [ ] Live streaming com máscara facial
+- [ ] Marketplace de Criadores (venda de conteúdo, comissão 15%)
+- [ ] Match Boost (R$2-5 pagamento único para topo do feed)
+- [ ] Presente Virtual Picante (microtransação)
+- [ ] Assinatura de Presente (comprar Premium/VIP para outro)
+- [ ] Cartão Fidelidade Digital (B2B)
 - [ ] Verificação azul (documental, disponível para todos)
-- [ ] Parcerias B2B (casas de swing, motéis)
+- [ ] Verificação por Vídeo-Chamada
+- [ ] Validação Periódica (idade a cada 6 meses, identidade a cada 12)
+- [ ] Parcerias B2B (casas de swing com câmera ao vivo, fidelidade)
+- [ ] Geral growth (25-35k usuários)
 
-### Fase 5 — "A Fortaleza" (Segurança Premium) — Meses 23-30
+### Fase 5 — "A Fortaleza" (Segurança + Escala) (Meses 23-30+)
 
-- [ ] Relatório de privacidade
-- [ ] Detecção de screenshots
-- [ ] Verificação documental completa
-- [ ] Pagamentos em cripto (fallback)
+- [ ] Júri Popular (denúncias por votação de verificados)
+- [ ] Selo Anjo da Comunidade
+- [ ] Análise de Sentimento da Comunidade (dashboard)
+- [ ] Painel Público de Status (status.liberages.com)
+- [ ] Sistema de Tickets de Suporte
+- [ ] Detecção de screenshots aprimorada
+- [ ] Pagamentos em cripto (USDT) como fallback
 - [ ] Desktop app com system tray
+- [ ] Migração SQLite → PostgreSQL (se gatilho de write throughput disparar)
+- [ ] Broadcast "Tô a fim agora" (notificação ampla no raio)
 - [ ] Scale (50.000+ usuários)
 
 > **Cronograma conservador para operação solo.** Prazos podem estender conforme realidade. Sem pressão de runway externo.
@@ -716,14 +799,24 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 | **Engajamento** | Sessões/usuário/dia | 3+ |
 | **Engajamento** | Checkins/dia | 100+ |
 | **Engajamento** | Notificações de radar enviadas/dia | 200+ |
+| **Engajamento** | Fotos postadas/dia (fotolog + álbum + story) | 150+ |
+| **Engajamento** | Desafios semanais completados | 30%+ dos ativos |
+| **Engajamento** | Contos publicados/semana | 10+ |
+| **Engajamento** | Usuários com mood ativo | 20%+ dos DAU |
 | **Monetização** | % conversão free→pago | 4%+ |
-| **Monetização** | MRR | R$15.000 |
+| **Monetização** | MRR assinaturas | R$15.000 |
+| **Monetização** | Receita microtransações/mês | R$2.000 |
 | **Monetização** | Receita ads/mês | R$1.500 |
+| **Monetização** | Receita B2B/mês | R$1.000 |
 | **Retenção** | Churn mensal | <15% |
 | **Retenção** | Retenção D30 | 30%+ |
 | **Qualidade** | Denúncias/1k usuários | <5 |
 | **Qualidade** | Tempo de moderação | <48h |
+| **Qualidade** | Tickets de suporte resolvidos <24h | 80%+ |
 | **Privacidade** | % usuários com blur ativo | 60%+ |
+| **Privacidade** | % usuários com E2E habilitado nas DMs | 90%+ |
+| **Gamificação** | Badges desbloqueadas/dia | 50+ |
+| **Gamificação** | XP distribuído/dia | 5.000+ |
 
 ---
 
@@ -745,7 +838,7 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 - Sem massa crítica inicial (network effect)
 - Sem orçamento de marketing vs Sexlog
 - Marca desconhecida
-- Content moderation é complexo em escala (manual até volume justificar)
+- Content moderation é complexo em escala (manual até volume justificar). 47 features requerem priorização rigorosa — não dá pra implementar tudo no MVP
 
 ### Oportunidades (Opportunities)
 
@@ -827,6 +920,7 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 - Documentação técnica: `app/AGENTS.md`
 - Dossiê de mercado: `app/spec/dossie-mercado.md`
 - Especificação técnica do mapa: `app/spec/mapa-interativo.md`
+- Especificação de 47 features: `app/spec/features.md`
 
 ### 17.3 Suposições do Plano
 
