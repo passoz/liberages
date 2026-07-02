@@ -110,6 +110,7 @@ Plataforma para o público liberal brasileiro (swing, troca de casais, ménage, 
 Documentação estratégica: `app/spec/dossie-mercado.md`
 Especificação técnica do mapa: `app/spec/mapa-interativo.md`
 Especificação de 47 features: `app/spec/features.md`
+- 24 features safadarias (circulação/veteranos/iniciantes): `app/spec/features-safadia.md`
 Plano de negócios: `business/business-plan.md`
 
 ## Architecture

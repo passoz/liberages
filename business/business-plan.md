@@ -294,11 +294,24 @@ Não competir head-to-head com Sexlog em SEO e massa crítica. Competir em **ino
 
 1. **Mapa-radar gamificado (Pokémon GO liberal)** — nenhum concorrente tem. Difícil de replicar bem porque combina real-time, geolocalização fuzzy, matching por intenção e gamificação
 2. **PWA + Desktop app** — bypassa App Store/Play Store (banimento de apps adultos é barreira de entrada)
-3. **Privacidade em camadas** — blur facial IA, selfie destrutível, modo invisível
+3. **Privacidade em camadas** — blur facial IA, selfie destrutível, modo invisível, E2E, modo fantasma, modo falso
 4. **Single binary Go + SQLite** — custo de infraestrutura quase nulo (1 processo, 1 VPS barato)
 5. **Desktop app discreto** — system tray com ocultação (ninguém vê no celular)
 6. **Comunidade moderada** — ambiente seguro atrai e retém mulheres (segmento mais carente)
 7. **Operação solo enxuta** — custo fixo baixíssimo permite sobreviver com pouca receita inicial
+8. **Sistema de Padrinho/Madrinha** — veteranos acolhem iniciantes, transferem credibilidade, quebram cold-start — impossível de replicar offline sem ferramenta
+9. **Geradores de momentum (Festa Relâmpago, Termômetro da Noite, Mural de Desejos)** — o meio precisa de estímulo para circular; o app cria urgência e serendipidade que nem Sexlog nem WhatsApp conseguem gerar
+10. **Ecossistema de veteranos (Anfitriões, Cartão de Visita, Ranking)** — dá motivo para influencers do meio usarem o app: organizam, monetizam influência, ampliam alcance — ferramentas impossíveis offline
+
+### 3.4 Os Três Eixos Estratégicos das Features Safadarias
+
+O plano de features (71 no total) ataca três problemas estruturais do mercado liberal:
+
+| Eixo | Problema | Solução (features) |
+|------|----------|-------------------|
+| **Circulação** | Nada acontece sozinho no meio liberal; sem estímulo, ninguém se mexe | Festa Relâmpago (urgência), Termômetro da Noite (FOMO), Mural de Desejos (serendipidade), Despertador Liberal (antecipação), Roleta Safada (ritual diário), Confissão Liberal (conteúdo+discussão) |
+| **Veteranos** | Influencers do meio já têm rede, não precisam do app | Padrinho/Madrinha (mentoria→status), Carta de Apresentação (expressão), Ranking de Anfitriões (reputação→monetização), Cartão de Visita Digital (networking), Convite Exclusivo para Iniciantes (transfer de social capital) |
+| **Iniciantes** | Casais novatos travam no cold-start, não sabem como entrar | Trilha de Iniciação (jornada guiada 90 dias), FAQ Interativo (educação), Cofre de Limites (segurança), Detector de Compatibilidade (reduz medo), Modo Newbie (acolhimento), Encontro Guiado por Especialista (escolta) |
 
 ---
 
@@ -838,7 +851,7 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 - Sem massa crítica inicial (network effect)
 - Sem orçamento de marketing vs Sexlog
 - Marca desconhecida
-- Content moderation é complexo em escala (manual até volume justificar). 47 features requerem priorização rigorosa — não dá pra implementar tudo no MVP
+- Content moderation é complexo em escala (manual até volume justificar). 71 features requerem priorização rigorosa — não dá pra implementar tudo no MVP
 
 ### Oportunidades (Opportunities)
 
@@ -921,6 +934,7 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 - Dossiê de mercado: `app/spec/dossie-mercado.md`
 - Especificação técnica do mapa: `app/spec/mapa-interativo.md`
 - Especificação de 47 features: `app/spec/features.md`
+- 24 features safadarias: `app/spec/features-safadia.md`
 
 ### 17.3 Suposições do Plano
 

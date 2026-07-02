@@ -6,7 +6,7 @@ Documentos estratégicos e plano de negócios da plataforma Liberages.
 
 | Arquivo | Descrição |
 |---------|-----------|
-| `business-plan.md` | Plano de negócios completo (17 seções, 11 módulos, 47 features) |
+| `business-plan.md` | Plano de negócios completo (17 seções, 11 módulos, 71 features) |
 | `financial-projections.csv` | Projeção financeira mensal detalhada (18 meses, bootstrapped) |
 
 ## Estrutura do Plano
@@ -34,4 +34,5 @@ Documentos estratégicos e plano de negócios da plataforma Liberages.
 - `app/spec/dossie-mercado.md` — dossiê de mercado original
 - `app/spec/mapa-interativo.md` — especificação técnica do mapa + radar
 - `app/spec/features.md` — especificação de 47 features adicionais (schema + API + mecânicas)
+- `app/spec/features-safadia.md` — 24 features criativas e provocantes (3 eixos: circulação, veteranos, iniciantes)
 - `app/AGENTS.md` — stack e convenções técnicas
