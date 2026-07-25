@@ -9,53 +9,29 @@
 
 ### O que é
 
-**Liberages** é uma plataforma digital (PWA + desktop app) construída em Go single-binary com React SPA, voltada para o público liberal brasileiro (swing, troca de casais, ménage, BDSM, exibicionismo, voyeurismo). O produto central é o **Mapa Interativo** — uma rede social liberal onde a descoberta geográfica é o hub da experiência, combinando gamificação estilo "Pokémon GO do prazer" (você não sabe quem ao seu redor está a fim de uma aventura), comunidade, eventos, conteúdo e privacidade em camadas.
+**Liberages** é uma plataforma digital (PWA + desktop app) construída em Go single-binary com React SPA, voltada para o público liberal brasileiro. A plataforma atua fundamentalmente como uma **Rede Social e Mapa Interativo**, onde o descobrimento geográfico e a afinidade de interesses se cruzam. Ela combina gamificação estilo "Pokémon GO do prazer", um feed social algorítmico, eventos curados pela comunidade, e uma arquitetura *privacy-first*.
 
 ### Oportunidade
 
-- Mercado dominado por **1 player** (Sexlog) com ~17 milhões de usuários cadastrados, mas sem inovar desde 2007.
-- Sexlog cobra R$49,90/mês por um produto com UX datada, sem mobile nativo, sem mapa e moderação frágil.
-- Banimento de apps para adultos nas lojas (App Store/Play Store) abre espaço para **PWA** — alternativa que bypassa gates das lojas.
-- Público liberal é altamente engajado, recorrente e disposto a pagar por privacidade e melhores ferramentas.
+- Mercado dominado por **1 player** (Sexlog) com UX datada e modelo abusivo de paywall.
+- Banimento de apps para adultos nas lojas (App Store/Play Store) abre espaço para **PWA** de alta performance.
+- Público liberal clama por ferramentas de privacidade reais (Modo Fantasma, Blur facial, E2E futuro) que os concorrentes ignoram.
 
 ### Diferencial
 
 | Pilar | O que resolve | Como |
 |-------|---------------|------|
-| **Mapa-radar gamificado** | Dificuldade de saber quem está a fim, ao seu redor, agora | Radar de intenção em tempo real (estilo Pokémon GO): você não vê quem é — só sabe que alguém compatível está perto. Checkins em locais públicos com notificações próximas. Localização nunca é exata, sempre fuzzy. |
-| **Privacidade em camadas** | Medo de exposição (fotos identificáveis, perfis falsos) | Blur facial automático, perfil anônimo, modo invisível, selfie destrutível, verificação opcional |
-| **Comunidade moderada** | Perfis falsos, golpistas, ambiente tóxico | Verificação de identidade disponível para todos (não só pagantes), reputação, moderação híbrida (IA + humana), selo verificado |
+| **Mapa-radar gamificado** | Dificuldade de saber quem está a fim, ao seu redor | Radar de check-ins (com TTL) e eventos. Identidade protegida no radar, revelada apenas via chat pós-match. |
+| **Privacidade em camadas** | Medo de exposição | Blur facial automático, Modo Fantasma (premium), botão Modo Falso (free), marca d'água dinâmica contra prints (rastreável). |
+| **Comunidade Verificada** | Perfis falsos e golpistas | "Web of Trust": o selo de Verificado exige confirmação de 4 amigos reais. Criação de eventos públicos é restrita a verificados. |
+| **Economia Fechada** | Atrito financeiro e engajamento | **Moeda Única** que unifica XP e microtransações. Compra-se com R$, gasta-se no app. Sem cash-out (zero atrito legal). |
 
 ### Modelo de receita
 
-Freemium em 3 camadas: **Free** (grátis, com anúncios nativos), **Premium** (R$29,90/mês, sem anúncios), **VIP** (R$49,90/mês) + comissão de 15% sobre conteúdo pago + parcerias B2B (casas de swing, motéis, sex shops). Free users geram receita via anúncios display e nativos — não são sosti­nháveis como custo zero.
+Freemium em 2 camadas: **Free** (limitado a 30 swipes/dia, 3 álbuns, com anúncios B2B) e **Premium** (R$29,90/mês ou pagamento híbrido com Moeda Única). Receita impulsionada por vendas de Moeda Única (usada para Match Boosts, presentes virtuais e descontos em parceiros B2B). O sistema de cash-out para usuários não existe, eliminando complexidade do Banco Central.
 
-### Equipe
-
-**Um fundador técnico (full-stack Go + React), solo de forma permanente.** Toda contratação ou parceria é opcional e contingente a receita excedente. Não há plano de headcount.
-
-### Investimento
-
-**Bootstrapping from zero.** Seed de R$0 a R$15.000 (recursos próprios). A operação é desenhada para custos quase nulos. Se investidor aparecer, ótimo — mas o plano não depende disso para existir.
-
-### Projeção (ano 1)
-
-| Métrica | Mês 6 | Mês 12 | Mês 18 |
-|---------|-------|--------|--------|
-| Usuários cadastrados | 3.000 | 15.000 | 60.000 |
-| Usuários pagantes | 90 | 450 | 1.800 |
-| MRR assinaturas | R$2.500 | R$12.600 | R$50.400 |
-| Receita microtransações | R$200 | R$2.000 | R$11.000 |
-| Receita de anúncios (free) | R$300 | R$2.000 | R$10.000 |
-| Receita B2B | R$200 | R$1.500 | R$5.000 |
-| MRR total | R$3.200 | R$18.100 | R$76.400 |
-| CAC | R$2,00 | R$1,50 | R$1,00 |
-| LTV | R$120 | R$240 | R$400 |
-| LTV/CAC | 60x | 160x | 400x |
-
-> ⚠️ LTV/CAC acima de 25x deve ser tratado como sinal de que o CAC está subestimado — não como previsão literal. CAC real em bootstrapping orgânico é difícil de medir porque o custo é tempo, não dinheiro.
-
----
+### Equipe & Investimento
+Operação enxuta, solo (full-stack Go/React), bootstrapping com custo de infra quase nulo graças ao SQLite e single-binary.
 
 ## 1. Descrição do Negócio
 
@@ -317,76 +293,195 @@ O plano de features (71 no total) ataca três problemas estruturais do mercado l
 
 ## 4. Modelo de Receita
 
-### 4.1 Estrutura de Preços
+### 4.1 Estrutura de Preços e Limites
+
+A barreira entre Free e Premium foi desenhada para maximizar a retenção (Daily Active Users) e forçar a conversão nos heavy-users.
 
 | Tier | Preço | Funcionalidades |
 |------|-------|-----------------|
-| **Free** | Grátis (com anúncios) | Perfil, mapa + radar básico, 5 matches/dia, chat limitado, fotos com blur automático, anúncios display e nativos |
-| **Premium** | R$29,90/mês | Tudo do Free **sem anúncios**, match ilimitado, modo invisível, lives privadas, verificação azul, relatório de privacidade |
-| **VIP** | R$49,90/mês | Tudo do Premium + prioridade no matching, conteúdo exclusivo de creators, convites VIP, acesso antecipado |
+| **Free** | Grátis (com anúncios) | Perfil, Busca FTS5, Radar anônimo, Limite de 30 swipes/dia, Limite de 3 álbuns, Vê visitas/likes apenas por janela de 2h, Blur automático, Modo Falso (segurança). |
+| **Premium** | Pagamento Híbrido | Tudo do Free **sem anúncios**. Swipes e Álbuns ilimitados. Histórico total de visitas/likes. **Modo Fantasma/Invisível**. Permissão para publicar Contos. |
 
-### 4.2 Receita de Anúncios (Free)
+### 4.2 Economia de Moeda Única (Circuito Fechado)
 
-Free users não são sustentáveis como custo zero. Anúncios são o motor de receita do tier free.
+O Liberages opera com uma **Moeda Única** virtual que substitui transações diretas em reais para micro-interações, unificando gamificação e receita.
 
-| Tipo de anúncio | Descrição | CPM estimado |
-|-----------------|-----------|---------------|
-| **Anúncios B2B locais** | Casas de swing, motéis, sex shops com geolocalização no mapa | R$8-15 (alto valor, alta relevância) |
-| **Display adult-friendly** | Redes display (ExoClick, JuicyAds) — banner e inline no feed | R$2-5 |
-| **Affiliate links** | Sex toys, lingerie, produtos — CPA | R$5-20 por conversão |
-| **Anúncio próprio (upgrade)** | Banner "Cansado dos anúncios? Vire Premium" — conversão mais importante, custo zero | N/A (reduz churn de ads, aumenta MRR) |
+- **Compra (Inflow):** Usuários compram pacotes de moedas com R$ via Mercado Pago.
+- **Ganho (Earn):** Usuários ganham pequenas frações de moeda por alto engajamento (completar desafios, check-ins B2B).
+- **Gasto (Burn):** Moedas são gastas com Match Boost (topo do swipe por 1h), Presentes Virtuais, Desbloqueio de Badges funcionais, e compra de Vouchers em parceiros B2B.
+- **Pagamento Híbrido:** O Premium pode ser pago em R$ integral, ou com abatimento parcial usando Moedas (ex: 1500 moedas + R$14,90).
+- **Política No-Cashout:** Usuários não podem sacar a moeda para R$ nem transferir P2P, eliminando mercado paralelo e exigências do Banco Central.
 
-**Política editorial de anúncios:**
-- ❌ Nada de pop-under, redirects, malware ads, auto-play de áudio
-- ❌ Nada de anúncios em telas de configuração, privacidade ou segurança
-- ✅ Apenas display estático e nativo inline no feed e no mapa
-- ✅ Anúncios B2B locais aparecem como marcadores diferenciados no mapa (não invasivos)
+### 4.3 Receita de Anúncios (Free)
+Anúncios B2B locais (Casas de swing, motéis) aparecem nativamente no mapa e no feed para usuários Free. Custo por Clique/Impressão gerido pela plataforma.
 
-**Projeção de receita de anúncios:**
+### 4.4 Assinatura de Presente
+Um vetor inovador de receita: usuários podem comprar o Premium para outros usuários usando a Moeda Única, funcionando como um gesto de alto interesse (icebreaker de luxo).
 
-| Período | Free users | Page views/mês | CPM médio | Receita ads/mês |
-|---------|------------|-----------------|-----------|-----------------|
-| Mês 6 | 2.700 | 100k | R$2,50 | R$250 |
-| Mês 12 | 13.500 | 600k | R$3,00 | R$1.800 |
-| Mês 18 | 54.000 | 2.5M | R$4,00 | R$10.000 |
+## 5. Modelo B2B — Locais Parceiros
 
-### 4.3 Receitas Adicionais
+> **O que é B2B no Liberages:** Locais frequentados pelo público liberal (casas de swing, motéis, bares, sex shops, resorts) pagam para ter **visibilidade, leads e ferramentas de engajamento** dentro da plataforma. O B2B não é venda de anúncio tradicional — é venda de **acesso a um público qualificado e geolocalizado** que o local não alcança sozinho.
 
-| Fonte | Descrição | Margem estimada |
-|-------|-----------|------------------|
-| **Comissão Marketplace de Criadores** | 15% sobre vendas de conteúdo (fotos, vídeos, packs, assinaturas) | 15% |
-| **Match Boost** | R$2-5 pagamento único para topo do feed de swipe por 1h | 95%+ |
-| **Presente Virtual Picante** | Emojis animados a R$1-3 cada, comissão 20% | 20% |
-| **Assinatura de Presente** | Comprar Premium/VIP de presente para outro usuário | ~100% (mesma receita da assinatura) |
-| **Parceria B2B (presença no mapa)** | Casas de swing, motéis, sex shops pagam por destaque no mapa | 80%+ |
-| **Parceria B2B (Caça ao Tesouro)** | Parceiro paga por lead gerado via tesouro coletável no mapa | 85%+ |
-| **Cartão Fidelidade (B2B)** | Parceiro paga rateio de vouchers resgatados no programa de pontos | 70%+ |
-| **Eventos promovidos** | Destaque pago no feed de eventos | 90%+ |
+### 5.1 Por que B2B faz sentido
 
-### 4.4 Estratégia de Preço
+O mapa de locais é o centro da experiência do Liberages. Cada local listado é um **ponto de descoberta, check-in e encontro**. O B2B capitaliza isso:
 
-- **Mais barato que Sexlog** no Premium (R$29,90 vs R$49,90) — aquisição agressiva
-- **VIP igual ao Sexlog** (R$49,90) mas com mais valor
-- **Mulheres solteiras** ganham Premium grátis (estratégia de equilíbrio de gênero)
-- **Desconto anual** (30% off) para aumentar LTV e reduzir churn
-- **Anúncios só no Free** — o ads paga o free existir; o Premium paga o usuário escapar do ads
+| Pra quem | O problema | O que o Liberages resolve |
+|----------|-----------|---------------------------|
+| **Casa de swing** | Depende de mídia paga e boca a boca para atrair frequentadores | Mapa com destaque + termômetro da noite + caça ao tesouro = visibilidade contínua para público qualificado |
+| **Motel** | Concorre com dezenas de motéis na mesma região | Destaque no mapa para quem está perto e com intenção ativa ("tô a fim") |
+| **Sex shop** | Cliente não sabe que a loja existe perto dele | Aparecer no mapa como local de interesse + anúncio geolocalizado para público compatível |
+| **Resort liberal** | Precisa encher pacotes de temporada | Caça ao tesouro (cupom de desconto coletável no mapa) + broadcast de eventos sazonais |
 
-### 4.5 Projeção de Mix
+### 5.2 Produtos B2B
 
-| Métrica | Ano 1 | Ano 2 | Ano 3 |
-|---------|-------|-------|-------|
-| % Free | 94% | 88% | 82% |
-| % Premium | 5% | 9% | 14% |
-| % VIP | 1% | 3% | 4% |
-| ARPU (receita por usuário pago) | R$34/mês | R$38/mês | R$42/mês |
+| Produto | O que é | Modelo de precificação | Receita estimada por parceiro/mês |
+|---------|---------|------------------------|-----------------------------------|
+| **Listing Destacado** | Local aparece com pin dourado, foto e descrição expandida no mapa. Prioridade em buscas. | Assinatura mensal (R$49-199/mês) | R$49-199 |
+| **Caça ao Tesouro** | Parceiro cria oferta/desconto que aparece como tesouro no mapa (visível a X km). Usuário coleta → voucher. | CPL (custo por lead) — R$2-5 por voucher resgatado | R$100-500 |
+| **Termômetro da Noite** | Parceiro vê ocupação reportada pelos usuários no local + heatmap de horários de pico. Versão paga: dashboard com histórico. | Plano básico grátis (média ao vivo), Premium (R$29/mês, dashboard completo) | R$29-99 |
+| **Evento Promovido** | Evento do local destacado no feed de eventos + notificação push para usuários no raio. | Por evento (R$19-49) | R$19-49 |
+| **Câmera ao Vivo** | Feed de câmera pública do ambiente (sem foco em pessoas). Usuário vê antes de ir. | Assinatura mensal (R$99-299/mês) | R$99-299 |
+| **Cartão Fidelidade** | Checkins acumulam pontos → descontos. Parceiro paga taxa por voucher resgatado + taxa fixa mensal de participação. | Fixa R$29/mês + R$1 por voucher resgatado | R$29-200 |
+| **Festa Relâmpago (local sugerido)** | Quando usuário cria uma festa relâmpago, o local parceiro aparece como sugestão prioritária. | CPM ou CPL — R$5 por festa que escolher o local | R$50-200 |
 
-### 4.6 Verificação de Identidade — Nota Importante
+### 5.3 Funnel B2B — Como o parceiro entra
 
-O selo azul (verificação documental) **não é exclusivo de pagantes**. Qualquer usuário pode verificar — a verificação custa simbólico (ou é grátis para os primeiros N usuários). Isso é uma decisão de segurança da comunidade: se só pagante é verificado, o golpista "verificado" é o que pagou, não o que é real. Verificação para todos melhora a integridade da base e atrai o segmento mais carente (mulheres solteiras). Pagantes ganham **prioridade** na fila de verificação, não exclusividade.
+```
+Descoberta → Cadastro gratuito → Período trial → Upgrade para pago → Crescimento
+```
+
+| Etapa | Ação | Ferramenta |
+|-------|------|------------|
+| **1. Descoberta** | Parceiro encontra o Liberages por busca ou indicação | SEO + prospecção manual do fundador |
+| **2. Cadastro gratuito** | Parceiro se cadastra como local (validação manual pelo fundador) | CRUD de locais + formulário de parceiro |
+| **3. Período trial (30 dias)** | Local ganha listing destacado grátis + termômetro ao vivo | Dashboard do parceiro (gratuito) |
+| **4. Upgrade** | Após trial, pode assinar listing destacado ou outros produtos | Portal de planos + pagamento via Pix |
+| **5. Crescimento** | Parceiro ativo divulga o app para seus clientes (boca a boca orgânico) | QR code do local para check-in |
+
+### 5.4 Dashboard do Parceiro
+
+O parceiro tem um dashboard próprio (dentro do app, acesso web) com:
+
+- **Visão geral:** checkins hoje/semana/mês no seu local, termômetro médio, tesouros coletados
+- **Checkins:** quantos usuários fizeram check-in, heatmap por dia da semana/horário
+- **Tesouros:** quantos criou, quantos coletados, valor em descontos concedidos
+- **Vouchers de fidelidade:** quantos resgatados, valor total de desconto
+- **Ocupação reportada:** termômetro da noite com gráfico de tendência
+- **Faturamento:** histórico de pagamentos, nota fiscal
+
+### 5.5 Implementação técnica (v1 vs futuro)
+
+| Produto B2B | v1 (faz agora) | Futuro (faz depois) |
+|------------|----------------|---------------------|
+| Listing Destacado | Flag `is_featured` no local + ordenação por destaque no mapa | Sistema de assinatura com pagamento recorrente Pix |
+| Caça ao Tesouro | CRUD manual no admin | Dashboard do parceiro para autogerenciamento |
+| Termômetro da Noite | Votação anônima com média ao vivo (feature pública) | Dashboard premium com histórico |
+| Evento Promovido | Flag no evento + destaque no feed | Automação com pagamento por evento |
+| Câmera ao Vivo | Link para stream externa (YouTube privado, etc.) | Integração WebRTC/HLS própria |
+| Cartão Fidelidade | Pontuação manual no checkin + voucher gerado pelo admin | Sistema automático de pontos + voucher |
+| Dashboard do parceiro | Admin vê os dados do local e repassa pro parceiro | Self-service com login próprio |
+
+> **Princípio B2B:** o modelo de receita B2B não precisa estar pronto no dia 1. Os locais podem ser cadastrados como locais comuns no mapa (sem custo). O B2B vira produto quando houver demanda de parceiros. Até lá, o mapa já entrega valor pros dois lados: usuários encontram locais, locais ganham visibilidade gratuita.
+
+> **Nota:** a maioria dos produtos B2B depende de features que serão implementadas progressivamente (Caça ao Tesouro, Cartão Fidelidade, Termômetro da Noite, Câmera ao Vivo). Até que essas features existam na plataforma, o B2B opera apenas com Listing Destacado e Evento Promovido — que são simples flags no banco de dados.
+
+### 5.6 Estratégia de Prospecção B2B
+
+- **Fase 1 (0-3k usuários):** Cadastro manual dos locais conhecidos pelo fundador. Sem prospecção ativa B2B. Locais ganham visibilidade grátis.
+- **Fase 2 (3k-15k):** Quando o app tiver usuários ativos em uma cidade, começar prospecção manual. Abordagem: "Seu local já tem N checkins no Liberages. Quer um dashboard com esses dados?"
+- **Fase 3 (15k+):** Quando a receita B2B começar a ser relevante (R$1.000+/mês), considerar automação do onboarding de parceiros.
 
 ---
 
-## 5. Estratégia de Marketing e Vendas
+## 6. Arquitetura de Interfaces (Postergados)
+
+Os componentes postergados (upload, backup, moderação de fotos, push notifications) seguem o mesmo padrão do resto da stack: **interfaces Go na camada de domínio, implementação concreta plugável.**
+
+### 6.1 Storage (upload de arquivos)
+
+```go
+// internal/domain/storage.go
+type Storage interface {
+    Upload(ctx context.Context, path string, r io.Reader) error
+    Delete(ctx context.Context, path string) error
+    URL(ctx context.Context, path string) (string, error)
+}
+```
+
+| Implementação | Quando usar |
+|--------------|-------------|
+| `storage/local` — filesystem no VPS | v1 (padrão) |
+| `storage/s3` — S3/MinIO compatível | Quando filesystem atingir limite (>50GB) |
+
+### 6.2 Moderação de Conteúdo (fotos)
+
+```go
+// internal/domain/moderation.go
+type ContentModerator interface {
+    ModerateImage(ctx context.Context, r io.Reader) (*ModerationResult, error)
+}
+
+type ModerationResult struct {
+    Safe    bool
+    Blur    bool
+    Reject  bool
+    Labels  []string
+}
+```
+
+| Implementação | Quando usar |
+|--------------|-------------|
+| `moderation/none` — sempre safe (moderação manual) | v1 (até ~3k usuários) |
+| `moderation/opennsfw` — IA open-source self-hosted | v2 (3k-15k usuários) |
+| `moderation/rekognition` — AWS Rekognition / Google Cloud Vision | Quando volume justificar custo |
+
+### 6.3 Push Notifications
+
+```go
+// internal/domain/notifications.go
+type PushNotification interface {
+    Send(ctx context.Context, userID string, title, body string, data map[string]string) error
+    SendBatch(ctx context.Context, userIDs []string, title, body string, data map[string]string) error
+}
+```
+
+| Implementação | Quando usar |
+|--------------|-------------|
+| `push/none` — sem push (só notificações in-app via WebSocket pool) | v1 (postergado) |
+| `push/fcm` — Firebase Cloud Messaging | Quando push for necessário |
+| `push/webpush` — Web Push API nativa (sem depender de FCM) | Alternativa se FCM for problemático para conteúdo adulto |
+
+### 6.4 Backup
+
+```go
+// internal/domain/backup.go
+type BackupManager interface {
+    Backup(ctx context.Context) error
+    Restore(ctx context.Context, snapshotID string) error
+    ListSnapshots(ctx context.Context) ([]Snapshot, error)
+}
+```
+
+| Implementação | Quando usar |
+|--------------|-------------|
+| `backup/sidecar` — script externo que copia SQLite + arquivos para S3 | v1 (sidecar container) |
+| `backup/internal` — integrado ao binário Go (agendado via time.Ticker) | Alternativa mais simples que sidecar |
+
+### 6.5 Princípio geral
+
+Toda funcionalidade postergada segue este padrão:
+
+```
+internal/domain/<feature>/   ← interface
+internal/<feature>/<impl>/   ← implementação concreta
+```
+
+Isso garante que o código de negócio nunca precisa mudar quando a implementação troca — exatamente como já está definido para auth e repository.
+
+---
+
+## 7. Estratégia de Marketing e Vendas
 
 ### 5.1 Canais de Aquisição
 
@@ -425,7 +520,8 @@ O selo azul (verificação documental) **não é exclusivo de pagantes**. Qualqu
 
 | Fase | Duração | Objetivo | Estratégia |
 |------|---------|----------|------------|
-| **Beta fechado** | 3 meses | 300 usuários ativos | Convites em grupos Telegram/WhatsApp, parcerias com casas de swing |
+| **Validação** | Contínua (inicia junto com o código) | Coletar emails de interessados | Landing page com mockups do mapa + radar divulgada em 3-5 grupos Telegram/WhatsApp |
+| **Beta fechado** | 3 meses | 300 usuários ativos | Convites em grupos Telegram/WhatsApp (primeiros da landing page), parcerias com casas de swing |
 | **Soft launch** | 2 meses | 2.000 usuários | Abertura pública, press release em blogs liberais, influencers (permuta) |
 | **Growth** | 6 meses | 10.000 usuários | SEO, content marketing, programa de indicação |
 | **Scale** | 7+ meses | 50.000+ usuários | Escalar canais comprovados, parcerias B2B, cripto |
@@ -434,7 +530,7 @@ O selo azul (verificação documental) **não é exclusivo de pagantes**. Qualqu
 
 ---
 
-## 6. Modo Guerrilha — Estratégia de Custo Quase Nulo
+## 8. Modo Guerrilha — Estratégia de Custo Quase Nulo
 
 > **Princípio fundamental:** o plano não depende de investimento externo. Cada real gasto precisa ser justificado contra a alternativa de não gastar.
 
@@ -481,7 +577,7 @@ A operação permanece no Modo Guerrilha até que um destes gatilhos seja aciona
 
 ---
 
-## 7. Análise Financeira
+## 9. Análise Financeira
 
 ### 7.1 Custos Operacionais — Três Cenários
 
@@ -566,7 +662,7 @@ Break-even "real" (receita superando custo de vida do fundador): depende de cust
 
 ---
 
-## 8. Análise de Riscos
+## 10. Análise de Riscos
 
 | Risco | Probabilidade | Impacto | Mitigação |
 |-------|---------------|---------|-----------|
@@ -584,7 +680,7 @@ Break-even "real" (receita superando custo de vida do fundador): depende de cust
 
 ---
 
-## 9. Plano Operacional
+## 11. Plano Operacional
 
 ### 9.1 Tecnologia
 
@@ -623,9 +719,9 @@ Break-even "real" (receita superando custo de vida do fundador): depende de cust
 
 ---
 
-## 10. Roadmap
+## 12. Roadmap
 
-### Fase 1 — "O Mapa + Radar" (MVP) — Meses 1-4
+### Fase 1 — "O Mapa + Radar" — Meses 1-4
 
 - [x] Repositório e especificação criados
 - [ ] Autenticação local (JWT + bcrypt) + PIN rápido
@@ -709,10 +805,12 @@ Break-even "real" (receita superando custo de vida do fundador): depende de cust
 - [ ] Scale (50.000+ usuários)
 
 > **Cronograma conservador para operação solo.** Prazos podem estender conforme realidade. Sem pressão de runway externo.
+>
+> ⚠️ **O roadmap acima é referencial.** A ordem de implementação será definida pelo fundador separadamente, baseada em agrupamento natural de features e dependências técnicas.
 
 ---
 
-## 11. Equipe e Estrutura
+## 13. Equipe e Estrutura
 
 ### 11.1 Equipe Atual
 
@@ -742,7 +840,7 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 
 ---
 
-## 12. Estratégia de Saída
+## 14. Estratégia de Saída
 
 ### 12.1 Cenários
 
@@ -763,41 +861,27 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 
 ---
 
-## 13. Considerações Legais e Regulatórias
+## 15. Considerações Legais e Regulatórias
 
-### 13.1 LGPD (Lei Geral de Proteção de Dados)
+### 15.1 Age Verification (Porta de Entrada)
+A legislação para plataformas adultas exige controle de maioridade. O Liberages usa um modelo híbrido para balancear conversão e compliance:
+1. **Soft Gate (Acesso Inicial):** Auto-declaração (18+) gerando um cookie HMAC. Permite navegar, ver o feed e buscar perfis.
+2. **Hard Gate (Acesso Completo):** Para interagir (chat, postar, check-in), o usuário deve enviar documento. A verificação é anônima: o sistema valida a idade e descarta a imagem/nome real, guardando apenas o hash de validação associado ao `user_id`.
 
-- Dados sensíveis (orientação sexual, preferências) exigem **consentimento explícito**
-- Política de privacidade clara e acessível
-- Direito de exclusão de dados (deletar conta e todos os dados)
-- Dados criptografados em nível de aplicação
-- DPO (Data Protection Officer) quando passar de determinado volume
+### 15.2 Risco Financeiro e KYC (Moeda Única)
+Por operar um sistema de **Moeda Única em Circuito Fechado** (closed-loop economy), a plataforma não se qualifica como instituição de pagamento perante o Banco Central. Como não há *cash-out* (saque) para usuários, a plataforma não realiza repasses financeiros P2P, mitigando a 100% o risco de lavagem de dinheiro e reduzindo drasticamente a carga de KYC. Compensações B2B são feitas via contratos de publicidade offline.
 
-### 13.2 Age Gate Obrigatório
+### 15.3 Privacidade e LGPD
+A arquitetura é *privacy-by-design*:
+- Nomes reais não são armazenados (apenas pseudônimos/apelidos).
+- O Radar nunca revela coordenadas brutas.
+- O E2E (End-to-End Encryption) nas DMs está no roadmap (post-MVP) para garantir que nem o servidor possa ler mensagens privadas, com a arquitetura preparada desde o Dia 1.
+- Contas de Casal são uma conta única administrada por duas pessoas (sem retenção duplicada de dados).
 
-- Verificação 18+ com cookie assinado HMAC
-- Sem cache de data de nascimento — só confirmação de maioridade
-- Banner de idade em todas as páginas públicas
+### 15.4 Isenção de Responsabilidade Física
+Features que induziam risco físico (como "Carona Solidária" e encontros às cegas forçados) foram removidas do escopo. A criação de eventos públicos é restrita a usuários validados pelo "Web of Trust" (mínimo de 4 amigos reais), atuando como salvaguarda da comunidade.
 
-### 13.3 Conteúdo Adulto
-
-- Plataforma hospeda conteúdo adulto gerado por usuários (UGC)
-- Compliance DMCA para remoção de conteúdo copyright
-- Política de conteúdo proibido (menores, não consensual, zoofilia, etc.)
-- Moderação ativa e reativa
-- Advogado especializado em direito digital quando receita permitir
-
-### 13.4 Pagamentos
-
-- **Pix é o pagamento principal desde o dia 1** — não depende de adquirentes internacionais
-- **Mercado Pago** como secundário (aceita Pix dentro dele)
-- **Cripto (USDT)** como fallback para usuários que preferem discrição total
-- **Não depender de Stripe** — Stripe banheira conteúdo adulto UGC no Brasil
-- Compliance KYC/AML se necessário para pagamentos em cripto
-
----
-
-## 14. Métricas de Sucesso (KPIs)
+## 16. Métricas de Sucesso (KPIs)
 
 ### 14.1 North Star Metric
 
@@ -833,7 +917,7 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 
 ---
 
-## 15. Análise SWOT
+## 17. Análise SWOT
 
 ### Forças (Strengths)
 
@@ -875,7 +959,7 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 
 ---
 
-## 16. Tecnologia como Vantagem Competitiva
+## 18. Tecnologia como Vantagem Competitiva
 
 ### 16.1 Por que Go + SQLite é uma vantagem
 
@@ -899,7 +983,7 @@ Toda parceria abaixo é **opcional e contingente a receita excedente**. Não há
 
 ---
 
-## 17. Apêndice
+## 19. Apêndice
 
 ### 17.1 Glossário
 

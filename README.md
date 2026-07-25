@@ -31,79 +31,48 @@ make validate         # lint + test + build + e2e-browser
 Plataforma para o público liberal brasileiro (swing, troca de casais, ménage, BDSM, exibicionismo, voyeurismo). O mapa interativo é o hub central da experiência — pensado como um **Pokémon GO do prazer**: você não sabe quem ao seu redor está a fim de uma aventura, até o radar de intenção te avisar.
 
 **Mapa & Radar:**
-- **Mapa de Locais** — catálogo geográfico de casas de swing, motéis, bares, praias
-- **Radar de Atividade (gamificado)** — marque "a fim hoje", receba notificação quando alguém compatível estiver perto. Localização sempre fuzzy, identidade só revelada após match mútuo
-- **Checkins em locais públicos** — "tô no X, quem mais está?" com notificações de checkin próximo
-- **Caça ao Tesouro (B2B)** — parceiros escondem tesouros no mapa visíveis só a X km; usuário coleta → cupom/voucher
+- **Catálogo Híbrido** — Lançamento com locais curados (50-100/cidade), expansão via sugestões moderadas. Parceiros B2B gerenciam eventos e status ao vivo.
+- **Radar de Atividade** — Visão anônima de quem está nos locais. Identidade só é revelada via chat (nunca pelo radar).
+- **Check-in Dinâmico** — Check-in manual com TTL configurável pelo usuário (ex: 1h a 4h).
+- **Destination Broadcast** — Convite informal no feed ("Vou no local X hoje"). Desaparece após o evento.
+- **Caça ao Tesouro (B2B)** — Parceiros escondem tesouros no mapa; usuário coleta para ganhar a moeda da plataforma.
 
-**Matching & Descoberta:**
-- **Swipe** — curtir/não curtir perfis, ordenado por compatibilidade de fetiches + intenção + localização
-- **Lista de Fetiches com Match %** — catálogo curado, compatibilidade percentual entre perfis
-- **Bucket List** — lista de desejos de locais; match quando dois têm o mesmo local
-- **Encontro Surpresa** — match vira encontro às cegas em local sorteado
-- **Match Boost** — R$2-5 para topo do feed de swipe por 1h
+**Matching, Social & Descoberta:**
+- **Feed Social Unificado** — Algoritmo contínuo que prioriza: 1º Amigos, 2º Pessoas Próximas, 3º Alta compatibilidade de interesses.
+- **Busca FTS5** — O Liberages é uma rede social primeiro. Busca global refinada (tags, bio, cidade, pseudônimo).
+- **Swipe com Limites** — Descoberta adicional via Swipe. Limite de likes diários no Free, ilimitado no Premium.
+- **Algoritmo de Compatibilidade** — Match matemático simples (interseção) no catálogo fixo de fetiches.
+- **Bucket List** — Quebra-gelo inteligente: se houve match e ambos querem ir ao mesmo local, o app sugere o encontro lá.
 
 **Conteúdo & Expressão:**
-- **Fotolog Diário** — estilo Fotolog antigo, 1 foto/dia, expira em 24h
-- **Álbuns** — galerias curadas com controle de privacidade
-- **Story 24h** — foto/vídeo com reação por emoji
-- **Contos Eróticos** — literatura escrita por usuários, votação, destaque semanal
-- **Live Streaming** — máscara facial em tempo real, pay-per-view, lives em grupo
-- **Marketplace de Criadores** — venda de conteúdo (fotos, vídeos, packs), comissão 15%
+- **Fotolog Diário** — Estilo clássico, 1 foto por dia (sem blur) no feed, expira em 24h.
+- **Álbuns** — Galerias curadas em perfis com controle de privacidade. (Limite de 3 no Free).
+- **Contos Eróticos** — Literatura criada por usuários. (Free lê, Premium ou Badges altos publicam).
+- **Eventos UGC** — Qualquer usuário `Verificado` pode criar eventos públicos. Não verificados criam eventos privados (convite/PIN).
 
-**Comunidade:**
-- **Fórum** — categorias, tópicos, votação, busca FTS5
-- **Comunidades Anônimas** — participação sem revelar identidade (pseudônimo gerado)
-- **Mural de Elogio Anônimo** — elogios moderados, badges de admiração
-- **Confiança Mútua** — "conheço pessoalmente" como reputação social
+**Privacidade & Segurança (Core):**
+- **Idade Verificada (Híbrido)** — Acesso inicial via auto-declaração. Interação e conteúdo adulto exigem validação de documento anônima (sem expor nome real).
+- **Login via PIN** — Acesso rápido de 4 dígitos para uso no dia a dia.
+- **Blur Facial Automático** — Por padrão, fotos recebem blur para proteção, com opt-in explícito para revelar o rosto.
+- **Selfie Destrutível (Chat)** — Envio de fotos que expiram após 1 visualização no chat privado.
+- **Alarme Psicológico de Print** — Toda foto renderiza o Hash ID de quem visualiza como marca d'água dinâmica, desencorajando vazamentos.
+- **Modo Falso (Free)** — Botão de pânico (tela de calculadora/ferramenta).
+- **Modo Invisível & Fantasma (Premium)** — Esconda-se de estranhos ou de todos, respectivamente.
+- **Comunidades Anônimas** — Fóruns sob pseudônimos. Apenas admin da comunidade vê a identidade real para moderação.
 
-**Gamificação:**
-- **Badges** — selos por marcos (checkins, matches, tempo de conta, conteúdo)
-- **XP e Níveis** — interações dão XP, níveis desbloqueiam features
-- **Ranking Semanal** — opt-in, top 10 com badge temporária
-- **Desafio Liberal Semanal** — missões semanais com XP bônus
-- **Jogo da Verdade** — mini-game pós-match de quebra-gelo
-- **Júri Popular** — denúncias votadas por usuários verificados
-- **Selo Anjo da Comunidade** — usuários exemplares com benefícios
+**Monetização & Economia Unificada:**
+- **Moeda Única** — Sistema integrado que unifica XP, recompensas e cash. Ganhe interagindo, gaste em boosts, presentes virtuais ou descontos B2B. (Circuito fechado, sem cash-out).
+- **Free com Ads** — Usuários grátis veem anúncios locais (B2B). Premium remove ads.
+- **Modelo Híbrido de Premium** — Assinaturas pagas em Dinheiro ou Parte em Moeda + Parte Dinheiro.
+- **Diferenciais Premium** — Veja histórico completo de visitas e curtidas, Ghost Mode, ilimitados álbuns e swipes, publicação de contos.
+- **Assinatura de Presente** — Compre premium para outros usuários.
+- **Boost Avulso** — Destaque no swipe por 1h (pago em moeda).
 
-**Privacidade & Segurança:**
-- **Perfis com privacidade em camadas** — blur facial automático, modo invisível, selfie destrutível
-- **Modo Fantasma Total** — some completamente (busca, radar, broadcasts); gratuito
-- **Modo Falso** — botão de emergência leva pra tela falsa (calculadora, clima)
-- **E2E nas DMs** — criptografia ponta a ponta no dispositivo (Web Crypto + ECDH)
-- **Alarme de Screenshots** — detecção e notificação ao dono do conteúdo
-- **Login com PIN** — acesso rápido de 4 dígitos para sessões curtas
-- **Moderação Híbrida** — robô (IA) + humana, com apelo de banimento
-- **Validação Periódica** — re-verificação de idade e identidade
-- **Verificação por Vídeo** — selo "Verificado ao Vivo" (dourado)
-
-**Eventos:**
-- **Eventos com geolocalização** — festas, encontros, surubas com check-in via PIN
-- **Agenda Liberal** — calendário com feriados sazonais (Carnaval, Dia do Sexo)
-- **Carona Solidária** — usuários indo pro mesmo evento marcam carona
-- **Lista de Presença Anônima** — heatmap demográfico sem identificar indivíduos
-
-**Modo Casal:**
-- **Conta compartilhada** — duas contas linkadas, double opt-in no swipe
-- **Moodboard do Casal** — painel colaborativo privado (fotos, datas, lembretes)
-
-**Monetização de Microtransações:**
-- **Presente Virtual Picante** — emojis animados a R$1-3, comissão 20%
-- **Assinatura de Presente** — comprar Premium/VIP para outro usuário
-- **Cartão Fidelidade (B2B)** — checkins acumulam pontos viram descontos
-
-**Admin & Operação:**
-- **Admin dashboard** — full CRUD, moderação, métricas em tempo real
-- **Tickets de Suporte** — sistema integrado com prioridade por tier
-- **Análise de Sentimento** — dashboard de moderação com métricas
-- **Painel de Status** — status.liberages.com com uptime e incidentes
-- **QR Code** — conexão presencial e checkin em locais parceiros
-
-**Outros:**
-- **Age verification** — 18+ gate com cookie assinado HMAC
-- **Auth** — local JWT + bcrypt (Keycloak adapter interface ready)
-- **PWA + Desktop app** — service worker, system tray, atalho de ocultação discreta
-- **Anúncios no Free** — display e nativos B2B locais; Premium sem anúncios
+**Admin, Moderação & Comunidade:**
+- **Contas de Casal/Trisal** — Uma conta, um perfil compartilhado gerido por ambos, login unificado.
+- **Web of Trust (Verificado)** — Selo concedido apenas se 4 "Amigos Reais" atestarem a veracidade do perfil. Libera privilégios como eventos públicos.
+- **Moderação IA + Humana** — Triagem por IA para denúncias, veredito final sempre humano.
+- **Júri Popular** — Anjos da Comunidade votam apenas em regras amplas da plataforma, não em punições individuais.
 
 > **Diferencial:** Não é "mais um Sexlog". É uma plataforma moderna com 47+ features gamificadas, mapa-radar estilo Pokémon GO, privacidade real (E2E, modo fantasma, modo falso) e UX superior — construída para escapar das limitações de app stores (PWA + desktop) e operar com custo quase nulo (Go + SQLite, single binary).
 

@@ -6,6 +6,8 @@
 
 ## 1. Fotolog Diário
 
+> **ATUALIZAÇÃO DE DESIGN:** O Fotolog alimenta um Feed Algorítmico Unificado e contínuo. Ordenação de relevância: 1º Amigos, 2º Pessoas próximas (localização), 3º Estranhos com alta afinidade (fetiches). O blur facial é automático por padrão em todas as fotos (opt-out).
+
 Postagem de foto diária — estilo Fotolog antigo. Usuário posta 1 foto por dia com legenda curta.
 
 - Limite de 1 foto/dia (free) — ilimitado para Premium
@@ -308,6 +310,8 @@ POST  /api/v1/validation/identity   → re-validar identidade (upload documento 
 
 ## 7. Ingresso Moderado por Humano
 
+> **ATUALIZAÇÃO DE DESIGN:** Transformado em 'Ingresso em Camadas (Age Verification Híbrida)'. O acesso inicial é via auto-declaração (cookie HMAC) para navegar. Acesso completo (interagir, criar conteúdo) exige validação documental anônima (sem vincular nome real ao perfil).
+
 Cadastro/onboarding aprovado manualmente por um humano antes de liberar acesso total à plataforma.
 
 - Usuário se cadastra → conta criada com status `pending_approval`
@@ -337,6 +341,8 @@ POST  /api/v1/admin/approvals/{user_id}/reject   → rejeitar cadastro (com moti
 ---
 
 ## 8. Curtir / Não Curtir (Tipo Tinder)
+
+> **ATUALIZAÇÃO DE DESIGN:** Swipes limitados no plano Free (ex: 30/dia) para forçar monetização. Premium tem swipes ilimitados. A busca global por perfis (FTS5) convive com o Swipe — a plataforma é uma Rede Social primeiro.
 
 Matching por swipe — curtir ou não curtir perfis, com match quando ambos se curtiram.
 
@@ -540,6 +546,8 @@ GET   /api/v1/ranking/{week_start} → ranking de uma semana específica
 
 ## 12. Modo Caça ao Tesouro
 
+> **ATUALIZAÇÃO DE DESIGN:** Integrado à **Moeda Única**. Usuários coletam tesouros B2B no mapa para ganhar a Moeda da plataforma. Sem cash-out.
+
 Gamificação B2B: locais parceiros escondem "tesouros" no mapa que só aparecem quando o usuário está perto geograficamente.
 
 - Parceiro (casa de swing, motel) cria uma oferta/promoção/convite que aparece como tesouro no mapa
@@ -622,6 +630,8 @@ POST  /api/v1/admin/verifications/{id}/result  → (mod) resultado (verified/rej
 
 ## 14. Zona de Encontro Sugerida com Câmera ao Vivo
 
+> **[REMOVIDO DO ESCOPO]** Live Streaming e Câmera ao Vivo cortados do MVP devido aos altos custos de infraestrutura e complexidade de moderação.
+
 Parceria com bares, motéis, casas de swing que têm câmera ao vivo (pública) do ambiente, visível no perfil do local.
 
 - Local parceiro: feed de câmera ao vivo (público, ambiente geral — sem foco em pessoas)
@@ -653,6 +663,8 @@ GET   /api/v1/locations/{id}/camera/status → status da câmera
 ---
 
 ## 15. Alarme de Screenshots
+
+> **ATUALIZAÇÃO DE DESIGN:** Detecção nativa em browser é falha. A proteção principal é a **Marca d'água Dinâmica**: toda foto renderiza o Hash/ID do visualizador transparente. Se houver print e vazamento, o vazador é identificado e banido.
 
 Detecta screenshot/tela no PWA e notifica o dono do conteúdo (foto do fotolog, foto de álbum, selfie destrutível, mensagem de foto).
 
@@ -721,6 +733,8 @@ GET   /api/v1/users/{id}/trust-count   → quantas pessoas conhecem esse usuári
 
 ## 17. Story (24h)
 
+> **[REMOVIDO DO ESCOPO]** Substituído inteiramente pelo conceito de Fotolog Diário para focar o engajamento.
+
 Foto/vídeo que desaparece em 24 horas — estilo Instagram Stories.
 
 - Foto ou vídeo curto (máx. 30s) com blur facial opcional
@@ -768,6 +782,8 @@ POST  /api/v1/stories/{id}/reply    → responder story via DM
 
 ## 18. Modo "Tô a fim agora" Broadcast
 
+> **ATUALIZAÇÃO DE DESIGN:** O Destination Broadcast é apenas um post/convite no feed ('Vou no local X hoje, quem anima?'), e não um rastreamento de GPS. O modo 'GPS contínuo' foi removido por risco de privacidade.
+
 Versão mais urgente do radar de intenção: notificação push para todos os usuários no raio.
 
 - Disponível para usuários com intenção ativa no radar
@@ -800,6 +816,8 @@ GET   /api/v1/radar/broadcasts/today → quantos broadcasts hoje
 
 ## 19. Agenda de Eventos Liberais
 
+> **ATUALIZAÇÃO DE DESIGN (UGC):** Qualquer usuário com selo 'Verificado' (Web of Trust) pode criar eventos públicos. Usuários não-verificados só podem criar eventos privados (via convite/PIN).
+
 Calendário com feriados, datas sazonais relevantes ao público liberal e eventos fixos de casas de swing.
 
 - Datas nacionais: Carnaval, Réveillon, Dia dos Namorados, Dia do Sexo (06/09), feriados municipais
@@ -831,6 +849,8 @@ GET   /api/v1/calendar?month=2026-12 → mês específico
 ---
 
 ## 20. Lista de Desejos (Bucket List)
+
+> **ATUALIZAÇÃO DE DESIGN:** Atua como um *quebra-gelo pós-match*. Se duas pessoas dão match e têm o mesmo local na lista, o app sugere um date lá.
 
 Lista privada de "lugares que quero conhecer" com sugestão de match quando outro usuário também tem o mesmo local na lista.
 
@@ -901,6 +921,8 @@ GET   /api/v1/gift/history   → histórico de presentes (dados e recebidos)
 
 ## 22. Modo Casal com Conta Compartilhada
 
+> **ATUALIZAÇÃO DE DESIGN:** Conta única administrada por ambos. Um login, um perfil público (casal). O casal interage no Swipe como uma entidade única.
+
 Duas pessoas administram o mesmo perfil de casal, com chat e match compartilhados.
 
 - Conta de casal: duas contas linkadas, mesmo perfil público
@@ -936,6 +958,8 @@ PUT   /api/v1/couple/profile        → editar perfil de casal
 ---
 
 ## 23. Marketplace de Criadores
+
+> **[REMOVIDO DO ESCOPO]** Venda direta de conteúdo com comissão foi cortada. A economia foca em Moeda Única de Circuito Fechado, sem cash-out para usuários.
 
 Venda de conteúdo exclusivo dentro da plataforma (fotos, vídeos, packs).
 
@@ -986,6 +1010,8 @@ GET    /api/v1/purchases                      → minhas compras
 ---
 
 ## 24. Cartão Fidelidade Digital
+
+> **ATUALIZAÇÃO DE DESIGN:** Totalmente unificado na **Moeda Única**. Check-ins geram moeda que pode ser trocada por descontos em parceiros.
 
 Programa de fidelidade: checkins acumulam pontos que viram descontos em locais parceiros.
 
@@ -1298,6 +1324,8 @@ GET   /api/v1/match/{match_id}/truth/results   → ver resultados
 ---
 
 ## 31. Lista de Fetiches com Match %
+
+> **ATUALIZAÇÃO DE DESIGN:** Cálculo simplificado. Catálogo fixo curado para cálculo matemático de % (interseção simples) + 3 tags de texto livre apenas para personalidade.
 
 Catálogo curado de fetiches/interesses — usuário marca os seus, sistema calcula compatibilidade.
 
@@ -1613,6 +1641,8 @@ POST  /api/v1/privacy/panic/trigger      → simular ativação (teste)
 
 ## 38. Login Rápido com PIN
 
+> **ATUALIZAÇÃO DE DESIGN:** Método primário e oficial de login pro dia a dia em dispositivos registrados, garantindo fricção quase zero após o primeiro acesso via e-mail.
+
 Além do login normal, PIN de 4 dígitos para sessões curtas.
 
 - Usuário configura PIN de 4 dígitos nas configurações de segurança
@@ -1643,6 +1673,8 @@ POST  /api/v1/auth/pin/reset      → resetar PIN (requer login completo)
 ---
 
 ## 39. Criptografia Ponta a Ponta nas DMs
+
+> **ATUALIZAÇÃO DE DESIGN (POST-MVP):** MVP lançará apenas com HTTPS padrão para permitir moderação de denúncias no texto. Arquitetura deixará E2E engatilhado para fase 2.
 
 Todas as mensagens diretas criptografadas no dispositivo — nem a plataforma consegue ler.
 
@@ -1691,6 +1723,8 @@ GET   /api/v1/messages/inbox       → receber mensagens (ciphertext)
 
 ## 40. Modo "Fantasma Total"
 
+> **ATUALIZAÇÃO DE DESIGN:** Feature 100% Premium, junto com o 'Modo Invisível'.
+
 Privacidade máxima — usuário some completamente da plataforma para quem não tem contato direto.
 
 | Funcionalidade | Invisível | Fantasma |
@@ -1731,6 +1765,8 @@ GET   /api/v1/privacy/ghost/status       → status atual
 ---
 
 ## 41. Carona Solidária Liberal
+
+> **[REMOVIDO DO ESCOPO]** Cortado por risco severo de responsabilidade civil/física (liability).
 
 Usuários indo pro mesmo evento podem marcar carona — conexão segura e prática.
 
@@ -1806,6 +1842,8 @@ GET   /api/v1/events/{id}/presence       → lista de presença anônima + heatm
 ---
 
 ## 43. Encontro Surpresa
+
+> **[REMOVIDO DO ESCOPO]** Funcionalidade absorvida pela dinâmica da Bucket List (match inteligente de locais).
 
 Match que gera um convite automático: encontro às cegas em local sorteado.
 
@@ -1921,6 +1959,8 @@ GET   /api/v1/users/me/angel-progress  → progresso para se tornar anjo
 
 ## 46. Match Turbinado (Boost)
 
+> **ATUALIZAÇÃO DE DESIGN:** Comprável via **Moeda Única**. Assinantes Premium ganham 1 boost grátis semanal.
+
 Pagamento único para aparecer no topo do feed de swipe por 1 hora.
 
 - Inspirado no Tinder Boost
@@ -1957,6 +1997,8 @@ GET   /api/v1/boost/history       → histórico de boosts
 ---
 
 ## 47. Presente Virtual Picante
+
+> **ATUALIZAÇÃO DE DESIGN:** Pago e enviado utilizando a **Moeda Única** da plataforma.
 
 Emojis animados especiais que podem ser enviados com uma mensagem — cada um custa R$1-3.
 

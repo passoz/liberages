@@ -6,6 +6,8 @@
 
 ## 1. Visão Geral
 
+> **ATUALIZAÇÃO DE DESIGN:** O mapa funciona com política restrita de privacidade. O Radar exibe a intensidade (heatmap/anônimos), mas **NUNCA** revela quem é o usuário. Identidades só são reveladas no chat privado após match.
+
 O mapa é o coração do Liberages. São **dois mapas conceitualmente distintos** que convivem na mesma interface:
 
 1. **Mapa de Locais** — descoberta de pontos fixos (casas de swing, motéis, bares, praias). Não envolve privacidade de pessoas. É um catálogo geográfico.
@@ -79,6 +81,11 @@ CREATE VIRTUAL TABLE locations_fts USING fts5(name, description, city, content='
 ---
 
 ## 3. Radar de Atividade
+
+> **ATUALIZAÇÃO DE DESIGN:** 
+> 1. O **Check-in** possui TTL (Time-to-Live) configurável pelo usuário no momento da ação (ex: 1h, 2h, max 4h).
+> 2. O modo **'Tô Querendo'** (GPS temporário solto) foi removido do MVP.
+> 3. O **Destination Broadcast** ('Vou ao local X hoje') deixou de ser um check-in no mapa para ser um evento/convite no feed social.
 
 ### 3.1 Conceito — "Pokémon GO do Prazer"
 
