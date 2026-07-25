@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberages — Apresentação do Sistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: rgba(15, 15, 25, 0.7);
+    --bg-glass: rgba(255,255,255,0.03);
+    --border: rgba(255,255,255,0.06);
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --accent: #a78bfa;
+    --accent-glow: rgba(167,139,250,0.15);
+    --cyan: #22d3ee;
+    --emerald: #34d399;
+    --rose: #fb7185;
+    --amber: #fbbf24;
+    --orange: #fb923c;
+    --violet: #a78bfa;
+    --gradient-hero: linear-gradient(135deg, #1a0533 0%, #0a0a1a 40%, #071a1a 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── Grid Background ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--gradient-hero);
+    position: relative;
+    overflow: hidden;
+    padding: 60px 24px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%);
+    top: 20%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--emerald);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52,211,153,0.4); }
+    50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(52,211,153,0); }
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 80px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #e2e8f0 0%, #a78bfa 50%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 20px;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .hero-stat .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* ─── Section ─── */
+  section {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+
+  /* ─── Cards ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin: 32px 0;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .card:hover {
+    border-color: rgba(167,139,250,0.2);
+    transform: translateY(-2px);
+  }
+
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── Comparison Table ─── */
+  .compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 32px 0;
+    font-size: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .compare-table th {
+    background: rgba(167,139,250,0.08);
+    padding: 14px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .compare-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  .compare-table tr:hover td {
+    background: rgba(255,255,255,0.015);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .tag-free { background: rgba(148,163,184,0.1); color: #94a3b8; }
+  .tag-premium { background: rgba(167,139,250,0.15); color: #a78bfa; }
+  .tag-yes { background: rgba(52,211,153,0.12); color: #34d399; }
+  .tag-no { background: rgba(251,113,133,0.1); color: #fb7185; }
+
+  /* ─── Architecture Diagram ─── */
+  .diagram-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 32px 0;
+    overflow-x: auto;
+  }
+
+  .diagram-wrapper svg {
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* ─── Flow Steps ─── */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 32px 0;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 32px;
+  }
+
+  .flow-step:last-child { padding-bottom: 0; }
+
+  .flow-line {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .flow-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    background: var(--bg-card);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    position: relative;
+    z-index: 2;
+  }
+
+  .flow-connector {
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    min-height: 20px;
+  }
+
+  .flow-content h3 {
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+
+  .flow-content p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ─── Privacy Layers ─── */
+  .layers {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 32px 0;
+  }
+
+  .layer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.3s;
+  }
+
+  .layer:hover { border-color: rgba(251,113,133,0.3); }
+
+  .layer-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(251,113,133,0.06);
+    border-radius: 12px;
+  }
+
+  .layer-text h3 {
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+
+  .layer-text p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .layer-tag {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* ─── Gamification ─── */
+  .gamification-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 32px 0;
+  }
+
+  @media (max-width: 640px) {
+    .gamification-grid { grid-template-columns: 1fr; }
+  }
+
+  .gam-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .gam-card .gam-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .gam-card .gam-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .gam-card .gam-title {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .gam-card .gam-subtitle {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .gam-list {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .gam-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .gam-list li:last-child { border-bottom: none; }
+
+  .gam-list .action { color: var(--text); font-weight: 500; }
+  .gam-list .xp { color: var(--emerald); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+  /* ─── CTA / Closing ─── */
+  .closing {
+    text-align: center;
+    padding: 120px 24px;
+    background: linear-gradient(to bottom, transparent, rgba(167,139,250,0.03));
+  }
+
+  .closing h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+
+  .closing p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .closing-quote {
+    margin-top: 48px;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--accent);
+    opacity: 0.7;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    .hero-stats { gap: 24px; }
+    .hero-stat .num { font-size: 28px; }
+    section { padding: 60px 0; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-badge animate">
+    <span class="dot"></span>
+    Apresentação do Sistema — v2.0
+  </div>
+
+  <h1 class="animate delay-1">Liberages</h1>
+
+  <p class="animate delay-2">
+    Uma plataforma digital para o público liberal brasileiro que combina
+    <strong>privacidade real</strong>, <strong>descoberta geográfica gamificada</strong>
+    e uma <strong>comunidade verificada</strong>.
+  </p>
+
+  <div class="hero-stats animate delay-3">
+    <div class="hero-stat">
+      <div class="num">47+</div>
+      <div class="label">Features Planejadas</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">1</div>
+      <div class="label">Binário Go</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">∞</div>
+      <div class="label">Privacidade</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     O PROBLEMA
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">01 — O Problema</div>
+    <h2>O mercado atual não funciona</h2>
+    <p class="subtitle">
+      O público liberal brasileiro é grande — estima-se 20 a 30 milhões de pessoas com interesse —
+      mas as plataformas disponíveis não acompanham a demanda.
+    </p>
+
+    <div class="card-grid">
+      <div class="card animate">
+        <div class="card-icon">🕰️</div>
+        <h3>Interface Datada</h3>
+        <p>O player dominante parece um site dos anos 2000. Experiência mobile péssima, navegação confusa.</p>
+      </div>
+      <div class="card animate delay-1">
+        <div class="card-icon">👁️</div>
+        <h3>Privacidade Frágil</h3>
+        <p>Sem blur facial, sem modo fantasma, sem proteção real contra prints ou exposição acidental.</p>
+      </div>
+      <div class="card animate delay-2">
+        <div class="card-icon">🗺️</div>
+        <h3>Sem Mapa Interativo</h3>
+        <p>Não existe forma de saber quem está perto de você ou quais locais estão vivos agora.</p>
+      </div>
+      <div class="card animate delay-3">
+        <div class="card-icon">🤖</div>
+        <h3>Moderação Insuficiente</h3>
+        <p>Perfis falsos, golpistas, sem verificação social. O usuário fica exposto.</p>
+      </div>
+      <div class="card animate delay-4">
+        <div class="card-icon">💰</div>
+        <h3>Preço Elevado</h3>
+        <p>R$49,90/mês para um produto que não inova. Pagamento sem valor proporcional.</p>
+      </div>
+      <div class="card animate delay-4">
+        <div class="card-icon">📵</div>
+        <h3>Sem App Real</h3>
+        <p>Banido das App Stores. A única alternativa é um site mobile-responsive com experiência inferior.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MAPA-RADAR
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">02 — O Coração do Sistema</div>
+    <h2>Mapa-Radar Gamificado</h2>
+    <p class="subtitle">
+      O mapa interativo é o hub central da experiência.
+      Não é um recurso acessório — é o motivo pelo qual o usuário abre o app.
+    </p>
+
+    <!-- ─── Mapa + Radar SVG Diagram ─── -->
+    <div class="diagram-wrapper">
+      <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-width:800px;width:100%;">
+        <defs>
+          <pattern id="grid-radar" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+          </pattern>
+          <marker id="arrow-r" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+          </marker>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <rect width="800" height="400" fill="#0f172a" rx="12"/>
+        <rect width="800" height="400" fill="url(#grid-radar)" rx="12"/>
+
+        <!-- Mapa de Locais -->
+        <rect x="30" y="30" width="340" height="340" rx="12" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="200" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#22d3ee" font-weight="500">MAPA DE LOCAIS</text>
+
+        <!-- Locais no mapa -->
+        <g>
+          <!-- Casa de Swing -->
+          <rect x="60" y="100" width="120" height="60" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.2"/>
+          <rect x="60" y="100" width="120" height="60" rx="8" fill="rgba(34,211,238,0.08)"/>
+          <text x="120" y="125" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#22d3ee">🏠 Casa Fantasia</text>
+          <text x="120" y="143" text-anchor="middle" font-family="Inter" font-size="9" fill="#64748b">12 pessoas agora</text>
+
+          <!-- Motel -->
+          <rect x="200" y="100" width="120" height="60" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.2"/>
+          <rect x="200" y="100" width="120" height="60" rx="8" fill="rgba(52,211,153,0.08)"/>
+          <text x="260" y="125" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#34d399">🛏️ Motel Vibe</text>
+          <text x="260" y="143" text-anchor="middle" font-family="Inter" font-size="9" fill="#64748b">5 pessoas agora</text>
+
+          <!-- Bar -->
+          <rect x="60" y="190" width="120" height="60" rx="8" fill="#0f172a" stroke="#fb923c" stroke-width="1.2"/>
+          <rect x="60" y="190" width="120" height="60" rx="8" fill="rgba(251,146,60,0.08)"/>
+          <text x="120" y="215" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fb923c">🍸 Bar Liberal</text>
+          <text x="120" y="233" text-anchor="middle" font-family="Inter" font-size="9" fill="#64748b">8 pessoas agora</text>
+
+          <!-- Evento -->
+          <rect x="200" y="190" width="120" height="60" rx="8" fill="#0f172a" stroke="#fbbf24" stroke-width="1.2"/>
+          <rect x="200" y="190" width="120" height="60" rx="8" fill="rgba(251,191,36,0.08)"/>
+          <text x="260" y="215" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fbbf24">🎉 Festa Relâmpago</text>
+          <text x="260" y="233" text-anchor="middle" font-family="Inter" font-size="9" fill="#64748b">Evento UGC</text>
+        </g>
+
+        <!-- Radar de Atividade -->
+        <rect x="420" y="30" width="350" height="340" rx="12" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="595" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#34d399" font-weight="500">RADAR DE ATIVIDADE</text>
+
+        <!-- Radar visual -->
+        <circle cx="595" cy="200" r="120" fill="none" stroke="rgba(52,211,153,0.15)" stroke-width="1" stroke-dasharray="4,4"/>
+        <circle cx="595" cy="200" r="80" fill="none" stroke="rgba(52,211,153,0.12)" stroke-width="1" stroke-dasharray="4,4"/>
+        <circle cx="595" cy="200" r="40" fill="none" stroke="rgba(52,211,153,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
+        <circle cx="595" cy="200" r="3" fill="#34d399"/>
+
+        <!-- Usuários anônimos no radar -->
+        <circle cx="560" cy="160" r="4" fill="#fb7185" opacity="0.7" filter="url(#glow)"/>
+        <text x="552" y="150" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#fb7185">?</text>
+
+        <circle cx="630" cy="180" r="4" fill="#a78bfa" opacity="0.7" filter="url(#glow)"/>
+        <text x="640" y="170" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#a78bfa">?</text>
+
+        <circle cx="580" cy="240" r="4" fill="#22d3ee" opacity="0.7" filter="url(#glow)"/>
+        <text x="580" y="255" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#22d3ee">?</text>
+
+        <circle cx="620" cy="220" r="4" fill="#fbbf24" opacity="0.7" filter="url(#glow)"/>
+
+        <!-- Labels do radar -->
+        <text x="595" y="280" text-anchor="middle" font-family="Inter" font-size="10" fill="#64748b">👥 12 pessoas — anônimas</text>
+        <text x="595" y="295" text-anchor="middle" font-family="Inter" font-size="9" fill="#475569">Identidade revelada APENAS via chat</text>
+
+        <!-- Seta entre mapas -->
+        <line x1="375" y1="200" x2="415" y2="200" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-r)"/>
+        <text x="395" y="190" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#a78bfa">feeds</text>
+      </svg>
+    </div>
+
+    <h3>Check-in Dinâmico com TTL</h3>
+    <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 16px;">
+      Você escolhe quanto tempo fica visível no radar. Quando expira, some automaticamente.
+    </p>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;">
+      <div style="padding:12px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:100px;font-size:14px;color:var(--text-muted);">
+        ⏱️ <strong style="color:var(--text)">1 hora</strong> — passagem rápida
+      </div>
+      <div style="padding:12px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:100px;font-size:14px;color:var(--text-muted);">
+        ⏱️ <strong style="color:var(--text)">2 horas</strong> — noite tranquila
+      </div>
+      <div style="padding:12px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:100px;font-size:14px;color:var(--text-muted);">
+        ⏱️ <strong style="color:var(--text)">4 horas</strong> — até o máximo
+      </div>
+    </div>
+
+    <h3>Destination Broadcast</h3>
+    <div style="background:var(--bg-glass);border:1px solid var(--border);border-radius:12px;padding:24px;margin-top:16px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(167,139,250,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;">📍</div>
+        <div>
+          <div style="font-weight:600;font-size:14px;">Destination Broadcast</div>
+          <div style="font-size:12px;color:var(--text-dim);">Convite informal no feed</div>
+        </div>
+      </div>
+      <div style="font-style:italic;color:var(--text-muted);font-size:15px;padding-left:48px;">
+        "Vou pro Motel X hoje à noite, quem anima?"
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);margin-top:8px;padding-left:48px;">
+        Respostas anônimas até combinar • Expira após o evento
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     JORNADA DO USUÁRIO
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">03 — Sua Experiência</div>
+    <h2>Jornada do Usuário</h2>
+    <p class="subtitle">
+      Do cadastro ao primeiro encontro — cada etapa foi pensada para ser segura, rápida e discreta.
+    </p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-line">
+          <div class="flow-dot">1</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <h3>Cadastro em Camadas</h3>
+          <p>Primeiro acesso: e-mail + auto-declaração 18+. Você pode navegar no feed e ver perfis, mas não interagir. Para acesso completo, valide sua idade com documento anônimo — <strong>seu nome real NUNCA é armazenado</strong>.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-line">
+          <div class="flow-dot">2</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <h3>Login com PIN</h3>
+          <p>E-mail e senha são usados apenas uma vez. Depois, você entra com um <strong>PIN de 4 dígitos</strong> — rápido como um app bancário, discreto como um calculador.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-line">
+          <div class="flow-dot">3</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <h3>Monte seu Perfil</h3>
+          <p>Pseudônimo, kit de relacionamento (status, o que busca, frequência), até 15 fetiches de catálogo curado. O sistema calcula seu <strong>% de compatibilidade</strong> com outros perfis automaticamente.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-line">
+          <div class="flow-dot">4</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <h3>Explore o Mapa</h3>
+          <p>Veja locais liberais na sua cidade, faça check-in, veja quantas pessoas estão em cada local (anonimamente). Comece a construir sua <strong>Bucket List</strong> de locais.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-line">
+          <div class="flow-dot">5</div>
+          <div class="flow-connector"></div>
+        </div>
+        <div class="flow-content">
+          <h3>Descubra e Conecte</h3>
+          <p>Navegue o feed algorítmico (amigos → próximos → compatíveis), faça swipe com limite, receba sugestões via Bucket List. Match abre chat privado com selfie destrutível.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-line">
+          <div class="flow-dot">6</div>
+        </div>
+        <div class="flow-content">
+          <h3>Construa Confiança</h3>
+          <p>Ganhe badges funcionais, suba de nível, conquiste o selo Verificado com confirmação de 4 amigos reais. Torne-se parte ativa da comunidade — Anjo, Júri Popular, criador de eventos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     PRIVACIDADE
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">04 — Privacidade Real</div>
+    <h2>Privacidade como direito, não feature</h2>
+    <p class="subtitle">
+      Cada camada de privacidade foi pensada para proteger quem usa — não para esconder uma lista de configurações no menu.
+    </p>
+
+    <div class="layers">
+      <div class="layer">
+        <div class="layer-icon">🔒</div>
+        <div class="layer-text">
+          <h3>Blur Facial Automático</h3>
+          <p>Toda foto sobe com rosto borrado. Você escolhe, post a post, se quer revelar.</p>
+        </div>
+        <div class="layer-tag"><span class="tag tag-free">Free</span></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-icon">🧮</div>
+        <div class="layer-text">
+          <h3>Modo Falso (Botão de Pânico)</h3>
+          <p>Um toque e o app vira calculadora, previsão do tempo ou bloco de notas.</p>
+        </div>
+        <div class="layer-tag"><span class="tag tag-free">Free</span></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-icon">👻</div>
+        <div class="layer-text">
+          <h3>Modo Invisível</h3>
+          <p>Se esconde de estranhos no radar e busca. Visível apenas para amigos.</p>
+        </div>
+        <div class="layer-tag"><span class="tag tag-premium">Premium</span></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-icon">🫥</div>
+        <div class="layer-text">
+          <h3>Modo Fantasma</h3>
+          <p>Some completamente de tudo — radar, busca, recomendações. Timer opcional.</p>
+        </div>
+        <div class="layer-tag"><span class="tag tag-premium">Premium</span></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-icon">💨</div>
+        <div class="layer-text">
+          <h3>Selfie Destrutível</h3>
+          <p>Fotos no chat que se autodestroem após 1 visualização. Sem salvamento, sem rastro.</p>
+        </div>
+        <div class="layer-tag"><span class="tag tag-free">Chat</span></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-icon">🏷️</div>
+        <div class="layer-text">
+          <h3>Marca d'Água Dinâmica</h3>
+          <p>Hash invisível do viewer embutido em cada foto. Se vazar, o autor é rastreado e banido.</p>
+        </div>
+        <div class="layer-tag"><span class="tag tag-yes">Ativo</span></div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-icon">🎭</div>
+        <div class="layer-text">
+          <h3>Pseudônimo em Comunidades</h3>
+          <p>Participe de fóruns e comunidades sob identidade anônima. Moderadores veem o real ID.</p>
+        </div>
+        <div class="layer-tag"><span class="tag tag-free">Free</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     GAMIFICAÇÃO
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">05 — Gamificação Funcional</div>
+    <h2>Badges que destravam portas</h2>
+    <p class="subtitle">
+      No Liberages, badges não são cosméticos. Eles desbloqueiam permissões reais na plataforma.
+    </p>
+
+    <div class="gamification-grid">
+      <div class="gam-card">
+        <div class="gam-header">
+          <div class="gam-icon" style="background:rgba(52,211,153,0.1);">⚡</div>
+          <div>
+            <div class="gam-title">XP e Níveis</div>
+            <div class="gam-subtitle">Progressão por engajamento</div>
+          </div>
+        </div>
+        <ul class="gam-list">
+          <li><span class="action">Login diário</span> <span class="xp">+5 XP</span></li>
+          <li><span class="action">Postar no Fotolog</span> <span class="xp">+10 XP</span></li>
+          <li><span class="action">Postar no Fórum</span> <span class="xp">+15 XP</span></li>
+          <li><span class="action">Check-in</span> <span class="xp">+20 XP</span></li>
+          <li><span class="action">Match</span> <span class="xp">+50 XP</span></li>
+          <li><span class="action">Validar identidade</span> <span class="xp">+100 XP</span></li>
+        </ul>
+      </div>
+
+      <div class="gam-card">
+        <div class="gam-header">
+          <div class="gam-icon" style="background:rgba(251,191,36,0.1);">🏅</div>
+          <div>
+            <div class="gam-title">Badges Funcionais</div>
+            <div class="gam-subtitle">Conquistas que liberam features</div>
+          </div>
+        </div>
+        <ul class="gam-list">
+          <li><span class="action">🥉 Primeiro Check-in</span> — Acesso básico</li>
+          <li><span class="action">🥈 Explorador</span> — 5 locais</li>
+          <li><span class="action">🥈 Borboleta Social</span> — 10 matches</li>
+          <li><span class="action">🥇 Veterano</span> — 1 ano de conta</li>
+          <li><span class="action">🥇 Verificado</span> — 4 amigos atestam</li>
+          <li><span class="action">🥇 Cidade Inteira</span> — 20 locais</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Moeda Única SVG -->
+    <div class="diagram-wrapper" style="margin-top:32px;">
+      <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;width:100%;">
+        <defs>
+          <pattern id="grid-moeda" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+          </pattern>
+          <marker id="arrow-m" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+          </marker>
+          <marker id="arrow-out" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+          </marker>
+        </defs>
+
+        <rect width="700" height="260" fill="#0f172a" rx="12"/>
+        <rect width="700" height="260" fill="url(#grid-moeda)" rx="12"/>
+
+        <!-- Inflow -->
+        <rect x="20" y="70" width="160" height="120" rx="10" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+        <rect x="20" y="70" width="160" height="120" rx="10" fill="rgba(52,211,153,0.06)"/>
+        <text x="100" y="100" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#34d399" font-weight="500">ENTRADA</text>
+        <text x="100" y="125" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">💳 Compra com R$</text>
+        <text x="100" y="145" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">🎯 Check-ins B2B</text>
+        <text x="100" y="165" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">🏆 Desafios Semanais</text>
+
+        <!-- Central: Moeda -->
+        <rect x="250" y="50" width="200" height="160" rx="12" fill="#0f172a" stroke="#fbbf24" stroke-width="2"/>
+        <rect x="250" y="50" width="200" height="160" rx="12" fill="rgba(251,191,36,0.04)"/>
+        <text x="350" y="90" text-anchor="middle" font-family="JetBrains Mono" font-size="12" fill="#fbbf24" font-weight="600">MOEDA ÚNICA</text>
+        <text x="350" y="115" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">Circuito fechado</text>
+        <text x="350" y="133" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">Sem cash-out</text>
+        <text x="350" y="151" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">Sem transferência P2P</text>
+        <text x="350" y="175" text-anchor="middle" font-family="Inter" font-size="9" fill="#64748b">Zero atrito legal</text>
+
+        <!-- Outflow -->
+        <rect x="520" y="70" width="160" height="120" rx="10" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5"/>
+        <rect x="520" y="70" width="160" height="120" rx="10" fill="rgba(167,139,250,0.06)"/>
+        <text x="600" y="100" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#a78bfa" font-weight="500">SAÍDA</text>
+        <text x="600" y="125" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">🚀 Match Boost</text>
+        <text x="600" y="145" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">🎁 Presentes Virtuais</text>
+        <text x="600" y="165" text-anchor="middle" font-family="Inter" font-size="10" fill="#94a3b8">🏷️ Cupons B2B</text>
+
+        <!-- Arrows -->
+        <line x1="185" y1="130" x2="245" y2="130" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-m)"/>
+        <line x1="455" y1="130" x2="515" y2="130" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arrow-out)"/>
+
+        <!-- Labels -->
+        <text x="215" y="120" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#34d399">compra</text>
+        <text x="485" y="120" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#fbbf24">gasta</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     COMUNIDADE VERIFICADA
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">06 — Confiança Social</div>
+    <h2>Comunidade Verificada</h2>
+    <p class="subtitle">
+      No Liberages, ser verificado significa ser socialmente confirmado — não pagar por um selo.
+    </p>
+
+    <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>Web of Trust</h3>
+        <p>O selo Verificado exige que <strong>4 amigos reais</strong> atestem que você existe fisicamente. Verificação social e colaborativa — não baseada em pagamento.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>Moderação IA + Humana</h3>
+        <p>IA tria em tempo real (spam, blur, conteúdo proibido). Humano decide o veredito final. A IA <strong>nunca age sozinha</strong>.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <h3>Júri Popular</h3>
+        <p>Para disputas comunitárias, usuários "Anjos da Comunidade" votam em regras e normas. Democracia interna.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FREE vs PREMIUM
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">07 — Modelo</div>
+    <h2>Free vs Premium</h2>
+    <p class="subtitle">
+      Freemium em duas camadas. O Free entrega valor real; o Premium desbloqueia o que importa.
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Funcionalidade</th>
+          <th><span class="tag tag-free">Free</span></th>
+          <th><span class="tag tag-premium">Premium</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Anúncios</td>
+          <td>B2B nativos</td>
+          <td><span class="tag tag-yes">Ad-Free</span></td>
+        </tr>
+        <tr>
+          <td>Swipes</td>
+          <td>30/dia</td>
+          <td>Ilimitados</td>
+        </tr>
+        <tr>
+          <td>Álbuns</td>
+          <td>3</td>
+          <td>Ilimitados</td>
+        </tr>
+        <tr>
+          <td>Ver quem curtiu</td>
+          <td>Janela de 2h</td>
+          <td>Histórico completo</td>
+        </tr>
+        <tr>
+          <td>Modo Falso</td>
+          <td><span class="tag tag-yes">Sim</span></td>
+          <td><span class="tag tag-yes">Sim</span></td>
+        </tr>
+        <tr>
+          <td>Modo Invisível</td>
+          <td><span class="tag tag-no">Não</span></td>
+          <td><span class="tag tag-yes">Sim</span></td>
+        </tr>
+        <tr>
+          <td>Modo Fantasma</td>
+          <td><span class="tag tag-no">Não</span></td>
+          <td><span class="tag tag-yes">Sim</span></td>
+        </tr>
+        <tr>
+          <td>Publicar Contos</td>
+          <td>Só ler</td>
+          <td><span class="tag tag-yes">Sim</span></td>
+        </tr>
+        <tr>
+          <td>Match Boost</td>
+          <td>1 grátis/semana</td>
+          <td>Ilimitado</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background:var(--bg-glass);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:24px;font-size:14px;color:var(--text-muted);">
+      <strong style="color:var(--accent);">Premium:</strong> R$29,90/mês em dinheiro <em>ou</em> pagamento híbrido com Moeda Única (ex: 1.500 moedas + R$14,90).
+      A moeda nunca cobre 100% — sempre há influxo financeiro real.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ARQUITETURA
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">08 — Arquitetura Técnica</div>
+    <h2>Single Binary. Zero Complicações.</h2>
+    <p class="subtitle">
+      Um único arquivo Go serve API, BFF, frontend React e PWA. Uma porta. Zero dependências externas.
+    </p>
+
+    <div class="diagram-wrapper">
+      <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-width:800px;width:100%;">
+        <defs>
+          <pattern id="grid-arch" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+          </pattern>
+          <marker id="arrow-a" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+          </marker>
+        </defs>
+
+        <rect width="800" height="380" fill="#0f172a" rx="12"/>
+        <rect width="800" height="380" fill="url(#grid-arch)" rx="12"/>
+
+        <!-- Single Binary boundary -->
+        <rect x="20" y="20" width="760" height="340" rx="12" fill="none" stroke="#34d399" stroke-width="1.5" stroke-dasharray="8,4"/>
+        <text x="40" y="45" font-family="JetBrains Mono" font-size="10" fill="#34d399" font-weight="500">SINGLE BINARY — cmd/server/main.go</text>
+
+        <!-- Go Server -->
+        <rect x="50" y="65" width="700" height="60" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+        <rect x="50" y="65" width="700" height="60" rx="8" fill="rgba(52,211,153,0.06)"/>
+        <text x="400" y="92" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#34d399" font-weight="500">net/http stdlib — Porta :3000</text>
+        <text x="400" y="110" text-anchor="middle" font-family="Inter" font-size="9" fill="#64748b">RequestID → Logger → Recoverer → CORS → Auth</text>
+
+        <!-- API + BFF side by side -->
+        <rect x="50" y="145" width="340" height="80" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.2"/>
+        <rect x="50" y="145" width="340" height="80" rx="8" fill="rgba(34,211,238,0.05)"/>
+        <text x="220" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#22d3ee" font-weight="500">REST API</text>
+        <text x="220" y="190" text-anchor="middle" font-family="Inter" font-size="9" fill="#94a3b8">/api/v1/* — JSON handlers</text>
+        <text x="220" y="205" text-anchor="middle" font-family="Inter" font-size="8" fill="#64748b">Fotolog • Albums • Forum • Swipe • Map • Chat</text>
+
+        <rect x="410" y="145" width="340" height="80" rx="8" fill="#0f172a" stroke="#a78bfa" stroke-width="1.2"/>
+        <rect x="410" y="145" width="340" height="80" rx="8" fill="rgba(167,139,250,0.05)"/>
+        <text x="580" y="172" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#a78bfa" font-weight="500">BFF</text>
+        <text x="580" y="190" text-anchor="middle" font-family="Inter" font-size="9" fill="#94a3b8">Serve React SPA + injeta configs</text>
+        <text x="580" y="205" text-anchor="middle" font-family="Inter" font-size="8" fill="#64748b">Auth redirects • Static files • Template engine</text>
+
+        <!-- Service Layer -->
+        <rect x="50" y="250" width="450" height="50" rx="8" fill="#0f172a" stroke="#fb923c" stroke-width="1.2"/>
+        <rect x="50" y="250" width="450" height="50" rx="8" fill="rgba(251,146,60,0.05)"/>
+        <text x="275" y="272" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#fb923c" font-weight="500">SERVICE LAYER</text>
+        <text x="275" y="288" text-anchor="middle" font-family="Inter" font-size="8" fill="#64748b">Lógica de negócio • Validação • Regras</text>
+
+        <!-- SQLite -->
+        <rect x="520" y="250" width="230" height="50" rx="8" fill="#0f172a" stroke="#a78bfa" stroke-width="1.2"/>
+        <rect x="520" y="250" width="230" height="50" rx="8" fill="rgba(167,139,250,0.05)"/>
+        <text x="635" y="272" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#a78bfa" font-weight="500">SQLite + sqlc</text>
+        <text x="635" y="288" text-anchor="middle" font-family="Inter" font-size="8" fill="#64748b">SQL puro • Sem ORM • FTS5</text>
+
+        <!-- Frontend -->
+        <rect x="50" y="315" width="700" height="30" rx="6" fill="rgba(34,211,238,0.08)" stroke="#22d3ee" stroke-width="1"/>
+        <text x="400" y="335" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#22d3ee">React 19 SPA + PWA • Vite • Tailwind CSS v4 • Glassmorphism • Service Worker</text>
+
+        <!-- Arrows -->
+        <line x1="400" y1="125" x2="220" y2="145" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-a)"/>
+        <line x1="400" y1="125" x2="580" y2="145" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-a)"/>
+        <line x1="220" y1="225" x2="275" y2="250" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-a)"/>
+        <line x1="580" y1="225" x2="635" y2="250" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-a)"/>
+        <line x1="275" y1="300" x2="635" y2="300" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-a)"/>
+      </svg>
+    </div>
+
+    <h3 style="margin-top:24px;">Por que isso importa</h3>
+    <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top:16px;">
+      <div class="card" style="padding:20px;">
+        <div style="font-size:24px;margin-bottom:8px;">📦</div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Single Binary</div>
+        <div style="font-size:12px;color:var(--text-muted);">Um arquivo, deploy trivial, custo de infra quase zero.</div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-size:24px;margin-bottom:8px;">📲</div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:4px;">PWA + Desktop</div>
+        <div style="font-size:12px;color:var(--text-muted);">Instala sem App Store. System tray discreto.</div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-size:24px;margin-bottom:8px;">🗄️</div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:4px;">SQLite</div>
+        <div style="font-size:12px;color:var(--text-muted);">Até 50k usuários ativos sem complicação.</div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-size:24px;margin-bottom:8px;">⚡</div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Go 1.26+</div>
+        <div style="font-size:12px;color:var(--text-muted);">Performance nativa, memória eficiente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     O QUE NÃO FAZ
+     ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">09 — Foco Intencional</div>
+    <h2>O que não faz (e por quê)</h2>
+    <p class="subtitle">
+      Cada feature cortada foi uma decisão deliberada para manter o produto focado, seguro e sustentável.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px;">
+      <div style="padding:16px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:12px;">
+        <span style="color:var(--rose);font-size:18px;">🚫</span>
+        <div>
+          <div style="font-weight:600;font-size:14px;">Live Streaming</div>
+          <div style="font-size:12px;color:var(--text-dim);">Custo de infra + moderação altíssimos</div>
+        </div>
+      </div>
+      <div style="padding:16px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:12px;">
+        <span style="color:var(--rose);font-size:18px;">🚫</span>
+        <div>
+          <div style="font-weight:600;font-size:14px;">Marketplace de Criadores</div>
+          <div style="font-size:12px;color:var(--text-dim);">Não é o foco — rede social, não plataforma</div>
+        </div>
+      </div>
+      <div style="padding:16px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:12px;">
+        <span style="color:var(--rose);font-size:18px;">🚫</span>
+        <div>
+          <div style="font-weight:600;font-size:14px;">Carona Solidária</div>
+          <div style="font-size:12px;color:var(--text-dim);">Liability física inaceitável</div>
+        </div>
+      </div>
+      <div style="padding:16px 20px;background:var(--bg-glass);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:12px;">
+        <span style="color:var(--rose);font-size:18px;">🚫</span>
+        <div>
+          <div style="font-weight:600;font-size:14px;">GPS Contínuo</div>
+          <div style="font-size:12px;color:var(--text-dim);">Risco de triangulação e exposição</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FECHAMENTO
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="closing">
+  <div class="container">
+    <div class="section-label">Resumo</div>
+    <h2>A vida liberal merece uma plataforma à altura</h2>
+    <p>
+      Privacidade real. Mapa gamificado. Comunidade verificada.
+      Uma plataforma construída com foco, segurança e tecnologia moderna.
+    </p>
+    <div class="closing-quote">
+      "Liberages não é para todos. É para quem busca o melhor."
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    Liberages — Apresentação do Sistema v2.0 — Julho 2026<br>
+    <span style="color:var(--text-dim);">Go + SQLite + React PWA — Single Binary</span>
+  </div>
+</footer>
+
+</body>
+</html>
